@@ -4,6 +4,9 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 
 $conf	= callAPI( 'system/conf');
 
+$clouds = CallEdge('clouds');
+$cloudInfo	= @reset( $clouds);
+
 /*------------*/
 
 $templateData = array(
@@ -24,21 +27,21 @@ $templateData = array(
 				array( $lang['Activation']	, 
 						editEnabled( array( 
 									'id'		=>	'enabled',
-									'value'		=>	$conf['cloud_conf']['enabled'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'cloud_conf'),
+									'value'		=>	$cloudInfo['paused'] != 1,
+									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'paused'),
 							)
 						)
 					),
 
 				array( 
-						$lang['Domain'], 
+						$lang['Server'], 
 						editText( array( 
-									'id'		=> 'domain',
-									'label'		=> $lang['Domain'],
-									'pholder'	=> 'e.g. waziup_myfarm',
+									'id'		=> 'server',
+									'label'		=> $lang['Server'],
+									'pholder'	=> 'e.g. api.staging.waziup.io/api/v2',
 									//'note'		=> 'e.g. waziup_myfarm',
-									'value'		=>	$conf['cloud_conf']['domain'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'cloud_conf'),
+									'value'		=>	@$cloudInfo['url'],
+									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'url'),
 						)
 					)
 				),
@@ -50,8 +53,8 @@ $templateData = array(
 									'label'		=> $lang['Username'],
 									'pholder'	=> $lang['Username'] .' [A-Za-z0-9]',
 									//'note'		=> $lang['Username'] .' [A-Za-z0-9]',
-									'value'		=>	$conf['cloud_conf']['username'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'cloud_conf'),
+									'value'		=>	@$cloudInfo['credentials']['username'],
+									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),
 						)
 					)
 				),				
@@ -59,18 +62,18 @@ $templateData = array(
 				array( 
 						$lang['Password'], 
 						editText( array( 
-									'id'		=> 'password',
+									'id'		=> 'token',
 									'label'		=> $lang['Password'],
 									'pholder'	=> $lang['Password'] .' [A-Za-z0-9]',
 									//'note'		=> $lang['Password'] .' [A-Za-z0-9]',
-									'value'		=>	empty( $conf['cloud_conf']['password']) ? '' : '*********',
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'cloud_conf'),
+									'value'		=>	empty( @$cloudInfo['credentials']['token']) ? '' : '*********',
+									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),
 
 						)
 					)
 				),
 				
-				array( $lang['PublicVisibility']	, 
+				/*array( $lang['PublicVisibility']	, 
 					editEnabled( array( 
 								'id'		=>	'public',
 								'value'		=>	$conf['cloud_conf']['public'],
@@ -78,7 +81,7 @@ $templateData = array(
 								'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'cloud_conf'),
 						)
 					)
-				),
+				),/**/
 
 			),
 		),

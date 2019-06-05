@@ -57,6 +57,52 @@ if( !empty( $_REQUEST['status']))
 
 /*-----------------*/
 
+if( !empty( $_GET['edge']) && $_GET['edge'] == 'clouds')
+{
+	$clouds = CallEdge('clouds');
+	$cloudInfo	= @reset( $clouds);
+
+	if( empty( $cloudInfo)) //If it does not exist, create it!
+	{
+  		$default = array(
+  			'url'	=> 'api.waziup.io/api/v2',
+  			'paused'=> true,
+  			'credentials' => array( 'username' => '', 'token' => '')
+  		);
+
+		$cloudInfo['id'] = CallEdge( 'clouds', $default, 'POST');
+
+	}//End of if( empty( $cloudInfo));
+	
+	switch( $_REQUEST['conf_node'])
+	{
+		case 'paused' 		: $jsonData = $_REQUEST['value'] != 1; break;
+		case 'credentials'	: $jsonData = array( $_REQUEST['name'] => $_REQUEST['value'] ); break;
+		default:	$jsonData = $_REQUEST['value'];
+	}
+	
+	$API = "clouds/${cloudInfo['id']}/{$_REQUEST['conf_node']}";
+	$err = CallEdge( $API, $jsonData, 'POST');
+	
+	/*---------*/
+
+	if( $err)
+	{
+		print( $lang['SavedSuccess']);
+
+	}else{
+
+		print( $lang['SaveError'] ." [ $err ]");
+
+	}//End of if( $err == 0);
+	
+	exit();
+
+}//End of if( !empty( $_GET['edge']) && $_GET['edge'] == 'clouds');
+
+
+/*-----------------*/
+
 if( !empty( $_GET['cfg']))
 {
 	$err = 0;

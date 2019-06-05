@@ -522,13 +522,29 @@ function getNetwokIFs()
 
 /*--------------------*/
 
+function CallEdge( $name, $data = false, $method = 'GET')
+{
+	global $_cfg;
+	//Calling wazigate-edge API
+	return restCall( $_cfg['EdgeServer'], $name, $data, $method);
+}
+
+/*--------------------*/
+
 function CallAPI( $name, $data = false, $method = 'GET', $json = true)
 {
 	global $_cfg;
+	//Calling wazigate-system API
+	return restCall( $_cfg['APIServer'], $name, $data, $method, $json);
+}
 
+/*--------------------*/
+
+function restCall( $apiInfo, $name, $data = false, $method = 'GET', $json = true)
+{
     $curl = curl_init();
     
-    $url = $_cfg['APIServer']['URL'] . $name;
+    $url = $apiInfo['URL'] . $name;
     $data_json = $json ? json_encode( $data) : http_build_query( $data);
     
     //printr( $url);printr( $data_json);
@@ -561,10 +577,10 @@ function CallAPI( $name, $data = false, $method = 'GET', $json = true)
     }//End of switch( $method);
 
     //<!-- Authentication:
-    if( !empty( $_cfg['APIServer']['username']))
+    if( !empty( $apiInfo['username']))
     {
 		curl_setopt( $curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-		curl_setopt( $curl, CURLOPT_USERPWD, $_cfg['APIServer']['username'] .':'. $_cfg['APIServer']['password']);
+		curl_setopt( $curl, CURLOPT_USERPWD, $apiInfo['username'] .':'. $apiInfo['password']);
 	}
 	
 	

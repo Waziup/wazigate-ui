@@ -192,7 +192,7 @@ return array(
 	'Documentations'=>	'Documentations',
 	'APIDocs'		=>	'Gateway API Docs',
 	'WaziDocs'		=>	'Waziup Documentations',
-	''		=>	'',
+	'Server'		=>	'Server',
 	''		=>	'',
 	''		=>	'',
 	''		=>	'',

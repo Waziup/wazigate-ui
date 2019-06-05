@@ -28,7 +28,7 @@ $_cfg = array(
 	),
 
 	'EdgeServer'	=>	array(
-			'URL'	=>	'http://'. $edgeAddr[0] .':'. $edgeAddr[1] .'/api/v1/',
+			'URL'	=>	'http://'. $edgeAddr[0] .':'. $edgeAddr[1] .'/',
 			'username'	=>	'',
 			'password'	=>	'',
 	),
