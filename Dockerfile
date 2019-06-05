@@ -5,3 +5,5 @@ RUN apt-get update -y && \
     apt-get install -y hugo git wget unzip
 
 #RUN ls -a
+
+COPY . /var/www/html
