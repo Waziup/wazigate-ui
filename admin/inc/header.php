@@ -187,6 +187,10 @@
     	});
 
 	</script>
+
+	<link rel="stylesheet" href="./style/js/leaflet/leaflet.css" />
+	<script src="./style/js/leaflet/leaflet.js"></script>
+
 </head>
 
 <body style="direction: <?php print( $lang['LDIR']); ?>;">

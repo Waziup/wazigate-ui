@@ -5,8 +5,6 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 $conf	=	callAPI( 'system/conf');
 $net	=	callAPI( 'system/net');
 
-$maxAddr = 255;
-
 /*------------*/
 
 $templateData = array(
@@ -48,6 +46,33 @@ $templateData = array(
 			),
 		),
 
+		/*-----------*/
+		
+		array(
+			'title'		=>	$lang['Maintenance'],
+			'active'	=>	false,
+			'notes'		=>	$lang['Notes_Overview_Maintenance'],
+			'content'	=>	array(
+				
+				array( 'Remote.it', remoteItStatus()),
+			),
+		),
+		
+		/*-----------*/
+		
+		array(
+			'title'		=>	$lang['Location'],
+			'active'	=>	false,
+			'notes'		=>	$lang['Notes_Overview_Location'],
+			'content'	=>	array(
+				
+				array( loadLocationInfo( 3 /*The tab Id, loads it only if tab is active*/) ),
+			),
+		),		
+		
+		
+		/*-----------*/
+
 	),
 );
 
@@ -55,4 +80,74 @@ $templateData = array(
 
 require( './inc/template_admin.php');
 
+/*------------*/
+
+function loadLocationInfo( $tabId)
+{
+	global $lang;
+	
+	return '<div id="sinkAjx"></div>
+	  <script>
+	  	  var autoR = 0;
+		  function loadLocation()
+		  {
+		  	clearTimeout( autoR);
+		  	if( $("#sinkAjx").html() == "") { autoR = setTimeout( loadLocation, 300); }else{ return false;}
+		  	if( ! $("#sinkAjx").is(":visible")) return false;
+
+		  	$("#sinkAjx").html( "<p align=\"center\"><img src=\"./style/img/loading.gif\" /></p>").fadeIn();
+		  	$.get( "?get=location", function( data){
+				$("#sinkAjx").html( data).fadeIn();
+			});
+			return true;
+		  }
+		  $(function(){ loadLocation();});
+	 </script>';
+}
+
+
+/*------------*/
+
+function remoteItStatus()
+{
+	global $lang;
+
+	$notRegistered = printEnabled( false, 'Done', 'NotRegistered');
+
+	return '<div id="remoteSinkAjx"></div>
+	  <script>
+		  function loadRemoteStatus()
+		  {
+		  	$("#remoteSinkAjx").html( "<p align=\"center\"><img src=\"./style/img/loading.gif\" /></p>").fadeIn();
+		  	$.get( "?get=remote.it", function( data){
+				out = "";
+				res = JSON.parse( data);
+				if( res)
+				{
+					if( typeof res.msg != "undefined")
+					{
+						out = "<b>"+ res.msg +"</b>";
+						setTimeout( loadRemoteStatus, 3000);
+
+					}else{
+						out = "<table cellpadding=\"10\">";
+						for (var key in res)
+						{
+							out += "<tr><td style=\"padding: 5px;\">"+ key +" :</td><td><b>"+ res[key].replace(/(?:\r\n|\r|\n)/g, "<br />") +"</b></td></tr>";
+						}
+						out += "</table>";
+					}
+				
+				}else{
+					out = \''. $notRegistered .'\';
+				}
+				$("#remoteSinkAjx").html( out).fadeIn();
+			});
+			return true;
+		  }
+		  $(function(){ loadRemoteStatus();});
+	 </script>';	
+}
+
+/*------------*/
 ?>

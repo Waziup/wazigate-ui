@@ -29,7 +29,7 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
                     		foreach( $templateData['tabs'] as $tabId => $tab)
                     		{
                     			$active = $tab['active'] ? 'active' : '';
-                    			print( "<li class='$active'>
+                    			print( "<li class='$active' id='thead_$tabId'>
 				            				<a href='#tab_$tabId' data-toggle='tab'>
 				            					{$tab['title']}
 				            				</a>

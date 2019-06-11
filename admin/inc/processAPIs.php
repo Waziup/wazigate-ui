@@ -39,6 +39,10 @@ if( !empty( $_GET['get']))
 		}
 
 	}//End of if( $_GET['get'] == 'logs');
+	
+	if( $_GET['get'] == 'location') print( getLocation());
+	
+	if( $_GET['get'] == 'remote.it') print( json_encode( callAPI( 'remote.it')));
 
 	exit();
 }/**/
@@ -304,6 +308,39 @@ function wifiForm( $params)
 		';
 
 	return $out;
+}
+
+/*--------------------*/
+
+function getLocation()
+{
+	$info = callAPI( 'location');
+	//printr( $info);
+	
+	$out = "<table cellpadding=\"10\">";
+	foreach( $info as $k => $v)
+	{
+		$out .= "<tr><td style=\"padding: 5px;\">$k :</td><td>$v</td></tr>";
+	}
+	$out .= "</table>";
+	
+	return $out .'
+	<div id="mapid" style="width: 100%; height: 400px;"></div>
+	<script>
+		$(function(){
+			var map = L.map("mapid").setView(['. $info['latitude'] .', '. $info['longitude'] .'], 8);
+			L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid2F6aWdhdGUiLCJhIjoiY2p3cms2eHQzMDByYjQwbnh6cjJzNG1kdCJ9.LqEwxWIQ65NmGgMi3GCQUg", {
+				attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+				maxZoom: 10,
+				id: "mapbox.streets"
+			}).addTo(map);
+			
+			L.marker(['. $info['latitude'] .', '. $info['longitude'] .']).addTo(map)
+				.bindPopup("My WaziGate")
+				.openPopup();
+			});
+    </script>';
+	
 }
 
 /*--------------------*/

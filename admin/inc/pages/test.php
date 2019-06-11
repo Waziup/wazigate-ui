@@ -18,12 +18,12 @@ $templateData = array(
 		/*-----------*/
 		
 		array(
-			'title'		=>	$lang['SysLogs'],
+			'title'		=>	$lang['LoraLogs'],
 			'active'	=>	true,
 			'notes'		=>	$lang['Notes_Test_Logs'],
 			'content'	=>	array(
 				
-				array( logsForm()),
+				array( logsForm( 0, 'lora')),
 			),
 		),
 		
@@ -75,7 +75,7 @@ function downlinkReqForm()
 
 /*------------*/
 
-function logsForm()
+function logsForm( $tabId, $apiPath = '')
 {
 	global $lang;
 	
@@ -108,6 +108,7 @@ function logsForm()
 	  <script>
 		var autoR = 0;
 		function loadLogs(n){
+			if( $("li.active").attr("id") != "thead_"+'. $tabId .') return false;
 			$("#logsAjx").html( "<p align=\"center\"><img src=\"./style/img/loading_b.gif\" /></p>").fadeIn();
 			$.get( "?get=logs&n="+ n, function( data){
 				$("#logsAjx").html( data).fadeIn();
