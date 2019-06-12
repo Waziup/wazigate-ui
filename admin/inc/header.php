@@ -191,6 +191,17 @@
 	<link rel="stylesheet" href="./style/js/leaflet/leaflet.css" />
 	<script src="./style/js/leaflet/leaflet.js"></script>
 
+
+	<!--[if lte IE 8]>
+		<script language="javascript" type="text/javascript" src="./style/js/flot/excanvas.min.js"></script>
+	<![endif]-->
+	<script type="text/javascript" src="./style/js/flot/jquery.flot.min.js"></script>
+	<script type="text/javascript" src="./style/js/flot/jquery.flot.time.js"></script>
+	<script type="text/javascript" src="./style/js/flot/jshashtable-2.1.js"></script>
+	<script type="text/javascript" src="./style/js/flot/jquery.numberformatter-1.2.3.min.js"></script>
+	<script type="text/javascript" src="./style/js/flot/jquery.flot.symbol.js"></script>
+	<script type="text/javascript" src="./style/js/flot/jquery.flot.axislabels.js"></script>
+
 </head>
 
 <body style="direction: <?php print( $lang['LDIR']); ?>;">

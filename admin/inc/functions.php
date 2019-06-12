@@ -13,6 +13,14 @@ function is_connected(){
 
 
 /*-------------------*/
+
+function read_database_json(){
+	$json_src = file_get_contents('/var/www/html/database.json');
+	return json_decode( $json_src, true);
+}
+
+/*-------------------*/
+
 //TODO: Need to make it work
 function low_level_gw_status(){
 	return false;
@@ -21,7 +29,9 @@ function low_level_gw_status(){
 
 /*-------------------*/
 
+//TODO: Need to make it work
 function send_downlink($dst, $msg){
+	return false;
 	return shell_exec("sudo /var/www/html/admin/libs/sh/web_shell_script.sh downlink_request ".$dst." ".$msg);
 }
 
@@ -280,6 +290,15 @@ function CallAPI( $name, $data = false, $method = 'GET', $json = true)
 	global $_cfg;
 	//Calling wazigate-system API
 	return restCall( $_cfg['APIServer'], $name, $data, $method, $json);
+}
+
+/*--------------------*/
+
+function CallHost( $name, $data = false, $method = 'GET')
+{
+	global $_cfg;
+	//Calling wazigate-host API
+	return restCall( $_cfg['HostServer'], $name, $data, $method);
 }
 
 /*--------------------*/

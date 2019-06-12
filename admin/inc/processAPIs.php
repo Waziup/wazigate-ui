@@ -41,8 +41,8 @@ if( !empty( $_GET['get']))
 	}//End of if( $_GET['get'] == 'logs');
 	
 	if( $_GET['get'] == 'location') print( getLocation());
-	
 	if( $_GET['get'] == 'remote.it') print( json_encode( callAPI( 'remote.it')));
+	if( $_GET['get'] == 'hardware_status') print( json_encode( CallHost( 'hardware/status')));
 
 	exit();
 }/**/

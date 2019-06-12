@@ -61,7 +61,19 @@ $menu = array(
 		'url' 	=> '#maintenance',
 		'icon'	=> 'fa-wrench',
 		'active'=> in_array( $_GET['page'], array( 'test', 'update')),
-			'sub'	=> array(
+			'sub'	=> array(				
+				'resources' => array(
+					'text'	=> $lang['Resources'],
+					'url' 	=> 'resources',
+					'icon'	=> 'fa-dashboard', //fa-safari fa-hourglass-3 fa-line-chart fa-pie-chart 
+					'active'=> $_GET['page'] == 'resources',
+				),
+				'logs' => array(
+					'text'	=> $lang['Logs'],
+					'url' 	=> 'logs',
+					'icon'	=> 'fa-file-code-o',//fa-file-text-o fa-file-code-o fa-file-text 
+					'active'=> $_GET['page'] == 'logs',
+				),
 				'test' => array(
 					'text'	=> $lang['TestDebug'],
 					'url' 	=> 'test',
@@ -118,10 +130,10 @@ $menu = array(
 
 /*---------------------------------*/
 /*
-$cssIcons = @file( '/var/www/html/wazigate/admin/tmp/faFontsContent');
+$cssIcons = @file( '/var/www/html/admin/style/fonts/faFontsContent');
 foreach( $cssIcons as $icon)
 {
-	print( "<i class='fa $icon'></i>$icon<br /><br />");
+	print( "<i class='fa $icon' style='font-size: 24px;'></i>$icon<br /><br />");
 }/**/
 
 /*---------------------------------*/

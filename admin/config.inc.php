@@ -4,9 +4,15 @@ $edgeAddr = explode( ':', @$_ENV['WAZIGATE_EDGE_ADDR']);
 empty( $edgeAddr[0]) and $edgeAddr[0] = 'localhost';
 empty( $edgeAddr[1]) and $edgeAddr[1] = '880';
 
+$hostAddr = explode( ':', @$_ENV['WAZIGATE_HOST_ADDR']);
+empty( $hostAddr[0]) and $hostAddr[0] = 'localhost';
+empty( $hostAddr[1]) and $hostAddr[1] = '5544';
+
 $sysAddr = explode( ':', @$_ENV['WAZIGATE_SYSTEM_ADDR']);
 empty( $sysAddr[0]) and $sysAddr[0] = 'localhost';
 empty( $sysAddr[1]) and $sysAddr[1] = '880';
+
+/*------------------------------*/
 
 $_cfg = array(
 	'max_login_attempts'	=>	3, // not implemented!
@@ -33,12 +39,22 @@ $_cfg = array(
 			'password'	=>	'',
 	),
 	
+	'HostServer'	=>	array(
+			'URL'	=>	'http://'. $hostAddr[0] .':'. $hostAddr[1] .'/',
+			'username'	=>	'',
+			'password'	=>	'',
+	),
+	
 	'wazidocs'	=> array(
 		'git'	=> 'https://github.com/Waziup/waziup.io/commits',
 	),
 );
 
+/*------------------------------*/
+
 error_reporting( E_ALL); ini_set('display_errors', 1);
 //	error_reporting( E_WARNING & E_ERROR);
 //	set_time_limit(0);
+
+/*------------------------------*/
 ?>

@@ -49,18 +49,6 @@ $templateData = array(
 		/*-----------*/
 		
 		array(
-			'title'		=>	$lang['Maintenance'],
-			'active'	=>	false,
-			'notes'		=>	$lang['Notes_Overview_Maintenance'],
-			'content'	=>	array(
-				
-				array( 'Remote.it', remoteItStatus()),
-			),
-		),
-		
-		/*-----------*/
-		
-		array(
 			'title'		=>	$lang['Location'],
 			'active'	=>	false,
 			'notes'		=>	$lang['Notes_Overview_Location'],
@@ -108,46 +96,5 @@ function loadLocationInfo( $tabId)
 
 /*------------*/
 
-function remoteItStatus()
-{
-	global $lang;
 
-	$notRegistered = printEnabled( false, 'Done', 'NotRegistered');
-
-	return '<div id="remoteSinkAjx"></div>
-	  <script>
-		  function loadRemoteStatus()
-		  {
-		  	$("#remoteSinkAjx").html( "<p align=\"center\"><img src=\"./style/img/loading.gif\" /></p>").fadeIn();
-		  	$.get( "?get=remote.it", function( data){
-				out = "";
-				res = JSON.parse( data);
-				if( res)
-				{
-					if( typeof res.msg != "undefined")
-					{
-						out = "<b>"+ res.msg +"</b>";
-						setTimeout( loadRemoteStatus, 3000);
-
-					}else{
-						out = "<table cellpadding=\"10\">";
-						for (var key in res)
-						{
-							out += "<tr><td style=\"padding: 5px;\">"+ key +" :</td><td><b>"+ res[key].replace(/(?:\r\n|\r|\n)/g, "<br />") +"</b></td></tr>";
-						}
-						out += "</table>";
-					}
-				
-				}else{
-					out = \''. $notRegistered .'\';
-				}
-				$("#remoteSinkAjx").html( out).fadeIn();
-			});
-			return true;
-		  }
-		  $(function(){ loadRemoteStatus();});
-	 </script>';	
-}
-
-/*------------*/
 ?>
