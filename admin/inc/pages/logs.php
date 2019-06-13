@@ -4,41 +4,50 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 
 $conf	= callAPI( 'system/conf');
 
+
+$status = CallHost( 'docker/status');
+
+//printr( $status);
+
+/*------------*/
+
+$tabs = array(
+			array(
+				'title'		=>	'LoRa',
+				'active'	=>	true,
+				'notes'		=>	$lang['Notes_Test_Logs'],
+				'content'	=>	array(
+					array( logsForm( 'lora')),
+				),
+			)
+	);
+
+foreach( $status as $k => $container)
+{
+	$cName = ltrim( $container['Names'][0], '/');
+	$tabs[] = array(
+			'title'		=>	$cName,
+			'active'	=>	false, // Active only the first tab
+			'notes'		=>	'',
+			'content'	=>	array(
+				array( $lang['State']  .': '. $container['State']),
+				array( $lang['Status'] .': '.  $container['Status'] ),
+				array( logsForm( $cName, $container['Id'])),
+			)
+		);
+	
+}
+
+/*------------*/
+
 /*------------*/
 
 $templateData = array(
 
 	'icon'	=>	$pageIcon,
 	'title'	=>	$lang['Logs'],
-	'msgDiv'=>	'gw_config_msg',
-	'tabs'	=>	array(
-		
-		/*-----------*/
-		
-		array(
-			'title'		=>	$lang['LoraLogs'],
-			'active'	=>	true,
-			'notes'		=>	$lang['Notes_Test_Logs'],
-			'content'	=>	array(
-				
-				array( logsForm( 0, 'lora')),
-			),
-		),
-		
-		/*-----------*/
-		
-		/*array(
-			'title'		=>	$lang['DownlinkReq'],
-			'active'	=>	false,
-			'notes'		=>	$lang['Notes_Test_Downlink'],
-			'content'	=>	array(
-
-				array( downlinkReqForm()),
-				
-			),
-		), /**/
-	
-	),
+	'msgDiv'=>	'msg',
+	'tabs'	=>	$tabs
 );
 
 /*------------*/
@@ -73,51 +82,60 @@ function downlinkReqForm()
 
 /*------------*/
 
-function logsForm( $tabId, $apiPath = '')
+function logsForm( $type = '', $cId = '0')
 {
 	global $lang;
+	
+	$typeJsClear = str_replace( '-', '', $type);
 	
 	return '<table class="table table-striped table-bordered table-hover">
 		  <thead></thead>
 		<tbody>
 		   <tr>
-		    <td><a href="?get=logs">'. $lang['LogsDownload_All'] .'</a></td>
+		    <td><a href="?get=logs&type='. $type .'">'. $lang['LogsDownload_All'] .'</a></td>
 		   </tr>
 		   <tr>
-		    <td><a href="javascript:loadLogs(500);">'.  $lang['LogsDownload_500L'] .'</a></td>
+		    <td><a href="javascript:loadLogs_'. $typeJsClear .'(500);">'.  $lang['LogsDownload_500L'] .'</a></td>
 		   </tr>
 		</tbody>
 	  </table>
 	  <div class="logs">
-	  	<pre id="logsAjx">NA</pre>
+	  	<pre id="logsAjx_'. $typeJsClear .'">NA</pre>
 	  </div>
 		<table class="table table-striped table-bordered table-hover">
 		  <thead></thead>
 		<tbody>
+		   <tr><td>Logs for <b>'.  $type .'</b></td></tr>
 		   <tr>
-		    <td><a href="?get=logs">'. $lang['LogsDownload_All'] .'</a></td>
+		    <td><a href="?get=logs&type='. $type .'&cId='. $cId .'">'. $lang['LogsDownload_All'] .'</a></td>
 		   </tr>
 		   <tr>
-		    <td><a href="javascript:loadLogs(500);">'.  $lang['LogsDownload_500L'] .'</a></td>
+		    <td><a href="javascript:loadLogs_'. $typeJsClear .'(500);">'.  $lang['LogsDownload_500L'] .'</a></td>
 		   </tr>
 		</tbody>
 	  </table>	  
-	  <div id="logsDown"></div>
+	  <div id="logsDown'. $typeJsClear .'"></div>
 	  <script>
-		var autoR = 0;
-		function loadLogs(n){
-			if( $("li.active").attr("id") != "thead_"+'. $tabId .') return false;
-			$("#logsAjx").html( "<p align=\"center\"><img src=\"./style/img/loading_b.gif\" /></p>").fadeIn();
-			$.get( "?get=logs&n="+ n, function( data){
-				$("#logsAjx").html( data).fadeIn();
-				clearTimeout( autoR);
-				if( n == 50){ autoR = setTimeout( function(){loadLogs(50)}, 5000);}
+		var autoR_'. $typeJsClear .' = 0;
+		function loadLogs_'. $typeJsClear .'( n){
+			if( ! $("#logsAjx_'. $typeJsClear .'").is(":visible"))
+			{ 
+				autoR_'. $typeJsClear .' = setTimeout( function(){loadLogs_'. $typeJsClear .'(50)}, 1000);
+				return false;
+			}
+			clearTimeout( autoR_'. $typeJsClear .');
+			
+			$("#logsAjx_'. $typeJsClear .'").html( "<p align=\"center\"><img src=\"./style/img/loading_b.gif\" /></p>").fadeIn();
+			$.get( "?get=logs&type='. $type .'&cId='. $cId .'&n="+ n, function( data){
+				$("#logsAjx_'. $typeJsClear .'").html( data).fadeIn();
+				
+				if( n == 50){ autoR_'. $typeJsClear .' = setTimeout( function(){loadLogs_'. $typeJsClear .'(50)}, 5000);}
 				$("html, body").animate({
-					  scrollTop: $("#logsDown").offset().top - 100
+					  scrollTop: $("#logsDown'. $typeJsClear .'").offset().top - 100
 				}, 1000);
 			});
 		}
-		$(function(){ loadLogs(50);});
+		$(function(){ loadLogs_'. $typeJsClear .'(50);});
 	 </script>';
 }
 

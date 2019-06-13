@@ -132,6 +132,8 @@ function editEnabled( $field )
 	global $_cfg, $lang;
 	static $counter = 0;
 
+	
+	
 	//isset( $field['id']) 			or $field[ '' ] = '';
 	isset( $field['enText'])		or $field[ 'enText' ]	= 'ON';
 	isset( $field['disText'])		or $field[ 'disText' ]	= 'OFF';
@@ -148,7 +150,7 @@ function editEnabled( $field )
 	$field['params']['name'] = $field['id'];
 	$getQStr = http_build_query( $field['params']);
 	
-	$htmlId = $field['id'] . ($counter++);
+	$htmlId = str_replace( '-', '', $field['id']) . ($counter++); //Escape problematic characters
 	
 	return '<input type="hidden" class="custom-switch" '. ( $field[ 'value' ] ? 'checked' : '') .' name="'. $htmlId .'" id="'. $htmlId .'" data-url="./?'. $getQStr .'" data-textOn="'. $field[ 'enText' ] .'" value="'. $field[ 'value' ] .'" data-textOff="'. $field['disText'] .'" data-trackColorOn="#512DA8" data-trackColorOff="#616161" data-textColorOff="#fff" data-trackBorderColor="#555" />
 	<div style="display:none" class="inline-msg" id="'. $htmlId .'_msg"></div>

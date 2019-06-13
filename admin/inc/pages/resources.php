@@ -236,7 +236,9 @@ function resUsage()
 				
 				now += updateInterval;
 				
-				$("#desc").html( "Available RAM: <b>"+ parseInt( res.mem_usage.available / 1000000) + "</b>MB");
+				desc  = "Available RAM: <b>"+ parseInt( res.mem_usage.available / 1000000) + "</b>MB";
+				desc += "<br /> Available Disk Space: <b>"+ res.disk.available + "</b>";
+				$("#desc").html( desc);
 				
 				updateCharts( cpuData, ramData, tmpData);
 				setTimeout( GetData, updateInterval);

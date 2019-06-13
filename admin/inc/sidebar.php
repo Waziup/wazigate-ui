@@ -68,6 +68,12 @@ $menu = array(
 					'icon'	=> 'fa-dashboard', //fa-safari fa-hourglass-3 fa-line-chart fa-pie-chart 
 					'active'=> $_GET['page'] == 'resources',
 				),
+				'containers' => array(
+					'text'	=> $lang['Containers'],
+					'url' 	=> 'containers',
+					'icon'	=> 'fa-file-code-o',//fa-file-text-o fa-file-code-o fa-file-text 
+					'active'=> $_GET['page'] == 'containers',
+				),
 				'logs' => array(
 					'text'	=> $lang['Logs'],
 					'url' 	=> 'logs',

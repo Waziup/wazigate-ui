@@ -13,16 +13,30 @@ if( !empty( $_GET['get']))
 	{
 		if( @$_GET['n'] == 50)
 		{
-			print( callAPI( 'system/logs50'));
+			if( empty( $_GET['cId']))
+			{
+				print( callAPI( 'system/logs50'));
+
+			}else{
+
+				print( CallHost( 'docker/'. $_GET['cId'] .'/logs/50'));
+			}
 			
 		}elseif( @$_GET['n'] == 500){
 			
-			print( callAPI( 'system/logs500'));
+			if( empty( $_GET['cId']))
+			{
+				print( callAPI( 'system/logs500'));
+
+			}else{
+
+				print( CallHost( 'docker/'. $_GET['cId'] .'/logs/500'));
+			}
 		
 		}else{
 		
 			$date = new DateTime();
-			$filename = 'logs-'. $date->format("Y-m-d_H.i.s") .'.txt';
+			$filename = 'logs-'. $_GET['type'] .'-'. $date->format("Y-m-d_H.i.s") .'.txt';
 
 			header('Content-Description: File Transfer');
 			header('Content-Type: application/octet-stream');
@@ -34,7 +48,15 @@ if( !empty( $_GET['get']))
 			header('Pragma: public');
 			#header('Content-Length: ' . $size);			
 
-			print( callAPI( 'system/logs'));
+			if( empty( $_GET['cId']))
+			{
+				print( callAPI( 'system/logs'));
+
+			}else{
+
+				print( CallHost( 'docker/'. $_GET['cId'] .'/logs'));
+			}
+			
 			exit();
 		}
 
@@ -43,7 +65,30 @@ if( !empty( $_GET['get']))
 	if( $_GET['get'] == 'location') print( getLocation());
 	if( $_GET['get'] == 'remote.it') print( json_encode( callAPI( 'remote.it')));
 	if( $_GET['get'] == 'hardware_status') print( json_encode( CallHost( 'hardware/status')));
+	
+	if( $_GET['get'] == 'dockerState')
+	{
+		$api = 'docker/'. $_REQUEST['id'] .'/';
+		if( $_REQUEST['cName'] == 'wazigate-ui')//We should not stop this, restarting instead!
+		{
+			$api .= 'restart';
+		
+		}else{
+			
+			$api .= $_REQUEST['value'] ? 'start' : 'stop';
+		}
+		$res = CallHost( $api, null, 'POST');
+		
+		if( empty( $res))
+		{
+			print( $lang['Success'] ." [ {$_REQUEST['cName']} ]");
+		}else{
+			print( $lang['Error'] .' [ '. @$res['message'] .' ]');
+		}
 
+	}//End of if( $_GET['get'] == 'dockerState');
+
+	//printr( $_REQUEST);
 	exit();
 }/**/
 
