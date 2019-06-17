@@ -57,20 +57,11 @@ $templateData = array(
 			'content'	=>	array(
 				
 				array( resUsage()),
+				array( showMemUsage( $hwStatus['mem_usage']['total'], $hwStatus['mem_usage']['used'], 'RAM')),
+				array( showMemUsage( $hwStatus['disk']['size'], $hwStatus['disk']['used'], 'Disk')),
 			),
 		),
 		
-		/*-----------*/
-		
-		array(
-			'title'		=>	'Remote.it',
-			'active'	=>	false,
-			'notes'		=>	'',
-			'content'	=>	array(
-				
-				array( 'Remote.it', remoteItStatus()),
-			),
-		),
 		
 		/*-----------*/
 	
@@ -116,47 +107,6 @@ $templateData = array(
 /*------------*/
 
 require( './inc/template_admin.php');
-
-/*------------*/
-
-
-function remoteItStatus()
-{
-	$notRegistered = printEnabled( false, 'Done', 'NotRegistered');
-
-	return '<div id="remoteSinkAjx"></div>
-	  <script>
-		  function loadRemoteStatus()
-		  {
-		  	$("#remoteSinkAjx").html( "<p align=\"center\"><img src=\"./style/img/loading.gif\" /></p>").fadeIn();
-		  	$.get( "?get=remote.it", function( data){
-				out = "";
-				res = JSON.parse( data);
-				if( res)
-				{
-					if( typeof res.msg != "undefined")
-					{
-						out = "<b>"+ res.msg +"</b>";
-						setTimeout( loadRemoteStatus, 3000);
-
-					}else{
-						out = "<table cellpadding=\"10\">";
-						for( var key in res)
-						{
-							out += "<tr><td style=\"padding: 5px;\">"+ key +" :</td><td><b>"+ res[key].replace(/\n/g, "<br />") +"</b></td></tr>";
-						}
-						out += "</table>";
-					}
-				}else{
-					out = \''. $notRegistered .'\';
-				}
-				$("#remoteSinkAjx").html( out).fadeIn();
-			});
-			return true;
-		  }
-		  $(function(){ loadRemoteStatus();});
-	 </script>';	
-}
 
 /*------------*/
 
@@ -236,10 +186,6 @@ function resUsage()
 				
 				now += updateInterval;
 				
-				desc  = "Available RAM: <b>"+ parseInt( res.mem_usage.available / 1000000) + "</b>MB";
-				desc += "<br /> Available Disk Space: <b>"+ res.disk.available + "</b>";
-				$("#desc").html( desc);
-				
 				updateCharts( cpuData, ramData, tmpData);
 				setTimeout( GetData, updateInterval);
 			});
@@ -253,9 +199,37 @@ function resUsage()
 	<div id="flot-cpu" style="width:100%;height:250px;margin:0 auto"></div><br />
 	<div id="flot-tmp" style="width:100%;height:200px;margin:0 auto"></div><br />
 	<div id="flot-ram" style="width:100%;height:200px;margin:0 auto"></div><br />
-	<div id="desc" style="width:100%;margin:0 auto; padding:5px;text-align:center;"></div><br />';
+	';
 }
 
 /*------------*/
+
+function showMemUsage( $total, $used, $title = '')
+{
+    $usedFrm	= formatFileSize( $used);
+    $totalFrm	= formatFileSize( $total);
+    $usedPercent = sprintf( '%.2f',($used / $total) * 100);
+    
+    $bgColors = array( '#A7C6FF', '#B7C626', '#A7A600');
+    static $bgIndx = 0;
+
+    return"
+    <div class='progress'>
+		<div class='prgtext'>
+			<p style='float: left;padding-left:10px;'><b>$title</b></p>
+			<b>$usedFrm</b> of <b>$totalFrm</b> used
+		</div>
+		<div class='prgbar' style='width:{$usedPercent}%;background:{$bgColors[ $bgIndx++ ]};'></div>
+		<div class='prginfo'>
+		    <span style='float: left;'></span>
+		    <span style='clear: both;'></span>
+		</div>
+    </div>";
+
+}
+
+/*------------*/
+
+//printr( $hwStatus);
 
 ?>

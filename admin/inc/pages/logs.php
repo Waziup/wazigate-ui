@@ -92,7 +92,7 @@ function logsForm( $type = '', $cId = '0')
 		  <thead></thead>
 		<tbody>
 		   <tr>
-		    <td><a href="?get=logs&type='. $type .'">'. $lang['LogsDownload_All'] .'</a></td>
+		    <td><a href="?get=logs&type='. $type .'&cId='. $cId .'">'. $lang['LogsDownload_All'] .'</a></td>
 		   </tr>
 		   <tr>
 		    <td><a href="javascript:loadLogs_'. $typeJsClear .'(500);">'.  $lang['LogsDownload_500L'] .'</a></td>
@@ -117,6 +117,7 @@ function logsForm( $type = '', $cId = '0')
 	  <div id="logsDown'. $typeJsClear .'"></div>
 	  <script>
 		var autoR_'. $typeJsClear .' = 0;
+		var height_'. $typeJsClear .' = 0;
 		function loadLogs_'. $typeJsClear .'( n){
 			if( ! $("#logsAjx_'. $typeJsClear .'").is(":visible"))
 			{ 
@@ -125,9 +126,13 @@ function logsForm( $type = '', $cId = '0')
 			}
 			clearTimeout( autoR_'. $typeJsClear .');
 			
+			if( height_'. $typeJsClear .' > 0) $("#logsAjx_'. $typeJsClear .'").css({height: height_'. $typeJsClear .'});
+			
 			$("#logsAjx_'. $typeJsClear .'").html( "<p align=\"center\"><img src=\"./style/img/loading_b.gif\" /></p>").fadeIn();
 			$.get( "?get=logs&type='. $type .'&cId='. $cId .'&n="+ n, function( data){
+				$("#logsAjx_'. $typeJsClear .'").css({height: "auto"});
 				$("#logsAjx_'. $typeJsClear .'").html( data).fadeIn();
+				height_'. $typeJsClear .' = parseInt( $("#logsAjx_'. $typeJsClear .'").height());
 				
 				if( n == 50){ autoR_'. $typeJsClear .' = setTimeout( function(){loadLogs_'. $typeJsClear .'(50)}, 5000);}
 				$("html, body").animate({

@@ -19,7 +19,7 @@ if( !empty( $_GET['get']))
 
 			}else{
 
-				print( CallHost( 'docker/'. $_GET['cId'] .'/logs/50'));
+				print( CallHost( 'docker/'. $_GET['cId'] .'/logs/50', false, 'GET', false));
 			}
 			
 		}elseif( @$_GET['n'] == 500){
@@ -30,7 +30,7 @@ if( !empty( $_GET['get']))
 
 			}else{
 
-				print( CallHost( 'docker/'. $_GET['cId'] .'/logs/500'));
+				print( CallHost( 'docker/'. $_GET['cId'] .'/logs/500', false, 'GET', false));
 			}
 		
 		}else{
@@ -54,7 +54,7 @@ if( !empty( $_GET['get']))
 
 			}else{
 
-				print( CallHost( 'docker/'. $_GET['cId'] .'/logs'));
+				print( CallHost( 'docker/'. $_GET['cId'] .'/logs', false, 'GET', false));
 			}
 			
 			exit();
@@ -241,7 +241,8 @@ if( !empty( $_GET['cfg']))
 /*************************
  * Setting profile
  *************************/
-if(isset($_POST['current_username'], $_POST['new_username'], $_POST['current_pwd'], $_POST['new_pwd'])){
+if( isset( $_POST['current_username'], $_POST['new_username'], $_POST['current_pwd'], $_POST['new_pwd']))
+{
 	
 	$c_usr = htmlspecialchars( $_POST['current_username']);
 	$n_usr = htmlspecialchars( $_POST['new_username']);
@@ -281,8 +282,6 @@ if(isset($_POST['current_username'], $_POST['new_username'], $_POST['current_pwd
 		}
 	}
 }
-
-
 
 /*------------------*/
 

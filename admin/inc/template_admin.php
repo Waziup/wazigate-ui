@@ -38,7 +38,6 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
                     		}//End of foreach( $templateData['tabs'] as ...;
                     	
                     	?>
-
                     </ul>
 
                     <!-- Tab panes -->

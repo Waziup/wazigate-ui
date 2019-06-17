@@ -2,13 +2,6 @@
 // unplanned execution path
 defined( 'IN_WAZIHUB') or die( 'e902!');
 
-
-$radio_conf= null; $gw_conf= null; $alert_conf = null;
-process_gw_conf_json( $radio_conf, $gw_conf, $alert_conf);
-
-$maxAddr = 255;
-
-
 /*------------*/
 
 $templateData = array(

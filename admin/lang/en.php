@@ -2,6 +2,8 @@
 
 return array(
 
+	'ACTIVE'		=>	true, // if true: shows it on the ui
+
 	'LANG'			=>	'en',
 	'TITLE'			=>	'English',
 	'LDIR'			=>	'ltr', // ltr, rtl, auto
@@ -64,18 +66,12 @@ return array(
 	'Notes_Notifs_Mail'			=>	'The email and SMS notifications are just for alerting when the gateway is booting and on radio reset',
 	'Notes_Notifs_SMS'			=>	'The email and SMS notifications are just for alerting when the gateway is booting and on radio reset',
 	'Notes_Test_Downlink'		=>	'Notes_Test_Downlink',
-	'Notes_Test_Logs'			=>	'Notes_Test_Logs',
+	'Notes_Test_Logs'			=>	'',
 	'Notes_Cloud_Waziup'		=>	'<ul>
 										<li>
 											The <tt>Username</tt> is your WAZIUP username. <tt>password</tt> is your WAZIUP password. Use <b>only letters and numbers</b> for <tt>username</tt> and <tt>password</tt>. To create an account on the WAZIUP platform, go to <a href="https://dashboard.waziup.io">https://dashboard.waziup.io</a>. 
-											<br /> <br /> 
+											
 										</li> 
-										<li> 
-											<tt>visibility</tt> can be set to <tt>private</tt> so that the gateway creates private sensors under the account of the user. Private sensors can only be seen by its owner.
-										</li>
-										<li>
-											<b>Do not use space nor "/"</b> in any of these parameters, use "_" or "-" instead.
-										</li>
 									</ul>',
 	'Notes_SensorsList'			=>	'Notes_SensorsList',
 	'Notes_AdvanceConf_Clouds'	=>	'Notes_AdvanceConf_Clouds',
@@ -199,7 +195,7 @@ return array(
 	'time'			=>	'Time',
 	'id'			=>	'ID',
 	'Location'		=>	'Location',
-	'Notes_Overview_Location'		=>	'Notes_Overview_Location',
+	'Notes_Overview_Location'		=>	'This location calculated based on the IP of the gateway and so it may not be as accurate as the one measured by GPS. <br /> Please note that if you use VPN this service will show the location of your VPN server instead.',
 	'msg'			=>	'Message',
 	'ResourceUsage'	=>	'Resource Usage',
 	'Resources'		=>	'Resources',

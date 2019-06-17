@@ -20,6 +20,7 @@ foreach( $status as $k => $container)
 			'content'	=>	array(
 				array( $lang['State'], stateTxt( $container['State'] )),
 				array( $lang['Status'], $container['Status'] ),
+				//array( $lang['Version'], $container['Status'] ),
 				array( $lang['CreatedTime'], date('r', $container['Created'] )),
 				array( $lang['Enabled'],
 						editEnabled( array( 

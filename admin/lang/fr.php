@@ -2,6 +2,8 @@
 
 return array(
 
+	'ACTIVE'		=>	false, // if true: shows it on the ui
+	
 	'LANG'			=>	'fr',
 	'TITLE'			=>	'Française (French)',
 	'LDIR'			=>	'ltr', // ltr, rtl, auto

@@ -14,9 +14,24 @@ function is_connected(){
 
 /*-------------------*/
 
-function read_database_json(){
-	$json_src = file_get_contents('/var/www/html/database.json');
+function read_database_json()
+{
+	$json_src = file_get_contents( '/var/www/html/conf/database.json');
 	return json_decode( $json_src, true);
+}
+
+/*-------------------*/
+
+function set_profile( $new_username, $new_password)
+{
+	$jsonContent = array(
+		'username'	=>	$new_username,
+		'password'	=>	$new_password,
+	);
+
+	$fp = fopen( '/var/www/html/conf/database.json', 'w');
+	fwrite($fp, json_encode( $jsonContent));
+	fclose($fp);
 }
 
 /*-------------------*/
@@ -264,7 +279,7 @@ function getAllLangs()
 	foreach( glob( getRootDir() . 'lang/*') as $file)
 	{
 		$lang = require( $file);
-		$langs[ basename( $file, '.php')] = $lang['TITLE'];
+		if( $lang['ACTIVE']) $langs[ basename( $file, '.php')] = $lang['TITLE'];
 	}
 	return $langs;
 }
@@ -296,11 +311,11 @@ function CallAPI( $name, $data = false, $method = 'GET', $json = true)
 
 /*--------------------*/
 
-function CallHost( $name, $data = false, $method = 'GET')
+function CallHost( $name, $data = false, $method = 'GET', $json = true)
 {
 	global $_cfg;
 	//Calling wazigate-host API
-	return restCall( $_cfg['HostServer'], $name, $data, $method);
+	return restCall( $_cfg['HostServer'], $name, $data, $method, $json);
 }
 
 /*--------------------*/
@@ -310,7 +325,7 @@ function restCall( $apiInfo, $name, $data = false, $method = 'GET', $json = true
     $curl = curl_init();
     
     $url = $apiInfo['URL'] . $name;
-    $data_json = $json ? json_encode( $data) : http_build_query( $data);
+    $data_json = $json ? json_encode( $data) : @http_build_query( $data);
     
     //printr( $url);printr( $data_json);
 
@@ -353,10 +368,10 @@ function restCall( $apiInfo, $name, $data = false, $method = 'GET', $json = true
     curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1);
 	
     $result = curl_exec( $curl);
-
+    
     curl_close( $curl);
 
-    return json_decode( $result, true);
+    return $json ? json_decode( $result, true) : $result;
 }
 
 /*--------------------*/
@@ -398,6 +413,23 @@ function waziDocsUpdateDo()
 	printr( 'TODO....');
 	set_time_limit(0);
 	printr( shell_exec( 'ls -al'));
+}
+
+/*--------------------*/
+
+function formatFileSize( $bytes, $precision = 2)
+{
+	$units = array('B', 'KB', 'MB', 'GB', 'TB'); 
+
+    $bytes = max( $bytes, 0); 
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
+    $pow = min($pow, count($units) - 1); 
+
+    // Uncomment one of the following alternatives
+    $bytes /= pow(1024, $pow);
+    // $bytes /= (1 << (10 * $pow)); 
+
+    return round( $bytes, $precision) . ' ' . $units[$pow];    
 }
 
 /*--------------------*/

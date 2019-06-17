@@ -24,6 +24,14 @@ $lang = require( './lang/'. $_SESSION['lang'] .'.php'); // Loading the language 
 
 /*---------------------------------*/
 
+if( !empty( $_GET['logout']))
+{
+	$_SESSION['username'] = '';
+	unset( $_SESSION);
+
+	header('Location: ./');
+	exit();
+}
 
 if( @empty( $_SESSION['username']))
 {

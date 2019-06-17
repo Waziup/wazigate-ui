@@ -202,6 +202,33 @@
 	<script type="text/javascript" src="./style/js/flot/jquery.flot.symbol.js"></script>
 	<script type="text/javascript" src="./style/js/flot/jquery.flot.axislabels.js"></script>
 
+
+    <style type='text/css'>
+		.progress {
+		        border: 2px solid #5E96E4;
+		        height: 32px;
+		        width: 540px;
+		        margin: 2px auto;
+		}
+		.progress .prgbar {
+		        background: #A7C6FF;
+		        position: relative;
+		        height: 32px;
+		        z-index: 999;
+		}
+		.progress .prgtext {
+		        color: #286672;
+		        text-align: center;
+		        font-size: 13px;
+		        padding: 5px 0 0;
+		        width: 540px;
+		        position: absolute;
+		        z-index: 1000;
+		}
+		.progress .prginfo {
+		        margin: 3px 0;
+		}
+    </style>
 </head>
 
 <body style="direction: <?php print( $lang['LDIR']); ?>;">
@@ -273,7 +300,7 @@
 		                <ul class="dropdown-menu dropdown-user">
 		                	<li><a id="profile" href="?page=profile"><i class="fa fa-user"></i> <?php print( $lang['Profile']); ?></a>
 		                    <li class="divider"></li>
-		                    <li><a id="logout" href="process.php?logout=true"><i class="fa fa-sign-out fa-fw"></i> <?php print( $lang['Logout']); ?></a>
+		                    <li><a id="logout" href="?logout=true"><i class="fa fa-sign-out fa-fw"></i> <?php print( $lang['Logout']); ?></a>
 		                    </li>
 		                </ul>
 		                <!-- /.dropdown-user -->

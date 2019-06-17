@@ -4,7 +4,14 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 
 $message = ""; 
 
-$json_data = read_database_json();
+$json_data = @read_database_json();
+
+if( empty( $json_data))
+{
+	//No databse so create the default credentials
+	set_profile( "admin", "loragateway");
+}
+
 $username = $json_data['username'];
 $password = "";
 
