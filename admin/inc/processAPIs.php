@@ -114,7 +114,7 @@ if( !empty( $_GET['edge']) && $_GET['edge'] == 'clouds')
 	if( empty( $cloudInfo)) //If it does not exist, create it!
 	{
   		$default = array(
-  			'url'	=> 'api.waziup.io/api/v2',
+  			'rest'	=> 'api.waziup.io/api/v2',
   			'paused'=> true,
   			'credentials' => array( 'username' => '', 'token' => '')
   		);

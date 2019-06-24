@@ -36,12 +36,12 @@ $templateData = array(
 				array( 
 						$lang['Server'], 
 						editText( array( 
-									'id'		=> 'server',
+									'id'		=> 'rest',
 									'label'		=> $lang['Server'],
 									'pholder'	=> 'e.g. api.staging.waziup.io/api/v2',
 									//'note'		=> 'e.g. waziup_myfarm',
-									'value'		=>	@$cloudInfo['url'],
-									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'url'),
+									'value'		=>	@$cloudInfo['rest'],
+									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'rest'),
 						)
 					)
 				),

@@ -119,9 +119,9 @@ return array(
 	'Logs_Auto_Referesh'=>	'Auto Referesh',
 	'ClickHere'	=>	'Click Here',
 
-	'Cloud'			=>	'Cloud',
+	'Cloud'			=>	'WaziCloud',
 	'Clouds'		=>	'Clouds',
-	'CloudTitle'	=>	'Cloud Setup',
+	'CloudTitle'	=>	'WaziCloud Setup',
 	'Domain'		=>	'Domain',
 	'Visibility'	=>	'Visibility',
 	'PublicVisibility'	=>	'Public Visibility',
