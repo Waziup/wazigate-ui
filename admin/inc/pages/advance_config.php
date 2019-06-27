@@ -49,7 +49,7 @@ $templateData = array(
 			'notes'		=>	$lang['Notes_AdvanceConf_Gateway'],
 			'content'	=>	array(
 			
-				array( 
+/*				array( 
 						$lang['GatewayID']	, 
 						editText( array( 
 									'id'		=> 'gateway_ID',
@@ -60,7 +60,7 @@ $templateData = array(
 									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'gateway_conf'),
 							)
 						)
-				),
+				),/**/
 				
 				array( $lang['Encryption']	, 
 						editEnabled( array( 

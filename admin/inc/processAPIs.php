@@ -215,7 +215,7 @@ if( !empty( $_GET['cfg']))
 	/*---------*/
 	
 	//Calling the thing :P
-	$err = CallAPI( $_GET['cfg'], $_REQUEST, 'POST'); # Needs to be fixed
+	$err = CallAPI( $_GET['cfg'], $_REQUEST, 'POST');
 	
 	/*---------*/
 
@@ -329,7 +329,7 @@ function wifiForm( $params)
 
 			<div style="display:none" class="inline-msg" id="wifi_msg"></div>
 			
-			<input type="submit" name="submit" value="'. $lang['Submit'] .'" class="btn btn-primary" />
+			<input type="submit" name="submit" id="wifiSubmit" value="'. $lang['Submit'] .'" class="btn btn-primary" />
 			</form>
 		</div>
 		<script>

@@ -11,7 +11,7 @@ $templateData = array(
 
 	'icon'	=>	$pageIcon,
 	'title'	=>	$lang['InternetConnectivity'],
-	'msgDiv'=>	'gw_config_msg',
+	'msgDiv'=>	'zzza',
 	'tabs'	=>	array(
 		
 		/*-----------*/
@@ -112,13 +112,23 @@ function getAjaxWiFiForm()
 {
 	return '<div id="wifiFormAjx"></div>
 		<script>
-			$(function(){
-				$("#wifiFormAjx").html( "<img src=\"./style/img/loading.gif\" /> Scanning for WiFi networks...").fadeIn();
-				$.get( "?get=wifiForm", function( data){
-					$("#wifiFormAjx").html( data).fadeIn();
-				});
+		var autoR = 0;
+		function loadStuff(){
+			if( ! $("#wifiFormAjx").is(":visible"))
+			{ 
+				autoR = setTimeout( function(){loadStuff()}, 1000);
+				return false;
+			}
+			clearTimeout( autoR);
+			$("#wifiFormAjx").html( "<img src=\"./style/img/loading.gif\" /> Scanning for WiFi networks...").fadeIn();
+			$.get( "?get=wifiForm", function( data){
+				$("#wifiFormAjx").html( data).fadeIn();
+				autoR = setTimeout( function(){loadStuff()}, 5000);
+				$("#wifiForm").click(function(){ clearTimeout( autoR);});
 			});
-		</script>';
+		}
+		$(function(){ loadStuff();});
+	 </script>';
 }
 
 ?>

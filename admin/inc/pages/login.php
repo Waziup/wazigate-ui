@@ -1,10 +1,9 @@
 <?php
-
 defined( 'IN_WAZIHUB') or die( 'e902!');
-
 $message = ""; 
 
 $json_data = @read_database_json();
+$conf = callAPI( 'system/conf');
 
 if( empty( $json_data))
 {
@@ -30,7 +29,12 @@ if(!isset($_SESSION['attempt'])) $_SESSION['attempt'] = 0;
 if((isset($_SESSION['username'])) && (isset($_SESSION['password']))){
 	//$message = 'User is already logged in';
 	if(check_login($username, $password, $_SESSION['username'], $_SESSION['password'])){
-		header('Location: ./');
+		if( $conf['setup_conf']['wizard'])// if the setup wizard has been done
+		{
+			header('Location: ./');
+		}else{
+			header('Location: ./?page=setup_wizard');
+		}
 		exit();
 	}
 }
@@ -47,9 +51,12 @@ else{ // isset($_POST['username']) && isset($_POST['password'])
 			$_SESSION['username'] = $_POST['username'];
 			$_SESSION['password'] = md5($_POST['password']);
  
-			//header('Location: ./');
-			$message = $lang['LoginSuccess'] .'[ <a href="?">'. $lang['Home'] .'</a> ] <script type="text/javascript">window.location.href="?";</script>';
-			//exit();
+			if( $conf['setup_conf']['wizard'])// if the setup wizard has been done
+			{
+				$message = $lang['LoginSuccess'] .'[ <a href="?">'. $lang['Home'] .'</a> ] <script type="text/javascript">window.location.href="?";</script>';
+			}else{
+				$message = $lang['LoginSuccess'] .'[ <a href="?page=setup_wizard">'. $lang['Home'] .'</a> ] <script type="text/javascript">window.location.href="?page=setup_wizard";</script>';
+			}			
 		}
 		else{
 			$_SESSION['attempt']++;
