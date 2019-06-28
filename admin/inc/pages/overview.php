@@ -42,7 +42,7 @@ $templateData = array(
 				array( $lang['Encryption']		, 	printEnabled( $conf['gateway_conf']['aes'])),
 				array( $lang['GPScoordinates']	, 	getGPScoordinates()),
 				//array( $lang['CloudMQTT']		, 	printEnabled( cloud_status( $clouds, "python CloudMQTT.py"))),
-				array( 'Low-level status ON'	, 	getLowLevelStatus()),
+				//array( 'Low-level status ON'	, 	getLowLevelStatus()),
 			),
 		),
 
@@ -66,6 +66,7 @@ $templateData = array(
 			'notes'		=>	$lang['Notes_Overview_Location'],
 			'content'	=>	array(
 				
+				array( storeLocationInfoButton()),
 				array( loadLocationInfo( 3 /*The tab Id, loads it only if tab is active*/) ),
 			),
 		),		
@@ -105,6 +106,30 @@ function loadLocationInfo( $tabId)
 	 </script>';
 }
 
+
+/*------------*/
+
+function storeLocationInfoButton()
+{
+	global $lang;
+	
+	return '<form id="saveForm_1">
+			<input type="hidden" name="ref_latitude" id="latitude" value="0" />
+			<input type="hidden" name="ref_longitude" id="longitude" value="0" />
+			<input type="submit" name="submit" id="submit" value="'. $lang['SaveLocation'] .'" class="btn btn-primary" style="display:none" />
+			<div id="sinkAjx_1"></div>
+		</form>
+		<script>
+			$( "#saveForm_1").submit( function(){
+					$("#sinkAjx_1").html( "<img src=\"./style/img/loading.gif\" />").fadeIn();
+					var formValues = $(this).serialize();
+					$.post( "?cfg=location", formValues, function( data){
+						$("#sinkAjx_1").html( data).fadeIn().delay(5000).fadeOut("slow");
+					});
+					return false;
+			});
+		</script>';	
+}
 
 /*------------*/
 

@@ -102,6 +102,7 @@ function logsForm( $type = '', $cId = '0')
 	  <div class="logs">
 	  	<pre id="logsAjx_'. $typeJsClear .'">NA</pre>
 	  </div>
+	  <div style="text-align:center;height:20px;max-width:900px;" id="ind_'. $typeJsClear .'"></div>
 		<table class="table table-striped table-bordered table-hover">
 		  <thead></thead>
 		<tbody>
@@ -128,16 +129,17 @@ function logsForm( $type = '', $cId = '0')
 			
 			if( height_'. $typeJsClear .' > 0) $("#logsAjx_'. $typeJsClear .'").css({height: height_'. $typeJsClear .'});
 			
-			$("#logsAjx_'. $typeJsClear .'").html( "<p align=\"center\"><img src=\"./style/img/loading_b.gif\" /></p>").fadeIn();
+			$("#ind_'. $typeJsClear .'").html( "<img src=\"./style/img/loading.gif\" /> Loading the logs...").fadeIn();
 			$.get( "?get=logs&type='. $type .'&cId='. $cId .'&n="+ n, function( data){
+				$("#ind_'. $typeJsClear .'").html(" ");
 				$("#logsAjx_'. $typeJsClear .'").css({height: "auto"});
 				$("#logsAjx_'. $typeJsClear .'").html( data).fadeIn();
 				height_'. $typeJsClear .' = parseInt( $("#logsAjx_'. $typeJsClear .'").height());
 				
 				if( n == 50){ autoR_'. $typeJsClear .' = setTimeout( function(){loadLogs_'. $typeJsClear .'(50)}, 5000);}
-				$("html, body").animate({
+				/*$("html, body").animate({
 					  scrollTop: $("#logsDown'. $typeJsClear .'").offset().top - 100
-				}, 1000);
+				}, 1000);/**/
 			});
 		}
 		$(function(){ loadLogs_'. $typeJsClear .'(50);});

@@ -382,6 +382,11 @@ function getLocation()
 			L.marker(['. $info['latitude'] .', '. $info['longitude'] .']).addTo(map)
 				.bindPopup("My WaziGate")
 				.openPopup();
+
+				$( "#longitude").val( "'. $info['longitude'] .'");
+				$( "#latitude").val( "'. $info['latitude'] .'");
+				$( "#submit").fadeIn();
+
 			});
     </script>';
 	
