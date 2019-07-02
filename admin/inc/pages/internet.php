@@ -62,7 +62,7 @@ $templateData = array(
 						)
 					),
 
-				array(	$lang['Loragna_boot'], 
+				/*array(	$lang['Loragna_boot'], 
 						editEnabled( array( 
 									'id'			=>	'loragna_boot',
 									'value'			=>	$conf['cell_conf']['loragna_boot'],
@@ -83,7 +83,7 @@ $templateData = array(
 									#'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',
 							)
 						)
-					),
+					),/**/
 
 				),
 			),

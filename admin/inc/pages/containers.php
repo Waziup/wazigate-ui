@@ -14,7 +14,7 @@ foreach( $status as $k => $container)
 {
 	$cName = ltrim( $container['Names'][0], '/');
 	$tabs[] = array(
-			'title'		=>	$cName,
+			'title'		=>	stateCName( $container['State'], $cName),
 			'active'	=>	$k == 0, // Active only the first tab
 			'notes'		=>	'',
 			'content'	=>	array(
@@ -60,4 +60,11 @@ function stateTxt( $state)
 
 /*------------*/
 
+function stateCName( $state, $cName)
+{
+	if( $state == 'running') return( '<i class="fa fa-check"></i> '. $cName .''); 
+	return( '<div class="err"><i class="fa fa-remove"></i> '. $cName .'</div>');
+}
+
+/*------------*/
 ?>
