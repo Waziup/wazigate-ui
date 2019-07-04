@@ -67,7 +67,7 @@ $templateData = array(
 			'content'	=>	array(
 				
 				array( storeLocationInfoButton()),
-				array( loadLocationInfo( 3 /*The tab Id, loads it only if tab is active*/) ),
+				array( loadLocationInfo()),
 			),
 		),		
 		
@@ -83,7 +83,7 @@ require( './inc/template_admin.php');
 
 /*------------*/
 
-function loadLocationInfo( $tabId)
+function loadLocationInfo()
 {
 	global $lang;
 	

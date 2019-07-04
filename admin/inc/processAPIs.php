@@ -87,6 +87,13 @@ if( !empty( $_GET['get']))
 		}
 
 	}//End of if( $_GET['get'] == 'dockerState');
+	
+	if( $_GET['get'] == 'update')
+	{
+		set_time_limit(0);
+		$res = CallHost( 'docker/update', null, 'POST');
+		print( $res);
+	}
 
 	//printr( $_REQUEST);
 	exit();

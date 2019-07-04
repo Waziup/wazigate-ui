@@ -24,10 +24,10 @@ foreach( $status as $k => $container)
 				array( $lang['CreatedTime'], date('r', $container['Created'] )),
 				array( $lang['Enabled'],
 						editEnabled( array( 
-									'id'		=> $cName .'_enabled',
-									'value'		=> $container['State'] == 'running',
-									'params'	=>	array( 'get' => 'dockerState', 'cName' => $cName, 'id' => $container['Id']),
-									'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',
+								'id'		=> $cName .'_enabled',
+								'value'		=> $container['State'] == 'running',
+								'params'	=>	array( 'get' => 'dockerState', 'cName' => $cName, 'id' => $container['Id']),
+								'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',
 							)
 						)
 					),
