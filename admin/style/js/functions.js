@@ -1011,7 +1011,7 @@ var maxAddr = 255;
     $("#ok_reboot").click(function() {
         $("#confirm_reboot").modal("hide");
 
-        $.post("?", {'status': 'reboot'}, function(data){
+        $.post("?", "&status=reboot", function(data){
 			//alert(data);
 			setTimeout(function(){$(location).attr( 'href', '?');}, 2000);
         });
@@ -1042,7 +1042,7 @@ var maxAddr = 255;
     $("#ok_shutdown").click(function() {
         //$("#confirm_shutdown").modal("hide");
 
-		$.post("?", {'status': 'shutdown'}, function(data){
+		$.post("?", "&status=shutdown", function(data){
 			//alert(data);
 			setTimeout(function(){$(location).attr( 'href', '?');}, 2000);
         });        

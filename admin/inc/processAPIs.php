@@ -104,7 +104,6 @@ if( !empty( $_GET['get']))
 if( !empty( $_REQUEST['status']))
 {
 	$err = CallAPI( 'system/'. $_REQUEST['status'], NULL, 'PUT');
-
 	print( $err);
 	//print( 'Done.');
 	exit();

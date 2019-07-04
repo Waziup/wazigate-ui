@@ -51,7 +51,8 @@ function updateButton()
 						if( data == "REBOOT")
 						{
 							$("#sinkAjx_1").html( "'. $lang['Rebooting'] .'").fadeIn();
-							$.get( "?status=reboot", function(d){alert(d)});
+							$.post("?", "&status=reboot", function(d){alert(d);});
+							setTimeout( function(){location.reload();}, 5*60*1000);
 
 						}else{
 
