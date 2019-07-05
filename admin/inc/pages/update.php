@@ -2,9 +2,6 @@
 // unplanned execution path
 defined( 'IN_WAZIHUB') or die( 'e902!');
 
-$updateLogs = CallHost( 'docker/update/status');
-$updateStatus = empty( $updateLogs) ? "" : "{$lang['LastUpdate']}: <b>{$updateLogs['time']}</b><hr /><pre>{$updateLogs['logs']}</pre>";
-
 /*------------*/
 
 $templateData = array(
@@ -20,7 +17,7 @@ $templateData = array(
 			'notes'		=>	'',
 			'content'	=>	array(
 					array( updateButton()),
-					array( $updateStatus),
+					array( getUpdateLogs()),
 			),
 		),
 	),
@@ -48,17 +45,8 @@ function updateButton()
 			$( "#saveForm_1").submit( function(){
 					$("#sinkAjx_1").html( "<br /><img src=\"./style/img/loading.gif\" /> '. $lang['UpdatingMsg'] .'").fadeIn();
 					$.get( "?get=update", function( data){
-						if( data == "REBOOT")
-						{
-							$("#sinkAjx_1").html( "'. $lang['Rebooting'] .'").fadeIn();
-							$.post("?", "&status=reboot", function(d){alert(d);});
-							setTimeout( function(){location.reload();}, 5*60*1000);
-
-						}else{
-
-							$("#sinkAjx_1").html( data).fadeIn().delay(5000).fadeOut("slow");
-							setTimeout( function(){location.reload();}, 5000);
-						}
+						$("#sinkAjx_1").html( data).fadeIn().delay(5000).fadeOut("slow");
+						setTimeout( function(){location.reload();}, 15*60*1000);
 
 					});
 					return false;
@@ -67,5 +55,29 @@ function updateButton()
 }
 #$.get( "?status=reboot", function(d){alert(d)});
 /*------------*/
+
+function getUpdateLogs()
+{
+	global $lang;
+
+	return '
+		<div class="logs" id="logsAjx"></div>
+		<div style="text-align:center;height:20px;max-width:900px;" id="indAjx"></div>
+	  <script>
+		var autoR = 0;
+		function loadLogs(){
+			clearTimeout( autoR);
+			$("#indAjx").html( "<img src=\"./style/img/loading.gif\" />");
+			$.get( "?get=updateLogs", function( data){
+				$("#indAjx").html( " ");
+				$("#logsAjx").html( data);
+				autoR = setTimeout( function(){loadLogs()}, 3000);
+			});
+		}
+		$(function(){ loadLogs();});
+	 </script>';
+}
+
+/*--------------------*/
 
 ?>

@@ -94,6 +94,13 @@ if( !empty( $_GET['get']))
 		$res = CallHost( 'docker/update', null, 'POST');
 		print( $res);
 	}
+	
+	if( $_GET['get'] == 'updateLogs')
+	{
+		$updateLogs = CallHost( 'docker/update/status');
+		$res = empty( $updateLogs) ? "" : "{$lang['LastUpdate']}: <b>{$updateLogs['time']}</b><hr /><pre>{$updateLogs['logs']}</pre>";
+		print( $res);
+	}
 
 	//printr( $_REQUEST);
 	exit();
