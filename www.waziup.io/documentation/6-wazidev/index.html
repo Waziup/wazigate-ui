@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+
+
+
+ <html class="no-js" lang="en"> 
+<head>
+  <link rel="shortcut icon" type="image/png" href="../../images/favicon.ico">
+  <link rel="icon" type="image/png" href="../../images/favicon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+  <title>Quick start with WaziDev 1.3 - WAZIUP Platform</title>
+  <meta name="generator" content="Hugo 0.40.1" />
+
+  <link rel="canonical" href="index.html">
+  <meta property="og:url" content="https://www.waziup.io/documentation/6-wazidev/">
+  
+  
+                <meta property="og:title" content="WAZIUP Platform">
+  
+                <meta name="apple-mobile-web-app-title" content="WAZIUP Platform">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+  <style>
+    @font-face {
+      font-family: 'Icon';
+      format('embedded-opentype'),
+      format('woff'),
+      format('truetype'),
+      format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/font-awesome.css">
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="../../css/roboto.css">
+  <link rel="stylesheet" href="../../css/roboto-mono.css">
+  <script src="../../js/vendor.js"></script>
+  <script src="../../js/app.js"></script>
+
+  
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NT276CR');</script>
+  
+
+</head>
+<body class=" ">
+
+
+<div class="single-page">
+  <nav aria-label="Header" id="header" class="top-menu">
+  <div class="left">
+    <a href="../../index.html"> 
+      <div id="logo" class="logo"></div>
+    </a>
+  </div>
+
+  <div class="right">
+    <div class="top-menu-items" id="top-menu-items">
+      
+        <a href="../../solutions/index.html" id="top-menu-item-text" class="top-menu-item">Solutions</a>
+      
+        <a href="../../documentation.1" id="top-menu-item-text" class="top-menu-item">User manuals</a>
+      
+        <a href="../../tutorials/index.html" id="top-menu-item-text" class="top-menu-item">Tutorials</a>
+      
+        <a href="index.html" id="top-menu-item-text" class="top-menu-item"></a>
+      
+        <a href="index.html" id="top-menu-item-text" class="top-menu-item"></a>
+      
+    </div>
+
+    <div class="download">
+      <a href="https://dashboard.waziup.io" class="button button--red">
+        Go to dashboard
+      </a>
+    </div>
+    
+    <a href="https://github.com/Waziup/platform" target="_blank" class="github-logo">
+      <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+    </a>
+
+    <div class="search-button">
+      <i class="fa fa-lg fa-search"></i>
+    </div>
+
+  </div>
+</nav>
+
+<ul id="mobile-menu" style="display: none">
+</ul>
+
+<div id="search">
+  <div class="search-bar">
+    <div class="search-bar__back">
+      <i class="fa fa-lg fa-times"></i>
+    </div>
+    <input class="search-bar__input" placeholder='Type your search here...'>
+  </div>
+  <div class="search-results">
+    <ul></ul>
+  </div>
+</div>
+
+
+</div>
+
+<div class="page documentation">
+    <div class="menu">
+     
+
+    
+    
+
+    
+    
+      
+        
+        <a class="side-menu-item " href="../1-dashboard/index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">Dashboard</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item " href="../3-deployassist/index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">Deployment assistant</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item " href="../4-api/index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">API Reference</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item " href="../5-customapp/index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">Web application</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item active" href="index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">WaziDev</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+          
+        
+      
+        
+        <a class="side-menu-item " href="../7-wazigate/index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">WaziGate</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+    </div>
+    <div class="content">
+      <h1 class="content-header">Quick start with WaziDev 1.3 </h1>
+      <div class="markdowned">
+        
+
+<p><img src="images/wazidev_01.jpg" alt="WaziDev Board" /></p>
+
+<p>WaziDev is an integrated IoT LoRa device which provides an energy-efficient and integrated board.</p>
+
+<h2 id="specification">Specification</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Processor System</td>
+<td align="left">MCU  <br /> RAM <br />  FLASH</td>
+<td align="left">ATmega328p 8Mhz <br />2 KB <br />32 KB</td>
+</tr>
+
+<tr>
+<td>Wireless Network</td>
+<td align="left">Standard <br /> Frequency Band <br /> Channels <br /> Transmit Power <br /> Receiver Sensitivity <br /> RF Data Rate <br />  <br /> Modulation <br />  <br /> Function <br /> Antenna connector</td>
+<td align="left">LoRa <br /> 863-870MHz for Europe/Africa <br /> 1 <br /> +20dBm -100mW constant RF output <br /> -148dBm <br /> 300kbps <br /> <br /> FSK, GFSK, GMSK, MSK, OOK <br />  <br /> Sensor Node <br /> Integrated PCB antenna / External UFL</td>
+</tr>
+
+<tr>
+<td>Indicator and Button</td>
+<td align="left">LED <br />  <br /> Button <br /> On/OFF switch <br /> Regulator Switch <br /><br /></td>
+<td align="left">4, PWR LED, Indicator LED, Charging/Full battery <br /> <br /> 1, Reset button <br /> 1, two pins for on/off switch + a jumper to keep the board always on <br /> 1, A jumper that can be used to bypass the regulator for low power applications</td>
+</tr>
+
+<tr>
+<td>I/O</td>
+<td align="left">UART <br /> ICSP <br /> I2C <br /> Analog input <br /> Digital I/O <br /> Extra GND <br /> High Current output <br /> USB <br /> Input power</td>
+<td align="left">1 <br /> 1 <br /> 1 <br /> 8 (Arduino standard pins: A0-A7) <br /> 9  (Arduino pins, some are used by LoRa) <br /> 8 (a Ground Rail) <br /> 2 (max 500mA): M8, M9 <br /> 1, USB micro Type for programming and power <br /> 1, LiPo/Regular Battery</td>
+</tr>
+
+<tr>
+<td>Power</td>
+<td align="left">Supply voltage <br /> Battery support <br /> Battery charger <br /> Power Consumption <br /> Battery Level monitor <br />  Optimization Jumpers</td>
+<td align="left">3.3V - 5V <br /> 3v (max 3.6v DIRECT and 6v Regulated) <br /> Max 1A input current (through Micro USB port) <br /> - <br /> LOW active on pin D7 and read BAT level on A7  <br /> 2, Disabling: Status LEDs, Charger LEDs <br /></td>
+</tr>
+
+<tr>
+<td>Environment</td>
+<td align="left">Operational Temperature  <br /> Operating Humidity</td>
+<td align="left">-20 ~ 70° C <br /><br /> 5% ~ 95% Relative Humidity, non-condensing</td>
+</tr>
+
+<tr>
+<td>Mechanical</td>
+<td align="left">Dimensions</td>
+<td align="left">70 x 40 mm</td>
+</tr>
+
+<tr>
+<td>Programming</td>
+<td align="left">IDE</td>
+<td align="left">Arduino compatible (Select <strong>Pro Mini 3.3V 8Mhz</strong>)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="pinout-description">Pinout description</h2>
+
+<p><img src="images/pinout.jpg" alt="WaziDev Pinout" /></p>
+
+<ol>
+<li><p><strong>ON/OFF switch</strong>: This jumper can be used as on/off switch for the board. It is ON by default.</p></li>
+
+<li><p><strong>Regulator Activation</strong>: The jumper indicated by <strong>DIRECT / REG</strong> sets the board to use a regulated voltage or direct. The direct setting is only if you use an input battery of maximum 3.6V any voltage higher than that can damage the LoRa module.
+<strong>Please note that to always keep this config in REG mode when programming the board.</strong></p></li>
+
+<li><p><strong>Analog Pins</strong>: Arduino standard analog pins A0-A7. Please note that <strong>A7</strong> is connected to the battery voltage level monitoring circuit which can be activated by setting the digital pin <strong>D7</strong> to <strong>LOW</strong>, so <strong>D7</strong> should be set to <strong>HIGH</strong> always.</p></li>
+
+<li><p><strong>External Antenna (UFL)</strong>: The board has an embedded PCB antenna which is activated by default and optimized for 868Mhz frequency. If you want to use your own antenna instead you need to deactivate the PCB antenna by cutting its jumper on the back of the board indicated by <strong>JA</strong> then you can connect your antenna to the UFL connector.</p></li>
+
+<li><p><strong>High current pins</strong> ( <em>max 500mA</em> ): <strong>M8</strong> and <strong>M9</strong> are high current/voltage programmable output pins.
+They can be programmed through digital pins <strong>D8</strong> and <strong>D9</strong> respectively.
+It can be used to activate high current/voltage devices/sensors.
+The maximum current which can be drained is <strong>500mA</strong> and the maximum voltage is <strong>12v</strong>.
+The wiring is as follows: The Ground wire of the external high current/voltage source is connected to the same ground of the board (GND), and the positive wire of the power source is connected to the high current device that needs to be controlled by our board.
+One of the pins of <strong>M8</strong> or <strong>M9</strong> is connected to the Ground of the high current device, then we can turn it on and off by writing <strong>HIGH</strong> and <strong>LOW</strong> to the digital pins <strong>D8</strong> or <strong>D9</strong> respectively.</p></li>
+
+<li><p><strong>Digital Pins</strong>: Arduino standard digital pins <strong>D2-D12</strong>. Please note that <strong>D13</strong> is situated on the opposite side of <strong>D12</strong>.</p></li>
+
+<li><p><strong>VCC</strong> ( <em>3.3v</em> ): WaziDev board operates with <strong>3.3v</strong>, VCC pins provide 3.3v as output, they can be used as input voltage as well.</p></li>
+
+<li><p><em>Lipo/regular battery</em>: This port is designed to be used as input for Lithium Ion rechargeable battery or just a regular battery. There is an onboard charger which enables the board to use a solar panel.
+Please note that the solar panel must be connected to either Micro <em>USB port</em> or <em>VIN</em> pin.
+<strong>Warning</strong>: your rechargeable battery must have its own protection circuit otherwise it might gets overcharged and cause fire. (usually good quality batteries have it)</p></li>
+
+<li><p><strong>Micro USB port</strong>: This port is used to power the board on through USB cable and program the board via Arduino IDE. Please note that you need to first install the driver on your computer:</p>
+
+<ul>
+<li>Windows: <a href="https://cdn.sparkfun.com/assets/learn_tutorials/5/9/7/Windows-CH340-Driver.zip">https://cdn.sparkfun.com/assets/learn_tutorials/5/9/7/Windows-CH340-Driver.zip</a></li>
+<li>Linux: <a href="https://github.com/juliagoda/CH341SER">https://github.com/juliagoda/CH341SER</a></li>
+<li>Mac: <a href="https://cdn.sparkfun.com/assets/learn_tutorials/5/9/7/CH341SER_MAC.ZIP">https://cdn.sparkfun.com/assets/learn_tutorials/5/9/7/CH341SER_MAC.ZIP</a></li>
+</ul></li>
+</ol>
+
+<p>To programm the board, in Arduino IDE, on the boards menu, you need to select <strong>Arduino Pro or Mini, ATMega328p 3.3v @ 8MHz</strong>.</p>
+
+<h2 id="jumpers">Jumpers</h2>
+
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th align="left">Function</th>
+<th align="left">Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>JL</td>
+<td align="left">LED13 and PWR LEDs</td>
+<td align="left">Connected</td>
+</tr>
+
+<tr>
+<td>JC</td>
+<td align="left">Charger status LEDs (CHG, FULL)</td>
+<td align="left">Connected</td>
+</tr>
+
+<tr>
+<td>JB</td>
+<td align="left">Battery level read</td>
+<td align="left">Connected</td>
+</tr>
+
+<tr>
+<td>JA</td>
+<td align="left">Embedded Antenna</td>
+<td align="left">Connected</td>
+</tr>
+
+<tr>
+<td>JS</td>
+<td align="left">Power Switch</td>
+<td align="left">Open</td>
+</tr>
+
+<tr>
+<td>JR*</td>
+<td align="left">Radio Interrupt</td>
+<td align="left">Open</td>
+</tr>
+</tbody>
+</table>
+
+<p>*When connected, connects the LoRa interrupt pin to <strong>D2</strong></p>
+
+<h2 id="an-wxample-wiring-diagram-for-wazidev-with-sensors-and-a-relay">An wxample wiring diagram for WaziDev with sensors and a relay.</h2>
+
+<p><img src="images/WiringExample.png" alt="WaziDev Wiring Example" /></p>
+
+<p>Have fun with Waziup.</p>
+
+      </div>
+    </div>
+</div>
+
+<div class="lander-row lander-row--blue footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-3">
+        <h2 class="h2">Learn More</h2>
+        <a href="https://www.waziup.io/documentation/why-use-waziup">
+          <p class="text">Why use Waziup?</p>
+        </a>
+        <a href="https://www.waziup.io/documentation/how-waziup-works/">
+          <p class="text">Documentation</p>
+        </a>
+        <a href="../../about">
+          <p class="text">About us</p>
+        </a>
+      </div>
+        <div class="col col-6">
+        <h2 class="h2">All things code</h2>
+          <a href="https://www.waziup.io/support">
+            <p class="text">Support</p>
+          </a>
+          <a href="https://github.com/waziup/platform" target="_blank">
+            <p class="text">GitHub</p>
+          </a>
+      </div>
+      <div class="col col-6">
+        <h2 class="h2">Stay up to date</h2>
+        <p class="text">
+          Leave your email for the latest news: We won’t spam you and won’t go off topic.
+        </p>
+
+        <div class="social-buttons">
+          <p class="text">Follow us on</p>
+          <a href="https://twitter.com/waziupIOT" target="_blank">
+            <i class="fa fa-2x fa-twitter"></i>
+          </a>
+
+          <a href="https://www.linkedin.com/company/magnetic-io" target="_blank">
+            <i class="fa fa-2x fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-bottom lander-row--blue">
+  <div class="container">
+    <div class="part">
+      <a href="../../about"><img class="waziup-logo" src="../../img/005-waziup/Logo/logo-waziup-white.svg" alt=""></a>
+    </div>
+
+    <div class="part">
+      <p class="text">Code licensed under<a type="application/rss+xml" href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2</a> © 2016 <a href='../../about'>Waziup.io</a></p>
+    </div>
+  </div>
+</div>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NT276CR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+

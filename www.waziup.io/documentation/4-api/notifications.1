@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+
+
+
+ <html class="no-js" lang="en"> 
+<head>
+  <link rel="shortcut icon" type="image/png" href="../../images/favicon.ico">
+  <link rel="icon" type="image/png" href="../../images/favicon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+  <title>API V1 Notifications - WAZIUP Platform</title>
+  <meta name="generator" content="Hugo 0.40.1" />
+
+  <link rel="canonical" href="notifications.1">
+  <meta property="og:url" content="https://www.waziup.io/documentation/4-api/notifications/">
+  
+  
+                <meta property="og:title" content="WAZIUP Platform">
+  
+                <meta name="apple-mobile-web-app-title" content="WAZIUP Platform">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+  <style>
+    @font-face {
+      font-family: 'Icon';
+      format('embedded-opentype'),
+      format('woff'),
+      format('truetype'),
+      format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/font-awesome.css">
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="../../css/roboto.css">
+  <link rel="stylesheet" href="../../css/roboto-mono.css">
+  <script src="../../js/vendor.js"></script>
+  <script src="../../js/app.js"></script>
+
+  
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NT276CR');</script>
+  
+
+</head>
+<body class=" ">
+
+
+<div class="single-page">
+  <nav aria-label="Header" id="header" class="top-menu">
+  <div class="left">
+    <a href="../../index.html"> 
+      <div id="logo" class="logo"></div>
+    </a>
+  </div>
+
+  <div class="right">
+    <div class="top-menu-items" id="top-menu-items">
+      
+        <a href="../../solutions/index.html" id="top-menu-item-text" class="top-menu-item">Solutions</a>
+      
+        <a href="../../documentation.1" id="top-menu-item-text" class="top-menu-item">User manuals</a>
+      
+        <a href="../../tutorials/index.html" id="top-menu-item-text" class="top-menu-item">Tutorials</a>
+      
+        <a href="notifications.1" id="top-menu-item-text" class="top-menu-item"></a>
+      
+        <a href="notifications.1" id="top-menu-item-text" class="top-menu-item"></a>
+      
+    </div>
+
+    <div class="download">
+      <a href="https://dashboard.waziup.io" class="button button--red">
+        Go to dashboard
+      </a>
+    </div>
+    
+    <a href="https://github.com/Waziup/platform" target="_blank" class="github-logo">
+      <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+    </a>
+
+    <div class="search-button">
+      <i class="fa fa-lg fa-search"></i>
+    </div>
+
+  </div>
+</nav>
+
+<ul id="mobile-menu" style="display: none">
+</ul>
+
+<div id="search">
+  <div class="search-bar">
+    <div class="search-bar__back">
+      <i class="fa fa-lg fa-times"></i>
+    </div>
+    <input class="search-bar__input" placeholder='Type your search here...'>
+  </div>
+  <div class="search-results">
+    <ul></ul>
+  </div>
+</div>
+
+
+</div>
+
+<div class="page documentation">
+    <div class="menu">
+     
+
+    
+    
+
+    
+    
+      
+        
+        <a class="side-menu-item " href="../1-dashboard/index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">Dashboard</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item " href="../3-deployassist/index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">Deployment assistant</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item active" href="index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">API Reference</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+          
+            <a class="sub-menu-item " href="access_control.1">
+              <p class="text">Access Control</p>
+            </a>
+          
+            <a class="sub-menu-item " href="sensor_management.1">
+              <p class="text">Sensor management</p>
+            </a>
+          
+            <a class="sub-menu-item active" href="notifications.1">
+              <p class="text">Notifications</p>
+            </a>
+          
+            <a class="sub-menu-item " href="gateways.1">
+              <p class="text">Gateways</p>
+            </a>
+          
+            <a class="sub-menu-item " href="migration_guide_v1.1.1">
+              <p class="text">V1.1 Migration guide</p>
+            </a>
+          
+        
+      
+        
+        <a class="side-menu-item " href="../5-customapp/index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">Web application</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item " href="../6-wazidev/index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">WaziDev</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item " href="../7-wazigate/index.html">
+          <div class="bullet">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">WaziGate</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+    </div>
+    <div class="content">
+      <h1 class="content-header">API V1 Notifications</h1>
+      <div class="markdowned">
+        
+
+<p>This tutorial will guide you through the Waziup API version 1, step by step.
+We will create and manage notifications.</p>
+
+<p>Let&rsquo;s imagine that we want to monitor the temperature in your fridge.
+If the temperature is too high, you should receive a message on your phone!
+First of all, let&rsquo;s create a sensor in <a href="sensor_management.1">this tutorial</a>.
+The sensor should have name &ldquo;MySensor&rdquo; with a measurement called &ldquo;TC1&rdquo;.
+We will monitor this temperature measurement and create a notification.
+This notification will send us message via SMS if the temperature goes above 10 Degree Celsius.</p>
+
+<p>You should also create a user on the <a href="https://dashboard.waziup.io">dashboard</a>, and input your phone number with the international prefix.</p>
+
+<h1 id="create-a-notification">Create a notification</h1>
+
+<p>We will create a new notification for our fridge.
+The following command will create the notification. An SMS message will be sent to the user <code>cdupont</code> if the temperature inside the fridge is above 10 Degree Celsius.</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/notifications&quot; -H &quot;content-type: application/json&quot; -d @- &lt;&lt;EOF 
+{
+  &quot;description&quot;: &quot;Send text message&quot;,
+  &quot;condition&quot;: {
+    &quot;sensors&quot;: [&quot;MySensor&quot;],
+    &quot;measurements&quot;: [&quot;TC&quot;],
+    &quot;expression&quot;: &quot;TC&gt;10&quot;
+  },
+  &quot;notification&quot;: {
+    &quot;usernames&quot;: [&quot;cdupont&quot;],
+    &quot;channels&quot;: [&quot;sms&quot;],
+    &quot;message&quot;: &quot;Warning, temperature is too high. {id} value is {TC} C&quot;
+  },
+  &quot;expires&quot;: &quot;2025-10-13T14:51:22.12Z&quot;,
+  &quot;throttling&quot;: 10,
+  &quot;status&quot;: &quot;active&quot;
+}
+EOF
+</code></pre>
+
+<p>The various fields are:</p>
+
+<ul>
+<li><code>description</code> is the description of the notification,</li>
+<li><code>condition</code> describes the condition under which the notification will be triggered,</li>
+<li><code>notification</code> describes which message to send, to which users and on which channels,</li>
+<li><code>expires</code> is the date where this notification will not be sent anymore,</li>
+<li><code>throttling</code> is the minimum delay between two notification sendings, in seconds. For example, a value of 3600 guaranties that a maximum of one message per hour will be sent to the users,</li>
+<li><code>status</code> allows to activate or deactivate the notification. Possible values are <code>active</code> or <code>inactive</code>.</li>
+</ul>
+
+<p><code>condition</code> has the following sub-fields:</p>
+
+<ul>
+<li><code>sensors</code> is the list of sensors under scrutiny by this notification,</li>
+<li><code>measurements</code> are the measurements that will be used,</li>
+<li><code>expression</code> gives the condition under which the notification will be triggered. For example, the expression <code>TC&lt;40</code> will trigger the notification if the measurement <code>TC</code> has a value below 40 Degreee Celsius.</li>
+</ul>
+
+<p><code>notification</code> has the following sub-fields:</p>
+
+<ul>
+<li><code>usernames</code> is the list of users that will receive a message if the notification is triggered. In our example, the user <code>cdupont</code> will receive the notification messages.</li>
+<li><code>channels</code> is the list of channels to where sending the notification messages. Possible values are <code>twitter</code>, <code>sms</code> and <code>voice</code>.</li>
+<li><code>message</code> is the text that will be sent to the users on the selected channels.
+This message can contain variables: for instance <code>{id}</code> will be replaced by the sensor id, while <code>{&lt;measurement_id&gt;}</code> will be replaced by the value measured.</li>
+</ul>
+
+<p>Once you executed the command above, you will get a number as a reply: this is the notification id.
+Keep it aside for the rest of the tutorial.</p>
+
+<p>So, did you receive the SMS? You should receive the message <code>Warning, temperature is too high. MySensor value is 11 C</code>.
+The variables are replaced in the message sent: <code>{id}</code> becomes the sensor id (&ldquo;MySensor&rdquo;) and <code>{TC}</code> becomes the last value measured by the sensor.</p>
+
+<h1 id="see-your-notification">See your notification</h1>
+
+<p>You can see the notification that you have just created:</p>
+
+<pre><code>curl -X GET &quot;https://api.waziup.io/api/v1/notifications/&lt;notif_id&gt;&quot; -H  &quot;accept: application/json&quot;
+</code></pre>
+
+<p>Replace <notif_id> with the id returned by the previous command. You should see your notification:</p>
+
+<pre><code>{
+  &quot;id&quot;: &quot;5bcb9aca2b4545c9fbdfc851&quot;,
+  &quot;description&quot;: &quot;Send text message&quot;,
+  &quot;condition&quot;: {
+    &quot;sensors&quot;: [
+      &quot;MySensor&quot;
+    ],
+    &quot;measurements&quot;: [
+      &quot;TC&quot;
+    ],
+    &quot;expression&quot;: &quot;TC&lt;40&quot;
+  },
+  &quot;notification&quot;: {
+    &quot;usernames&quot;: [
+      &quot;cdupont&quot;
+    ],
+    &quot;channels&quot;: [
+      &quot;sms&quot;
+    ],
+    &quot;message&quot;: &quot;Warning, temperature is too high. {id} value is {TC} C&quot;
+  },
+  &quot;expires&quot;: &quot;2030-10-13T14:51:22.00Z&quot;,
+  &quot;throttling&quot;: 3600,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;times_sent&quot;: 1,
+  &quot;last_notification&quot;: &quot;2018-10-20T21:56:58.00Z&quot;
+}
+</code></pre>
+
+<p>The notification return is identical to want you created, with two additional fields:</p>
+
+<ul>
+<li><code>times_sent</code>: this shows that the notification message has been sent out once.</li>
+<li><code>last_notification</code>: the date at which the last notification message was sent.</li>
+</ul>
+
+<h1 id="trigger-the-notification">Trigger the notification</h1>
+
+<p>Notifications should be triggered when sensors are updated. Let&rsquo;s update our sensor:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/sensors/MySensor/measurements/TC/values&quot; -H  &quot;Content-Type: application/json&quot; -d '{&quot;value&quot;: &quot;25.6&quot;, &quot;timestamp&quot;: &quot;2016-06-08T18:20:27.873Z&quot;}'
+</code></pre>
+
+<p>Since we sent a value inferior to 40C, it should trigger the notification and send an SMS!
+For more information on how to create sensor and push datapoints, see this <a href="sensor_management.1">tutorial</a>.</p>
+
+<h1 id="pause-restart-the-notification">Pause/restart the notification</h1>
+
+<p>Once the notification created, you can pause it and restart it latter.
+This is done with the following command:</p>
+
+<pre><code>curl -X PUT &quot;https://api.waziup.io/api/v1/notifications/&lt;notif_id&gt;/status&quot; -H  &quot;Content-Type: text/plain&quot; -d &quot;inactive&quot;
+</code></pre>
+
+<p>Possible values for this command are <code>active</code> and <code>inactive</code>.</p>
+
+<h1 id="delete-the-notification">Delete the notification</h1>
+
+<p>Fianlly, we can delete the notification. Issue the command:</p>
+
+<pre><code>curl -X DELETE &quot;https://api.waziup.io/api/v1/notifications/&lt;notif_id&gt;&quot;
+</code></pre>
+
+<p>All set. Good luck with notifications!</p>
+
+      </div>
+    </div>
+</div>
+
+<div class="lander-row lander-row--blue footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-3">
+        <h2 class="h2">Learn More</h2>
+        <a href="https://www.waziup.io/documentation/why-use-waziup">
+          <p class="text">Why use Waziup?</p>
+        </a>
+        <a href="https://www.waziup.io/documentation/how-waziup-works/">
+          <p class="text">Documentation</p>
+        </a>
+        <a href="../../about">
+          <p class="text">About us</p>
+        </a>
+      </div>
+        <div class="col col-6">
+        <h2 class="h2">All things code</h2>
+          <a href="https://www.waziup.io/support">
+            <p class="text">Support</p>
+          </a>
+          <a href="https://github.com/waziup/platform" target="_blank">
+            <p class="text">GitHub</p>
+          </a>
+      </div>
+      <div class="col col-6">
+        <h2 class="h2">Stay up to date</h2>
+        <p class="text">
+          Leave your email for the latest news: We won’t spam you and won’t go off topic.
+        </p>
+
+        <div class="social-buttons">
+          <p class="text">Follow us on</p>
+          <a href="https://twitter.com/waziupIOT" target="_blank">
+            <i class="fa fa-2x fa-twitter"></i>
+          </a>
+
+          <a href="https://www.linkedin.com/company/magnetic-io" target="_blank">
+            <i class="fa fa-2x fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-bottom lander-row--blue">
+  <div class="container">
+    <div class="part">
+      <a href="../../about"><img class="waziup-logo" src="../../img/005-waziup/Logo/logo-waziup-white.svg" alt=""></a>
+    </div>
+
+    <div class="part">
+      <p class="text">Code licensed under<a type="application/rss+xml" href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2</a> © 2016 <a href='../../about'>Waziup.io</a></p>
+    </div>
+  </div>
+</div>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NT276CR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+

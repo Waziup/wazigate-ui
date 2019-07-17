@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+
+
+
+ <html class="no-js" lang="en"> 
+<head>
+  <link rel="shortcut icon" type="image/png" href="../../../images/favicon.ico">
+  <link rel="icon" type="image/png" href="../../../images/favicon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+  <title>Waziup API V1.1 Migration guide - WAZIUP Platform</title>
+  <meta name="generator" content="Hugo 0.40.1" />
+
+  <link rel="canonical" href="../migration_guide_v1.1.1">
+  <meta property="og:url" content="https://www.waziup.io/documentation/4-api/migration_guide_v1.1/">
+  
+  
+                <meta property="og:title" content="WAZIUP Platform">
+  
+                <meta name="apple-mobile-web-app-title" content="WAZIUP Platform">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+  <style>
+    @font-face {
+      font-family: 'Icon';
+      format('embedded-opentype'),
+      format('woff'),
+      format('truetype'),
+      format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link rel="stylesheet" href="../../../css/font-awesome.css">
+  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link rel="stylesheet" href="../../../css/roboto.css">
+  <link rel="stylesheet" href="../../../css/roboto-mono.css">
+  <script src="../../../js/vendor.js"></script>
+  <script src="../../../js/app.js"></script>
+
+  
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NT276CR');</script>
+  
+
+</head>
+<body class=" ">
+
+
+<div class="single-page">
+  <nav aria-label="Header" id="header" class="top-menu">
+  <div class="left">
+    <a href="../../../index.html"> 
+      <div id="logo" class="logo"></div>
+    </a>
+  </div>
+
+  <div class="right">
+    <div class="top-menu-items" id="top-menu-items">
+      
+        <a href="../../../solutions/index.html" id="top-menu-item-text" class="top-menu-item">Solutions</a>
+      
+        <a href="../../../documentation.1" id="top-menu-item-text" class="top-menu-item">User manuals</a>
+      
+        <a href="../../../tutorials/index.html" id="top-menu-item-text" class="top-menu-item">Tutorials</a>
+      
+        <a href="../migration_guide_v1.1.1" id="top-menu-item-text" class="top-menu-item"></a>
+      
+        <a href="../migration_guide_v1.1.1" id="top-menu-item-text" class="top-menu-item"></a>
+      
+    </div>
+
+    <div class="download">
+      <a href="https://dashboard.waziup.io" class="button button--red">
+        Go to dashboard
+      </a>
+    </div>
+    
+    <a href="https://github.com/Waziup/platform" target="_blank" class="github-logo">
+      <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+    </a>
+
+    <div class="search-button">
+      <i class="fa fa-lg fa-search"></i>
+    </div>
+
+  </div>
+</nav>
+
+<ul id="mobile-menu" style="display: none">
+</ul>
+
+<div id="search">
+  <div class="search-bar">
+    <div class="search-bar__back">
+      <i class="fa fa-lg fa-times"></i>
+    </div>
+    <input class="search-bar__input" placeholder='Type your search here...'>
+  </div>
+  <div class="search-results">
+    <ul></ul>
+  </div>
+</div>
+
+
+</div>
+
+<div class="page documentation">
+    <div class="menu">
+     
+
+    
+    
+
+    
+    
+      
+        
+        <a class="side-menu-item " href="../../1-dashboard/index.html">
+          <div class="bullet">
+            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">Dashboard</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item " href="../../3-deployassist/index.html">
+          <div class="bullet">
+            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">Deployment assistant</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item active" href="../index.html">
+          <div class="bullet">
+            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">API Reference</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+          
+            <a class="sub-menu-item " href="../access_control.1">
+              <p class="text">Access Control</p>
+            </a>
+          
+            <a class="sub-menu-item " href="../sensor_management.1">
+              <p class="text">Sensor management</p>
+            </a>
+          
+            <a class="sub-menu-item " href="../notifications.1">
+              <p class="text">Notifications</p>
+            </a>
+          
+            <a class="sub-menu-item " href="../gateways.1">
+              <p class="text">Gateways</p>
+            </a>
+          
+            <a class="sub-menu-item active" href="../migration_guide_v1.1.1">
+              <p class="text">V1.1 Migration guide</p>
+            </a>
+          
+        
+      
+        
+        <a class="side-menu-item " href="../../5-customapp/index.html">
+          <div class="bullet">
+            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">Web application</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item " href="../../6-wazidev/index.html">
+          <div class="bullet">
+            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">WaziDev</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item " href="../../7-wazigate/index.html">
+          <div class="bullet">
+            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">WaziGate</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+    </div>
+    <div class="content">
+      <h1 class="content-header">Waziup API V1.1 Migration guide</h1>
+      <div class="markdowned">
+        
+
+<p>This document will guide you through the update of your gateway or application to the new API V1.1 (see <a href="https://github.com/Waziup/Platform/blob/master/ChangeLog">https://github.com/Waziup/Platform/blob/master/ChangeLog</a>). The novelties in this version are:</p>
+
+<ul>
+<li>HTTPS activated on all endpoints (<a href="https://api.waziup.io">https://api.waziup.io</a>, <a href="https://dashboard.waziup.io">https://dashboard.waziup.io</a>, <a href="https://keycloak.waziup.io">https://keycloak.waziup.io</a>)</li>
+<li>compound data types (e.g. for GPS)</li>
+<li>better ownership of sensors (e.g. display only your sensors in the dashboard)</li>
+<li>sharing of sensors</li>
+<li>sensor visibility (public, private)</li>
+<li>datapoints timestamps can be from device or from Cloud</li>
+<li>faster response time</li>
+<li>download sensor data in CSV format from the dashboard</li>
+<li>remove “domain” from the URL of all endpoints</li>
+</ul>
+
+<h1 id="https">HTTPS</h1>
+
+<p><em>All endpoints are now HTTPS.</em>
+Gateways and devices using Waziup platform should update the URL to <a href="https://api.waziup.io">https://api.waziup.io</a> instead of <a href="http://api.waziup.io">http://api.waziup.io</a>.</p>
+
+<h1 id="authentication">Authentication</h1>
+
+<p>The API supports authentication using an authentication token. To receive a token, perform the request:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/auth/token&quot; -H  &quot;accept:application/json&quot; -H &quot;Content-Type:application/json&quot; -d ‘{&quot;username&quot;:&quot;cdupont&quot;,&quot;password&quot;:&quot;password&quot;}’
+</code></pre>
+
+<p>This will return a token. The username and password can be created on the waziup dashboard: <a href="https://dashboard.waziup.io">https://dashboard.waziup.io</a>.
+<em>This token should be included in all subsequent API call</em>. For example, here is how to create a sensor belonging to the user cdupont:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/sensors&quot; -H  &quot;accept:application/json&quot; -H &quot;Authorization:Bearer &lt;token&gt;&quot; -H  &quot;Content-Type:application/json&quot; -d ‘{&quot;id&quot;: &quot;Sensor2&quot;,&quot;gateway_id&quot;:&quot;ea0541de1ab7132a1d45b85f9b2139f5&quot;,&quot;domain&quot;:&quot;waziup&quot;}’
+</code></pre>
+
+<p>Token should be used also in other calls, such as datapoint pushing. Tokens should be obtained before each request, as they are short-lived (1 minute). It is still possible to push sensors/data without a token, however they will be created as belonging to user “guest” and visibility will be public.</p>
+
+<h1 id="domains">Domains</h1>
+
+<p><em>Domains in the URL of all endpoints has been removed</em>. Regarding sensor creation, the domain is now read from the message body. For example, here is how to create a new sensor:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/sensors&quot; -H  &quot;accept:application/json&quot; -H &quot;Authorization:Bearer &lt;token&gt;&quot; -H  &quot;Content-Type:application/json&quot; -d ‘{&quot;id&quot;:&quot;Sensor2&quot;,&quot;gateway_id&quot;:&quot;ea0541de1ab7132a1d45b85f9b2139f5&quot;,&quot;domain&quot;:&quot;waziup&quot;}’
+</code></pre>
+
+<p>Notice that the domain is not part of the URL anymore. The part in green is used to create the sensor in domain “waziup”.</p>
+
+<h2 id="compatibility-with-previous-version">Compatibility with previous version</h2>
+
+<p><em>Applications or gateways that uses the API format from V1.0 should still work in V1.1</em>.
+In particular, if an application mention the domain in the URL, it will be accepted but the domain will be ignored.
+For example, an application using V1.0 format can perform a sensor creation this way:</p>
+
+<pre><code>curl -X POST &quot;http://api.waziup.io/api/v1/sensors&quot; -H  &quot;accept:application/json&quot; -H &quot;Authorization:Bearer &lt;token&gt;&quot; -H  &quot;Content-Type:application/json&quot; -d ‘{&quot;id&quot;:&quot;Sensor2&quot;,&quot;gateway_id&quot;:&quot;ea0541de1ab7132a1d45b85f9b2139f5&quot;}’
+</code></pre>
+
+<p>The yellow part from the URL will be ignored. If the application/gateway tries to create a sensor using the above command, the domain mentioned in the URL will be ignored and the sensor will be created using the default “waziup” domain for compatibility. It is encouraged to switch to the new format.</p>
+
+<h1 id="creating-sensors">Creating sensors</h1>
+
+<p>The protocol to create and update sensors has slightly changed in this version. However it remains compatible with gateways that are using version 1.0 of the API.
+As shown before, you can create a sensor this way:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/domains/waziup/sensors&quot; -H &quot;accept:application/json&quot; -H &quot;Authorization:Bearer &lt;token&gt;&quot; -H &quot;Content-Type:application/json&quot; -d ‘{&quot;id&quot;:&quot;Sensor2&quot;,&quot;gateway_id&quot;:&quot;ea0541de1ab7132a1d45b85f9b2139f5&quot;,&quot;domain&quot;:&quot;waziup&quot;}’
+</code></pre>
+
+<p>This will create a sensor with name Sensor2, attached to gateway ea0541de1ab7132a1d45b85f9b2139f5, in domain waziup. You can also create measurements for this sensor:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/sensors&quot; -H &quot;Content-Type:application/json&quot; -d @- &lt;&lt;EOF
+{
+   &quot;id&quot;: &quot;Sensor2&quot;,
+   &quot;gateway_id&quot;: &quot;ea0541de1ab7132a1d45b85f9b2139f5&quot;,
+   &quot;measurements&quot;: [
+     {
+       &quot;id&quot;: &quot;TC&quot;,
+        }
+   ]
+ }
+EOF
+</code></pre>
+
+<p>This creates a sensor with one measurement called TC (usually stands for temperature in Degree Celsius).
+More information on sensor creation can be found here: <a href="http://www.waziup.io/documentation/api/api_tutorial/">http://www.waziup.io/documentation/api/api_tutorial/</a></p>
+
+<p><em>It is now NOT possible to create sensors and push datapoints in the same request</em>. For example, this request is NOT possible anymore:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/sensors&quot; -H &quot;Content-Type:application/json&quot; -d @- &lt;&lt;EOF
+{
+   &quot;id&quot;: &quot;Sensor2&quot;,
+   &quot;gateway_id&quot;: &quot;ea0541de1ab7132a1d45b85f9b2139f5&quot;,
+   &quot;measurements&quot;: [
+     {
+       &quot;id&quot;: &quot;TC&quot;,
+      &quot;values&quot;:[{&quot;value&quot;:”22.5”, &quot;timestamp&quot;:&quot;2016-06-08T18:20:27.873Z&quot;}]
+        }
+   ]
+ }
+EOF
+</code></pre>
+
+<p>Instead, values should be pushed individually using the values endpoint (see section Pushing datapoints below).</p>
+
+<h1 id="creating-measurements">Creating measurements</h1>
+
+<p>Measurements can be added individually, even after the sensor has been created. Similarly to sensor creation, in this version you cannot push datapoint values while creating measurements. This is an example of a correct measurement creation:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/sensors/Sensor2/measurements&quot; -H  &quot;accept: application/json&quot; -H  &quot;Authorization: Bearer &lt;token&gt;&quot; -H  &quot;Content-Type: application/json&quot; -d ‘{ &quot;id&quot;: &quot;TC&quot;}’
+</code></pre>
+
+<h1 id="pushing-datapoints">Pushing datapoints</h1>
+
+<p>Values can be pushed to existing sensors using the endpoint:</p>
+
+<pre><code>/sensors/{sensor_id}/measurements/{measurement_id}/values
+</code></pre>
+
+<p>For example, here is how you can push the value 22.5 to measurement TC of sensor Sensor2:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/sensors/Sensor2/measurements/TC/values&quot; -H &quot;accept:application/json&quot; -H &quot;Authorization:Bearer &lt;token&gt;&quot; -H  &quot;Content-Type:application/json&quot; -d ‘{&quot;value&quot;:&quot;25.6&quot;,&quot;timestamp&quot;: &quot;2016-06-08T18:20:27.873Z&quot;}’
+</code></pre>
+
+<p>The field “timestamp” represent the exact date when the data was collected from the sensor.
+<em>It is now optional</em>.
+This allows devices without a clock to still be able to push data to the platform.
+When receiving the datapoint, the platform will add another field called “date_received” with the date when it was received on the Cloud.</p>
+
+<p><em>The platform is now able to receive any JSON datatype as values</em>. Values can be a string, a number, an array, a boolean or any JSON structure. For instance, here is how to push a GPS position:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/sensors/Sensor2/measurements/TC/values&quot; -H  &quot;accept:application/json&quot; -H &quot;Authorization:Bearer &lt;token&gt;&quot; -H  &quot;Content-Type:application/json&quot; -d ‘{&quot;value&quot;:{“latitude”: 5.36,“longitude”:4.00},&quot;timestamp&quot;:&quot;2016-06-08T18:20:27.873Z&quot;}’
+</code></pre>
+
+<h1 id="ownership">Ownership</h1>
+
+<p>Has showed above, a sensor can be created using a token from a specific user.
+This sensor will belong to him. The owner of a sensor has full privilege on it.
+For instance, only him (and admins) can modify or delete the sensor.</p>
+
+<h1 id="visibility">Visibility</h1>
+
+<p>The API now include the concept of sensor visibility. Visibility can be either private or public. For instance, a gateway can create private sensors this way:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/sensors&quot; -H  &quot;accept:application/json&quot; -H &quot;Authorization:Bearer &lt;token&gt;&quot; -H &quot;Content-Type:application/json&quot; -d ‘{&quot;id&quot;:&quot;Sensor2&quot;,&quot;gateway_id&quot;:&quot;ea0541de1ab7132a1d45b85f9b2139f5&quot;,&quot;domain&quot;:&quot;waziup&quot;, “visibility”:“private”}’
+</code></pre>
+
+<p>In this example, we create a private sensor called Sensor2, under the account of cdupont (the owner of the token). Private sensors can only be seen by its owner. This sensor will appear on the dashboard in the section “My Sensors” when login in with the account of the user “cdupont”.
+Public sensors can be seen by everybody in the “Public sensors” section of the dashboard. However, public sensors can only be updated or deleted by its owner or an admin.</p>
+
+<h1 id="sharing-sensors">Sharing sensors</h1>
+
+<p>Using the dashboard, a user can decide to share a sensor with selected users.
+Sharing sensors can be made in the Profile of the user.
+In particular, users can give the following privileges to other users: “sensor:view”, “sensor:update”, “sensor:delete”, “sensor-data:view” and “sensor-data:create”.</p>
+
+<p>Private sensors can be shared with other users. For example, you can create a private sensors, and share the privilege “sensor:view” with another user. This will allow that user to see your private sensor; however he will still not be able to update or delete it.
+Public sensors can also be shared, in the case you would like to give full privilege to another user (i.e. update or delete the sensor).</p>
+
+<h1 id="gateway-protocol">Gateway protocol</h1>
+
+<p>The gateway protocol does not change in this version.
+The only changes are to remove the domain from each endpoints, and add https to each endpoints.
+The complete gateway protocol can be found <a href="../gateways.1">here</a>.</p>
+
+      </div>
+    </div>
+</div>
+
+<div class="lander-row lander-row--blue footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-3">
+        <h2 class="h2">Learn More</h2>
+        <a href="https://www.waziup.io/documentation/why-use-waziup">
+          <p class="text">Why use Waziup?</p>
+        </a>
+        <a href="https://www.waziup.io/documentation/how-waziup-works/">
+          <p class="text">Documentation</p>
+        </a>
+        <a href="../../../about">
+          <p class="text">About us</p>
+        </a>
+      </div>
+        <div class="col col-6">
+        <h2 class="h2">All things code</h2>
+          <a href="https://www.waziup.io/support">
+            <p class="text">Support</p>
+          </a>
+          <a href="https://github.com/waziup/platform" target="_blank">
+            <p class="text">GitHub</p>
+          </a>
+      </div>
+      <div class="col col-6">
+        <h2 class="h2">Stay up to date</h2>
+        <p class="text">
+          Leave your email for the latest news: We won’t spam you and won’t go off topic.
+        </p>
+
+        <div class="social-buttons">
+          <p class="text">Follow us on</p>
+          <a href="https://twitter.com/waziupIOT" target="_blank">
+            <i class="fa fa-2x fa-twitter"></i>
+          </a>
+
+          <a href="https://www.linkedin.com/company/magnetic-io" target="_blank">
+            <i class="fa fa-2x fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-bottom lander-row--blue">
+  <div class="container">
+    <div class="part">
+      <a href="../../../about"><img class="waziup-logo" src="../../../img/005-waziup/Logo/logo-waziup-white.svg" alt=""></a>
+    </div>
+
+    <div class="part">
+      <p class="text">Code licensed under<a type="application/rss+xml" href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2</a> © 2016 <a href='../../../about'>Waziup.io</a></p>
+    </div>
+  </div>
+</div>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NT276CR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+

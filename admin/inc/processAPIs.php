@@ -102,6 +102,20 @@ if( !empty( $_GET['get']))
 		print( $res);
 	}
 
+
+	if( $_GET['get'] == 'updateWaziup.io')
+	{
+		session_write_close();
+		shell_exec( 'bash '. getRootDir(). '../update_docs.sh' );
+	}
+
+	if( $_GET['get'] == 'updateLogsWaziup_io')
+	{
+		$logs = @file_get_contents( getRootDir(). '../update_logs.txt');
+		print( "<pre>$logs</pre>");
+		//printr( 'Goooooooooz');
+	}
+
 	//printr( $_REQUEST);
 	exit();
 }/**/

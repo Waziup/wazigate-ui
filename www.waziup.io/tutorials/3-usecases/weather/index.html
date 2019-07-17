@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+
+
+
+ <html class="no-js" lang="en"> 
+<head>
+  <link rel="shortcut icon" type="image/png" href="../../../images/favicon.ico">
+  <link rel="icon" type="image/png" href="../../../images/favicon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+  <title>How to prototype a LoRa Weather Station! - WAZIUP Platform</title>
+  <meta name="generator" content="Hugo 0.40.1" />
+
+  <link rel="canonical" href="../weather.1">
+  <meta property="og:url" content="https://www.waziup.io/tutorials/3-usecases/weather/">
+  
+  
+                <meta property="og:title" content="WAZIUP Platform">
+  
+                <meta name="apple-mobile-web-app-title" content="WAZIUP Platform">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+  <style>
+    @font-face {
+      font-family: 'Icon';
+      format('embedded-opentype'),
+      format('woff'),
+      format('truetype'),
+      format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link rel="stylesheet" href="../../../css/font-awesome.css">
+  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link rel="stylesheet" href="../../../css/roboto.css">
+  <link rel="stylesheet" href="../../../css/roboto-mono.css">
+  <script src="../../../js/vendor.js"></script>
+  <script src="../../../js/app.js"></script>
+
+  
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NT276CR');</script>
+  
+
+</head>
+<body class=" ">
+
+
+<div class="single-page">
+  <nav aria-label="Header" id="header" class="top-menu">
+  <div class="left">
+    <a href="../../../index.html"> 
+      <div id="logo" class="logo"></div>
+    </a>
+  </div>
+
+  <div class="right">
+    <div class="top-menu-items" id="top-menu-items">
+      
+        <a href="../../../solutions/index.html" id="top-menu-item-text" class="top-menu-item">Solutions</a>
+      
+        <a href="../../../documentation.1" id="top-menu-item-text" class="top-menu-item">User manuals</a>
+      
+        <a href="../../index.html" id="top-menu-item-text" class="top-menu-item">Tutorials</a>
+      
+        <a href="../weather.1" id="top-menu-item-text" class="top-menu-item"></a>
+      
+        <a href="../weather.1" id="top-menu-item-text" class="top-menu-item"></a>
+      
+    </div>
+
+    <div class="download">
+      <a href="https://dashboard.waziup.io" class="button button--red">
+        Go to dashboard
+      </a>
+    </div>
+    
+    <a href="https://github.com/Waziup/platform" target="_blank" class="github-logo">
+      <i class="fa fa-2x fa-github" aria-hidden="true"></i>
+    </a>
+
+    <div class="search-button">
+      <i class="fa fa-lg fa-search"></i>
+    </div>
+
+  </div>
+</nav>
+
+<ul id="mobile-menu" style="display: none">
+</ul>
+
+<div id="search">
+  <div class="search-bar">
+    <div class="search-bar__back">
+      <i class="fa fa-lg fa-times"></i>
+    </div>
+    <input class="search-bar__input" placeholder='Type your search here...'>
+  </div>
+  <div class="search-results">
+    <ul></ul>
+  </div>
+</div>
+
+
+</div>
+
+<div class="page documentation">
+    <div class="menu">
+     
+
+    
+    
+
+    
+    
+
+    
+    
+      
+        
+        <a class="side-menu-item " href="../../2-gateway/index.html">
+          <div class="bullet">
+            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">LoRa gateway</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item " href="../../1-sensors/index.html">
+          <div class="bullet">
+            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">Sensor nodes</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+      
+        
+        <a class="side-menu-item active" href="../index.html">
+          <div class="bullet">
+            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+          </div>
+          <div class="section-title">
+            <p class="text active">Use-cases</p>
+          </div>
+          <div class="folding-indicator">
+          </div>
+        </a>
+        
+          
+            <a class="sub-menu-item " href="../water.1">
+              <p class="text">Fish farming app</p>
+            </a>
+          
+            <a class="sub-menu-item active" href="../weather.1">
+              <p class="text">Weather station</p>
+            </a>
+          
+            <a class="sub-menu-item " href="../cattle.1">
+              <p class="text">Cattle management</p>
+            </a>
+          
+            <a class="sub-menu-item " href="../waste.1">
+              <p class="text">Urban waste</p>
+            </a>
+          
+        
+      
+    
+
+    
+    
+
+    
+    
+
+
+    </div>
+    <div class="content">
+      <h1 class="content-header">How to prototype a LoRa Weather Station! </h1>
+      <div class="markdowned">
+        
+
+<p>The objective is to develop a low-cost and sustainable solution capable of reading real-time data typical of a Weather Station, using different sensors, and capable of communicating via LoRa.
+The following steps provide a Getting Started tutorial. Detailed documentation, such as the complete Assembly guide and the Technical guide, can be found <a href="https://github.com/Waziup/WAZIUP-WeatherStation/tree/master/extra/documents" target="_blank">here</a>.</p>
+
+<h2 id="hardware">Hardware</h2>
+
+<p>The following hardware is required to develop the LoRa Weather Station and can be found in <a href="https://www.iot-catalogue.com/products/59b1797c763cfc066f6d092b" target="_blank">IoT-Catalogue</a> as well.</p>
+
+<p align="center">
+  <img src="images/hardware_list.png"/>
+</p>
+
+<h2 id="assembly">Assembly</h2>
+
+<p>Follow the next steps to build the LoRa Weather Station. In the initial steps is necessary to solder some components. To help in the solder task can be consulted this <a href="https://learn.adafruit.com/adafruit-guide-excellent-soldering" target="_blank">guide</a>.</p>
+
+<h4 id="1-adafruit-feather-m0">1) Adafruit Feather M0</h4>
+
+<p>Solder the Female Header pins and the uFL SMT Antenna Connector in Feather.</p>
+
+<p align="center">
+  <img src="images/feather_solder.png"/>
+</p>
+
+<p>Once soldered the uFL SMT Antenna Connector can be connected the 868MHZ Antenna.</p>
+
+<p align="center">
+  <img src="images/connect_antenna.png"/>
+</p>
+
+<h4 id="2-sparkfun-weather-shield">2) Sparkfun Weather Shield</h4>
+
+<p>Solder the female header pins and the two RJ11 connectors in the Sparkfun Weather Shield.</p>
+
+<p align="center">
+  <img src="images/weather_shield_solder.png"/>
+</p>
+
+<h4 id="3-waziup-weather-station-pcb">3) Waziup Weather Station PCB</h4>
+
+<p>The Waziup Weather Station PCb is open-source, and open-hardware and facilitate the integration of all the components with a plug-and-play approach. All necessary files to build the PCB are hosted in the Waziup GitHub repository and a tutorial with all the step to ordering the PCB is available in Annex A of the Assembly guide.</p>
+
+<p>After ordering and receiving the PCB solder the female header pins, three DG300-5.0 Connectors and a Schottky Diode with the grey terminal placed up in the PCB.</p>
+
+<p align="center">
+  <img src="images/pcb_solder.png"/>
+</p>
+
+<p>If is not possible to use the Waziup Weather Station PCB, can be used a breadboard and cables to make the connections between the components. as suggested in the Annex B of the Assembly guide.</p>
+
+<h4 id="4-plug-weather-shield-and-feather">4) Plug Weather Shield and Feather</h4>
+
+<p align="center">
+  <img src="images/plug_shiled_feather.png"/>
+</p>
+
+<h4 id="5-screw-external-sensor">5) Screw External Sensor</h4>
+
+<p align="center">
+  <img src="images/screw_external_sensor.png"/>
+</p>
+
+<h4 id="6-screw-solar-panel">6) Screw Solar Panel</h4>
+
+<p align="center">
+  <img src="images/screw_solar_panel.png"/>
+</p>
+
+<h4 id="7-connect-the-battery">7) Connect the Battery</h4>
+
+<p align="center">
+  <img src="images/connect_battery.png"/>
+</p>
+
+<h4 id="8-connect-weather-meters">8) Connect Weather Meters</h4>
+
+<p>Pay attention and connect the Rain and Wind RJ11 cables in the respective places as shown in the following figure.</p>
+
+<p align="center">
+  <img src="images/connect_weather_meters.png"/>
+</p>
+
+<h2 id="upload-software">Upload Software</h2>
+
+<h4 id="9-download-install-arduino">9) Download &amp; Install Arduino</h4>
+
+<p>To download the Arduino IDE 1.6.6 or later go to the Arduino <a href="https://www.arduino.cc/en/Main/Software" target="_blank">website</a>.</p>
+
+<h4 id="10-add-adafruit-boards-to-arduino">10) Add Adafruit Boards to Arduino</h4>
+
+<p>To add the Adafruit Boards in the Arduino IDE go to “Arduino”, “Preferences” and include the link for Adafruit boards in the &ldquo;Additional Boards Manager URLs&rdquo;.
+This link can be found in the official Adafruit <a href="https://learn.adafruit.com/adafruit-feather-m0-radio-with-lora-radio-module/setup" target="_blank">guide</a>.</p>
+
+<h4 id="11-install-adafruit-boards-in-arduino">11) Install Adafruit Boards in Arduino</h4>
+
+<p>To install the Adafruit Boards in Arduino IDE go to  “Tools”, “Board”, access the “Board Manager” and follow the steps in the official Adafruit <a href="https://learn.adafruit.com/adafruit-feather-m0-radio-with-lora-radio-module/using-with-arduino-ide" target="_blank">guide</a>.</p>
+
+<h4 id="12-download-install-weather-station-library">12) Download &amp; Install Weather Station library</h4>
+
+<p>To download the Weather Station library go the <a href="https://github.com/Waziup/WAZIUP-WeatherStation" target="_blank">Waziup Github</a>, click on “Clone or download” green button located in the right side and choose “Download Zip” option to download the “WAZIUP-WeatherStation-master.zip” file.
+To install the Weather Station library go to, in Arduino IDE, “Sketch”, “Include Library” and click in the “Add .ZIP Library” option. Will appear a window where need to be added the zip file.</p>
+
+<h4 id="13-open-weather-station-example-code">13) Open Weather Station example code</h4>
+
+<p>To open the Waziup Weather Station code go to “File”, “Examples”, “Waziup Weather Station” and click in the “WaziupWeatherStation” example.</p>
+
+<h4 id="14-choose-board-usb-port-in-arduino">14) Choose Board &amp; USB Port in Arduino</h4>
+
+<p>After connecting the micro-USB cable from the computer to the Feather, it is necessary to choose the correct Adafruit Feather Board in the Arduino IDE. To do that go to “Tools”, “Board” and click in the “Adafruit Feather M0”.
+To define the USB port go to &ldquo;Tools”, “Port” and click in the “Adafruit Feather M0”.</p>
+
+<h4 id="15-upload-the-weather-station-software">15) Upload the Weather Station software</h4>
+
+<p>To upload the software in the Adafruit Feather M0 just need to click in the “Upload” button presented in the upper left side of the Arduino IDE.
+After concluding the upload with success, a message will appear in the lower left side.
+To open the Arduino Serial Monitor and visualize the LoRa Weather Station workflow click in upper right side button.</p>
+
+<h2 id="deployment">Deployment</h2>
+
+<h4 id="16-assembly-weather-station-in-a-box">16) Assembly Weather Station in a Box</h4>
+
+<p>It is recommended to use a box to place the assembly Weather Station in the desired location. The following figures show, as an example, the Waziup Weather Station in a box that not needs to be the same. Pay attention to the material that the box is made. To place the Weather Station in locations under the rain, it is convenient to use a waterproof box.</p>
+
+<p align="center">
+  <img src="images/ws_in_box.png"/>
+</p>
+
+<h4 id="17-external-sensor-outside-the-box">17) External Sensor outside the box</h4>
+
+<p>Make sure that the external sensor is slightly out of the box, as shown in the box of Figure, and preferably in a shadow location without sun.</p>
+
+<p align="center">
+  <img src="images/external_sensor_ouside_box.png"/>
+</p>
+
+<h4 id="18-assembly-weather-meters-sensors">18) Assembly Weather Meters sensors</h4>
+
+<p>The Weather Meters come with material components, to allow their assembly in an auxiliary structure. To mount it is recommended to perform the suggested steps in the Sparkfun&rsquo;s <a href="https://learn.sparkfun.com/tutorials/weather-meter-hookup-guide" target="_blank">guide</a>.</p>
+
+<h4 id="19-solar-panel-outside-the-box">19) Solar Panel outside the box</h4>
+
+<p>Place the Solar Panel outside the box in a place where it is possible to guarantee the conditions of implementation. To realize and ensure a correct Solar Panel implementation it is recommended to consult the &ldquo;Solar Panel Deployment&rdquo; document that is available in folder “documents” in the Waziup Weather Station <a href="https://github.com/Waziup/WAZIUP-WeatherStation" target="_blank">Github</a>.</p>
+
+<p align="center">
+  <img src="images/solar_panel_outside_box.png"/>
+</p>
+
+<p>The hole created for the external sensor can be used to route the Solar Panel cables as well as the RJ11 Rain and Wind sensor cables.</p>
+
+<p>After complete these steps, the Waziup LoRa Weather Station is ready to receive the measurements and send the information to the LoRa gateway.</p>
+
+      </div>
+    </div>
+</div>
+
+<div class="lander-row lander-row--blue footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-3">
+        <h2 class="h2">Learn More</h2>
+        <a href="https://www.waziup.io/documentation/why-use-waziup">
+          <p class="text">Why use Waziup?</p>
+        </a>
+        <a href="https://www.waziup.io/documentation/how-waziup-works/">
+          <p class="text">Documentation</p>
+        </a>
+        <a href="../../../about">
+          <p class="text">About us</p>
+        </a>
+      </div>
+        <div class="col col-6">
+        <h2 class="h2">All things code</h2>
+          <a href="https://www.waziup.io/support">
+            <p class="text">Support</p>
+          </a>
+          <a href="https://github.com/waziup/platform" target="_blank">
+            <p class="text">GitHub</p>
+          </a>
+      </div>
+      <div class="col col-6">
+        <h2 class="h2">Stay up to date</h2>
+        <p class="text">
+          Leave your email for the latest news: We won’t spam you and won’t go off topic.
+        </p>
+
+        <div class="social-buttons">
+          <p class="text">Follow us on</p>
+          <a href="https://twitter.com/waziupIOT" target="_blank">
+            <i class="fa fa-2x fa-twitter"></i>
+          </a>
+
+          <a href="https://www.linkedin.com/company/magnetic-io" target="_blank">
+            <i class="fa fa-2x fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-bottom lander-row--blue">
+  <div class="container">
+    <div class="part">
+      <a href="../../../about"><img class="waziup-logo" src="../../../img/005-waziup/Logo/logo-waziup-white.svg" alt=""></a>
+    </div>
+
+    <div class="part">
+      <p class="text">Code licensed under<a type="application/rss+xml" href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2</a> © 2016 <a href='../../../about'>Waziup.io</a></p>
+    </div>
+  </div>
+</div>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NT276CR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
