@@ -12,7 +12,7 @@
   <title>API V1 Gateways - WAZIUP Platform</title>
   <meta name="generator" content="Hugo 0.40.1" />
 
-  <link rel="canonical" href="../gateways.1">
+  <link rel="canonical" href="../gateways.2">
   <meta property="og:url" content="https://www.waziup.io/documentation/4-api/gateways/">
   
   
@@ -68,13 +68,13 @@
       
         <a href="../../../solutions/index.html" id="top-menu-item-text" class="top-menu-item">Solutions</a>
       
-        <a href="../../../documentation.1" id="top-menu-item-text" class="top-menu-item">User manuals</a>
+        <a href="../../../documentation.2" id="top-menu-item-text" class="top-menu-item">User manuals</a>
       
         <a href="../../../tutorials/index.html" id="top-menu-item-text" class="top-menu-item">Tutorials</a>
       
-        <a href="../gateways.1" id="top-menu-item-text" class="top-menu-item"></a>
+        <a href="../gateways.2" id="top-menu-item-text" class="top-menu-item"></a>
       
-        <a href="../gateways.1" id="top-menu-item-text" class="top-menu-item"></a>
+        <a href="../gateways.2" id="top-menu-item-text" class="top-menu-item"></a>
       
     </div>
 
@@ -162,23 +162,23 @@
         </a>
         
           
-            <a class="sub-menu-item " href="../access_control.1">
+            <a class="sub-menu-item " href="../access_control.2">
               <p class="text">Access Control</p>
             </a>
           
-            <a class="sub-menu-item " href="../sensor_management.1">
+            <a class="sub-menu-item " href="../sensor_management.2">
               <p class="text">Sensor management</p>
             </a>
           
-            <a class="sub-menu-item " href="../notifications.1">
+            <a class="sub-menu-item " href="../notifications.2">
               <p class="text">Notifications</p>
             </a>
           
-            <a class="sub-menu-item active" href="../gateways.1">
+            <a class="sub-menu-item active" href="../gateways.2">
               <p class="text">Gateways</p>
             </a>
           
-            <a class="sub-menu-item " href="../migration_guide_v1.1.1">
+            <a class="sub-menu-item " href="../migration_guide_v1.1.2">
               <p class="text">V1.1 Migration guide</p>
             </a>
           
@@ -253,7 +253,7 @@ To create the sensor, follow <a href="https://www.waziup.io/tutorials/software/d
 We will not use any authentication, so the sensor need to be public.</p>
 
 <p>We are now ready to push a new datapoint!
-Follow <a href="../sensor_management.1#push-data-to-your-sensor-node">those instructions</a> to push the datapoint.
+Follow <a href="../sensor_management.2#push-data-to-your-sensor-node">those instructions</a> to push the datapoint.
 Once pushed, you should alerady see the new value displayed on the dashboard!</p>
 
 <h1 id="complex-gateway-protocol">Complex gateway protocol</h1>
@@ -264,12 +264,12 @@ Once this is done, datapoints can be pushed.
 A suggested protocol is the following:</p>
 
 <ol>
-<li>Get a token: <code>GET api/v1/auth/token</code>. See <a href="../access_control.1#authentication">here</a>.</li>
-<li>Verify if the sensor exists: <code>GET /api/v1/sensors/&lt;sensor_id&gt;</code>. See <a href="../sensor_management.1#read-a-particular-sensor">here</a>.</li>
-<li>If a 404 is received, create it: <code>POST /api/v1/sensors</code>. See <a href="../sensor_management.1#create-a-sensor-node">here</a>.</li>
-<li>Verify if the measurement exists: <code>GET /api/v1/sensors/&lt;sensor_id&gt;/measurements/&lt;measurement_id</code>. See <a href="../sensor_management.1#check-your-measurement">here</a>.</li>
-<li>If a 404 is received, create it: <code>POST /api/v1/sensors/&lt;sensor_id&gt;/measurements</code>. See <a href="../sensor_management.1#create-measurements">here</a>.</li>
-<li>Finally, push the datapoint: <code>POST /api/v1/sensors/&lt;sensor_id&gt;/measurements/&lt;measurement_id&gt;/values</code>. See <a href="../sensor_management.1#push-data-to-your-sensor-node">here</a>.</li>
+<li>Get a token: <code>GET api/v1/auth/token</code>. See <a href="../access_control.2#authentication">here</a>.</li>
+<li>Verify if the sensor exists: <code>GET /api/v1/sensors/&lt;sensor_id&gt;</code>. See <a href="../sensor_management.2#read-a-particular-sensor">here</a>.</li>
+<li>If a 404 is received, create it: <code>POST /api/v1/sensors</code>. See <a href="../sensor_management.2#create-a-sensor-node">here</a>.</li>
+<li>Verify if the measurement exists: <code>GET /api/v1/sensors/&lt;sensor_id&gt;/measurements/&lt;measurement_id</code>. See <a href="../sensor_management.2#check-your-measurement">here</a>.</li>
+<li>If a 404 is received, create it: <code>POST /api/v1/sensors/&lt;sensor_id&gt;/measurements</code>. See <a href="../sensor_management.2#create-measurements">here</a>.</li>
+<li>Finally, push the datapoint: <code>POST /api/v1/sensors/&lt;sensor_id&gt;/measurements/&lt;measurement_id&gt;/values</code>. See <a href="../sensor_management.2#push-data-to-your-sensor-node">here</a>.</li>
 </ol>
 
 <p>This protocol takes care of creating a sensor and measurement for the owner of the sensor. It then pushes the datapoint.</p>

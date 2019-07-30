@@ -5,8 +5,6 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 $conf	= callAPI( 'system/conf');
 $ap		= callAPI( 'system/wifi/ap');
 
-$maxAddr = 255;
-
 /*------------*/
 
 $templateData = array(
@@ -101,6 +99,12 @@ $templateData = array(
 			'notes'		=>	$lang['Notes_AP'],
 			'content'	=>	array(
 
+					/*-----------*/
+					
+					array(	$lang['WiFiDongle'], printEnabled( $ap['available'], 'Available', 'NoDevice')),
+
+					/*-----------*/
+					
 					array(	$lang['SSID'], 
 							editText( array(
 									'id'		=> 'SSID',
@@ -113,6 +117,8 @@ $templateData = array(
 						)
 					),
 
+					/*-----------*/
+					
 					array(	$lang['Password'], 
 							editText( array(
 									'id'		=> 'password',
@@ -124,6 +130,15 @@ $templateData = array(
 							)
 						)
 					),
+
+					/*-----------*/
+					
+					array(	$lang['IPaddress'], $ap['ip']),
+					array(	$lang['Device'], $ap['device']),
+					
+					/*-----------*/
+
+
 				),
 			),	
 		

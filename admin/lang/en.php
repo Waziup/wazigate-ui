@@ -56,16 +56,16 @@ return array(
 	'MailRecievers'	=>	'Mail Recievers',
 	'MailRecieversNote'	=>	'Please enter one email address per line.',
 
-	'Notes_Overview_Basic'		=>	'Notes_Overview_Basic',
-	'Notes_Overview_Advance'	=>	'Notes_Overview_Advance',
-	'Notes_Overview_Maintenance'=>	'Notes_Overview_Maintenance',
-	'Notes_BasicConf_Radio'		=>	'Notes_BasicConf_Radio',
-	'Notes_BasicConf_Gateway'	=>	'Notes_BasicConf_Gateway',
+	'Notes_Overview_Basic'		=>	'',
+	'Notes_Overview_Advance'	=>	'',
+	'Notes_Overview_Maintenance'=>	'',
+	'Notes_BasicConf_Radio'		=>	'',
+	'Notes_BasicConf_Gateway'	=>	'',
 	'Notes_AdvanceConf_Radio'	=>	'Enable the "PA_BOOST" by default. <br />Notes_AdvanceConf_Radio',
-	'Notes_AdvanceConf_Gateway'	=>	'Notes_AdvanceConf_Gateway',
+	'Notes_AdvanceConf_Gateway'	=>	'',
 	'Notes_Notifs_Mail'			=>	'The email and SMS notifications are just for alerting when the gateway is booting and on radio reset',
 	'Notes_Notifs_SMS'			=>	'The email and SMS notifications are just for alerting when the gateway is booting and on radio reset',
-	'Notes_Test_Downlink'		=>	'Notes_Test_Downlink',
+	'Notes_Test_Downlink'		=>	'',
 	'Notes_Test_Logs'			=>	'',
 	'Notes_Cloud_Waziup'		=>	'<ul>
 										<li>
@@ -73,8 +73,8 @@ return array(
 											
 										</li> 
 									</ul>',
-	'Notes_SensorsList'			=>	'Notes_SensorsList',
-	'Notes_AdvanceConf_Clouds'	=>	'Notes_AdvanceConf_Clouds',
+	'Notes_SensorsList'			=>	'',
+	'Notes_AdvanceConf_Clouds'	=>	'',
 	'Notes_GPSConf_Clouds'		=>	'<ul>
 										<li>
 											<tt>Active Interval</tt> defines the time window to mark remote GPS devices as active. It is expressed in minutes.<br /><br />
@@ -83,9 +83,9 @@ return array(
 											<b>Do not use space nor "/"</b> in any of these parameters, use "_" or "-" instead.
 										</li>
 									</ul>',
-	'Notes_Profile'		=>	'Notes_Profile',
-	'Notes_Internet'	=>	'Notes_Internet',
-	'Notes_AP'			=>	'Notes_AP',
+	'Notes_Profile'		=>	'',
+	'Notes_Internet'	=>	'',
+	'Notes_AP'			=>	'',
 	'Notes_Cellular'	=> 	'You MUST reboot for changes to take effect.',
 	'Loragna_G'			=> 	'Loragna Option',
 	''		=> 		'',
@@ -102,8 +102,8 @@ return array(
 	/*------------------*/
 	
 
-	'PinCode'		=>	'Pin Code',
-	'PinCode_Note'	=>	'Be sure that you can access to the sim card and thus change the pin code using telephone/smartphone.',
+	'PinCode'			=>	'Pin Code',
+	'PinCode_Note'		=>	'Be sure that you can access to the sim card and thus change the pin code using telephone/smartphone.',
 	'SMSRecievers'		=>	'SMS Recievers',
 	'SMSRecievers_Note'	=>	'Please enter one phone number per line.',
 
@@ -117,25 +117,25 @@ return array(
 	'LogsDownload_All'	=>	'Download The entire content of log file',
 	'LogsDownload_500L'	=>	'Load Last 500 lines of logs',
 	'Logs_Auto_Referesh'=>	'Auto Referesh',
-	'ClickHere'	=>	'Click Here',
+	'ClickHere'			=>	'Click Here',
 
-	'Cloud'			=>	'WaziCloud',
-	'Clouds'		=>	'Clouds',
-	'CloudTitle'	=>	'WaziCloud Setup',
-	'Domain'		=>	'Domain',
-	'Visibility'	=>	'Visibility',
+	'Cloud'				=>	'WaziCloud',
+	'Clouds'			=>	'Clouds',
+	'CloudTitle'		=>	'WaziCloud Setup',
+	'Domain'			=>	'Domain',
+	'Visibility'		=>	'Visibility',
 	'PublicVisibility'	=>	'Public Visibility',
 	
-	'Overview'		=>	'Overview',
-	'Configurations'=>	'Configurations',
-	'SetupWizard'	=>	'Setup Wizard',
-	'Maintenance'	=>	'Maintenance',
-	'TestDebug'	=>	'Test & Debug',
-	'UpdatingMsg'	=>	'This usually takes some time, please be patient.',
-	'Rebooting'		=>	'Rebbooting the gateway...',
-	'Update'		=>	'Update',
-	'FullUpdate'	=>	'Full Update',
-	'LastUpdate'	=>	'Last Update',
+	'Overview'			=>	'Overview',
+	'Configurations'	=>	'Configurations',
+	'SetupWizard'		=>	'Setup Wizard',
+	'Maintenance'		=>	'Maintenance',
+	'TestDebug'			=>	'Test & Debug',
+	'UpdatingMsg'		=>	'This usually takes some time, please be patient.',
+	'Rebooting'			=>	'Rebbooting the gateway...',
+	'Update'			=>	'Update',
+	'FullUpdate'		=>	'Full Update',
+	'LastUpdate'		=>	'Last Update',
 	'Notifications'		=>	'Notifications',
 	'SensorsList'		=>	'Sensors List',
 	'SensorsList_Note'	=>	'Add one sensor per line to your list',
@@ -158,10 +158,10 @@ return array(
 	'RepeatNewPassword'	=>	'Repeat New Password',
 	'FillAll'			=>	'Please fill all fields!',
 	'PasswordNotMatch'	=>	'The new password and the repeat do not match!',
-	
-	'Logout'	=>	'Logout',
-	'Shutdown'	=>	'Shutdown',
-	'Reboot'	=>	'Reboot',
+
+	'Logout'			=>	'Logout',
+	'Shutdown'			=>	'Shutdown',
+	'Reboot'			=>	'Reboot',
 	'ConfirmShutdown'	=>	'Confirm Shutdown',
 	'ShutdownDialog'	=>	'<p>You are about to shutdown the gateway.<b><i class="title"></i></b></p>
 		                <p>Note that physical access to gateway is needed to power on it again.</p>
@@ -172,8 +172,8 @@ return array(
                     <p>Note that you have to wait a while and then refresh the page.</p>
                     <p>Do you want to proceed?</p>',
 
-	'LoginSuccess'	=>	'Login Successful.<br />Redirecting...',
-	'Home'			=>	'Home',
+	'LoginSuccess'		=>	'Login Successful.<br />Redirecting...',
+	'Home'				=>	'Home',
 
 	/*-------------------------------------*/
 
@@ -181,7 +181,7 @@ return array(
 	'WiFiNetwork'			=>	'WiFi Network',
 	'hiddenWiFiNetwork'		=>	'Add hidden network',
 	'ConnectedWiFiNetwork'	=>	'Connected WiFi Network',
-	'SSID'		=>	'SSID',
+	'SSID'			=>	'SSID',
 	
 	'APSSIDNote'	=>	'You MUST reboot after submitting the command.',
 	'Cellular'		=>	'Cellular',
@@ -222,10 +222,11 @@ return array(
 	'SaveLocation'		=>	'Save Location',
 	'UpdateWaziupIO'	=>	'Update Offline Documentations',
 	'UpdateGateway'		=>	'Update The Gateway Framework',
-	''		=>	'',
-	''		=>	'',
-	''		=>	'',
-	''		=>	'',
+	
+	'WiFiDongle'	=>	'WiFi Dongle',
+	'NoDevice'		=>	'No Device Found',
+	'Available'		=>	'Available',
+	'Device'		=>	'Device',
 	''		=>	'',
 	''		=>	'',
 	''		=>	'',

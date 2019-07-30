@@ -9,11 +9,11 @@
   <link rel="icon" type="image/png" href="../../images/favicon.ico">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
-  <title>Create your App with Waziup - WAZIUP Platform</title>
+  <title>API V1 Gateways - WAZIUP Platform</title>
   <meta name="generator" content="Hugo 0.40.1" />
 
-  <link rel="canonical" href="index.html">
-  <meta property="og:url" content="https://www.waziup.io/documentation/5-customapp/">
+  <link rel="canonical" href="gateways.2">
+  <meta property="og:url" content="https://www.waziup.io/documentation/4-api/gateways/">
   
   
                 <meta property="og:title" content="WAZIUP Platform">
@@ -72,9 +72,9 @@
       
         <a href="../../tutorials/index.html" id="top-menu-item-text" class="top-menu-item">Tutorials</a>
       
-        <a href="index.html" id="top-menu-item-text" class="top-menu-item"></a>
+        <a href="gateways.2" id="top-menu-item-text" class="top-menu-item"></a>
       
-        <a href="index.html" id="top-menu-item-text" class="top-menu-item"></a>
+        <a href="gateways.2" id="top-menu-item-text" class="top-menu-item"></a>
       
     </div>
 
@@ -150,7 +150,7 @@
         
       
         
-        <a class="side-menu-item " href="../4-api/index.html">
+        <a class="side-menu-item active" href="index.html">
           <div class="bullet">
             <img src="../../img/003-Small-icons/block-03.svg" alt="\">
           </div>
@@ -161,9 +161,31 @@
           </div>
         </a>
         
+          
+            <a class="sub-menu-item " href="access_control.2">
+              <p class="text">Access Control</p>
+            </a>
+          
+            <a class="sub-menu-item " href="sensor_management.2">
+              <p class="text">Sensor management</p>
+            </a>
+          
+            <a class="sub-menu-item " href="notifications.2">
+              <p class="text">Notifications</p>
+            </a>
+          
+            <a class="sub-menu-item active" href="gateways.2">
+              <p class="text">Gateways</p>
+            </a>
+          
+            <a class="sub-menu-item " href="migration_guide_v1.1.2">
+              <p class="text">V1.1 Migration guide</p>
+            </a>
+          
+        
       
         
-        <a class="side-menu-item active" href="index.html">
+        <a class="side-menu-item " href="../5-customapp/index.html">
           <div class="bullet">
             <img src="../../img/003-Small-icons/block-03.svg" alt="\">
           </div>
@@ -173,8 +195,6 @@
           <div class="folding-indicator">
           </div>
         </a>
-        
-          
         
       
         
@@ -217,63 +237,42 @@
 
     </div>
     <div class="content">
-      <h1 class="content-header">Create your App with Waziup </h1>
+      <h1 class="content-header">API V1 Gateways</h1>
       <div class="markdowned">
         
 
-<p>Waziup allows you to develop and host you own IoT applications.
-The WaziApp is an HTML5 application and will be hosted directly on Github.
-Only a few steps are necessary to get your application running with Waziup!</p>
+<p>This tutorial will show you how to connect your gateway to Waziup.
+First of all, open the API documentation available at <a href="https://api.waziup.io/docs">https://api.waziup.io/docs</a>.
+With this website, you can explore and interact with all the endpoints of the Waziup API.</p>
 
-<h2 id="fork-the-template-waziapp">Fork the template WaziApp</h2>
+<h1 id="simple-gateway-protocol">Simple gateway protocol</h1>
 
-<p>The first step is to create an account on GitHub.
-For this go to www.github.com and click on “Sign Up”.
-Then, open the template WaziApp: <a href="https://github.com/Waziup/WaziApps-examples">https://github.com/Waziup/WaziApps-examples</a>.
-Click on the button “Fork” in the top right corner.</p>
+<p>As a simple approach, a gateway can just push datapoints on existing sensors on the platform.
+The sensor and measurement should be created beforehand on the <a href="https://dashboard.waziup.io">dashboard</a>.
+To create the sensor, follow <a href="https://www.waziup.io/tutorials/software/dashboard/">this tutorial</a>.
+We will not use any authentication, so the sensor need to be public.</p>
 
-<p><img src="images/forkwaziapp.png" alt="Fork Waziapp" /></p>
+<p>We are now ready to push a new datapoint!
+Follow <a href="sensor_management.2#push-data-to-your-sensor-node">those instructions</a> to push the datapoint.
+Once pushed, you should alerady see the new value displayed on the dashboard!</p>
 
-<p><img src="images/forkaccount.png" alt="Fork Waziapp" /></p>
+<h1 id="complex-gateway-protocol">Complex gateway protocol</h1>
 
-<p>You can fork the app in your own Github account.
-This operation will duplicate the “WaziApps-examples” in your account.</p>
+<p>Gateways can create the sensors themselves (instead of having to create them manually on the dashboard).
+In order to maintain privacy, a token should be obtained before each call.
+Once this is done, datapoints can be pushed.
+A suggested protocol is the following:</p>
 
-<p><img src="images/waziappsettings.png" alt="Waziapp settings" /></p>
+<ol>
+<li>Get a token: <code>GET api/v1/auth/token</code>. See <a href="access_control.2#authentication">here</a>.</li>
+<li>Verify if the sensor exists: <code>GET /api/v1/sensors/&lt;sensor_id&gt;</code>. See <a href="sensor_management.2#read-a-particular-sensor">here</a>.</li>
+<li>If a 404 is received, create it: <code>POST /api/v1/sensors</code>. See <a href="sensor_management.2#create-a-sensor-node">here</a>.</li>
+<li>Verify if the measurement exists: <code>GET /api/v1/sensors/&lt;sensor_id&gt;/measurements/&lt;measurement_id</code>. See <a href="sensor_management.2#check-your-measurement">here</a>.</li>
+<li>If a 404 is received, create it: <code>POST /api/v1/sensors/&lt;sensor_id&gt;/measurements</code>. See <a href="sensor_management.2#create-measurements">here</a>.</li>
+<li>Finally, push the datapoint: <code>POST /api/v1/sensors/&lt;sensor_id&gt;/measurements/&lt;measurement_id&gt;/values</code>. See <a href="sensor_management.2#push-data-to-your-sensor-node">here</a>.</li>
+</ol>
 
-<p>Once this is done, go in the newly created application and click on “Settings”.
-Scroll down to “Github pages” and select “Master branch” in the sources, and click on “Save”.</p>
-
-<p><img src="images/waziappsettings2.png" alt="Waziapp settings" /></p>
-
-<p>Your application is ready! You can view it on: <a href="https://your_account.github.io/WaziApps-examples/">https://your_account.github.io/WaziApps-examples/</a>.
-This is the default application. Now is time to update it!</p>
-
-<h2 id="modify-your-waziapp">Modify your WaziApp</h2>
-
-<p>The application can be modified directly on Github.
-For that, click on the file you want to modify and click on the small pen on the right.
-Once the modifications done, click on the “commit” button at the bottom of the page.
-For heavy modifications, it is better to first clone the application on your own PC.
-You need to install git  first.
-Then issue the command :</p>
-
-<pre><code>git clone git@github.com:&lt;your_account&gt;/WaziApps-examples.git
-</code></pre>
-
-<p>This will clone your new app on your computer.
-You can then freely modify your applications.
-When ready, you can upload it:</p>
-
-<pre><code>git add &lt;your_modified_files&gt;
-git commit -m “my modifications”
-git push
-</code></pre>
-
-<p>After the push is complete, your application is updated!
-You can already view it on the URL : <a href="https://your_account.github.io/WaziApp-examples/">https://your_account.github.io/WaziApp-examples/</a>.</p>
-
-<p>Have fun with Waziup.</p>
+<p>This protocol takes care of creating a sensor and measurement for the owner of the sensor. It then pushes the datapoint.</p>
 
       </div>
     </div>

@@ -5,14 +5,14 @@
 
  <html class="no-js" lang="en"> 
 <head>
-  <link rel="shortcut icon" type="image/png" href="../../../images/favicon.ico">
-  <link rel="icon" type="image/png" href="../../../images/favicon.ico">
+  <link rel="shortcut icon" type="image/png" href="../../images/favicon.ico">
+  <link rel="icon" type="image/png" href="../../images/favicon.ico">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
   <title>How to prototype a LoRa Weather Station! - WAZIUP Platform</title>
   <meta name="generator" content="Hugo 0.40.1" />
 
-  <link rel="canonical" href="../weather.2">
+  <link rel="canonical" href="weather.2">
   <meta property="og:url" content="https://www.waziup.io/tutorials/3-usecases/weather/">
   
   
@@ -35,13 +35,13 @@
     }
   </style>
 
-  <link rel="stylesheet" href="../../../css/style.css">
-  <link rel="stylesheet" href="../../../css/font-awesome.css">
-  <link rel="stylesheet" href="../../../css/highlight.css">
-  <link rel="stylesheet" href="../../../css/roboto.css">
-  <link rel="stylesheet" href="../../../css/roboto-mono.css">
-  <script src="../../../js/vendor.js"></script>
-  <script src="../../../js/app.js"></script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/font-awesome.css">
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="../../css/roboto.css">
+  <link rel="stylesheet" href="../../css/roboto-mono.css">
+  <script src="../../js/vendor.js"></script>
+  <script src="../../js/app.js"></script>
 
   
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -58,7 +58,7 @@
 <div class="single-page">
   <nav aria-label="Header" id="header" class="top-menu">
   <div class="left">
-    <a href="../../../index.html"> 
+    <a href="../../index.html"> 
       <div id="logo" class="logo"></div>
     </a>
   </div>
@@ -66,15 +66,15 @@
   <div class="right">
     <div class="top-menu-items" id="top-menu-items">
       
-        <a href="../../../solutions/index.html" id="top-menu-item-text" class="top-menu-item">Solutions</a>
+        <a href="../../solutions/index.html" id="top-menu-item-text" class="top-menu-item">Solutions</a>
       
-        <a href="../../../documentation.2" id="top-menu-item-text" class="top-menu-item">User manuals</a>
+        <a href="../../documentation.2" id="top-menu-item-text" class="top-menu-item">User manuals</a>
       
-        <a href="../../index.html" id="top-menu-item-text" class="top-menu-item">Tutorials</a>
+        <a href="../index.html" id="top-menu-item-text" class="top-menu-item">Tutorials</a>
       
-        <a href="../weather.2" id="top-menu-item-text" class="top-menu-item"></a>
+        <a href="weather.2" id="top-menu-item-text" class="top-menu-item"></a>
       
-        <a href="../weather.2" id="top-menu-item-text" class="top-menu-item"></a>
+        <a href="weather.2" id="top-menu-item-text" class="top-menu-item"></a>
       
     </div>
 
@@ -127,9 +127,9 @@
     
       
         
-        <a class="side-menu-item " href="../../2-gateway/index.html">
+        <a class="side-menu-item " href="../2-gateway/index.html">
           <div class="bullet">
-            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
           </div>
           <div class="section-title">
             <p class="text active">LoRa gateway</p>
@@ -140,9 +140,9 @@
         
       
         
-        <a class="side-menu-item " href="../../1-sensors/index.html">
+        <a class="side-menu-item " href="../1-sensors/index.html">
           <div class="bullet">
-            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
           </div>
           <div class="section-title">
             <p class="text active">Sensor nodes</p>
@@ -153,9 +153,9 @@
         
       
         
-        <a class="side-menu-item active" href="../index.html">
+        <a class="side-menu-item active" href="index.html">
           <div class="bullet">
-            <img src="../../../img/003-Small-icons/block-03.svg" alt="\">
+            <img src="../../img/003-Small-icons/block-03.svg" alt="\">
           </div>
           <div class="section-title">
             <p class="text active">Use-cases</p>
@@ -165,19 +165,19 @@
         </a>
         
           
-            <a class="sub-menu-item " href="../water.2">
+            <a class="sub-menu-item " href="water.2">
               <p class="text">Fish farming app</p>
             </a>
           
-            <a class="sub-menu-item active" href="../weather.2">
+            <a class="sub-menu-item active" href="weather.2">
               <p class="text">Weather station</p>
             </a>
           
-            <a class="sub-menu-item " href="../cattle.2">
+            <a class="sub-menu-item " href="cattle.2">
               <p class="text">Cattle management</p>
             </a>
           
-            <a class="sub-menu-item " href="../waste.2">
+            <a class="sub-menu-item " href="waste.2">
               <p class="text">Urban waste</p>
             </a>
           
@@ -206,7 +206,7 @@ The following steps provide a Getting Started tutorial. Detailed documentation, 
 <p>The following hardware is required to develop the LoRa Weather Station and can be found in <a href="https://www.iot-catalogue.com/products/59b1797c763cfc066f6d092b" target="_blank">IoT-Catalogue</a> as well.</p>
 
 <p align="center">
-  <img src="images/hardware_list.png"/>
+  <img src="weather/images/hardware_list.png"/>
 </p>
 
 <h2 id="assembly">Assembly</h2>
@@ -218,13 +218,13 @@ The following steps provide a Getting Started tutorial. Detailed documentation, 
 <p>Solder the Female Header pins and the uFL SMT Antenna Connector in Feather.</p>
 
 <p align="center">
-  <img src="images/feather_solder.png"/>
+  <img src="weather/images/feather_solder.png"/>
 </p>
 
 <p>Once soldered the uFL SMT Antenna Connector can be connected the 868MHZ Antenna.</p>
 
 <p align="center">
-  <img src="images/connect_antenna.png"/>
+  <img src="weather/images/connect_antenna.png"/>
 </p>
 
 <h4 id="2-sparkfun-weather-shield">2) Sparkfun Weather Shield</h4>
@@ -232,7 +232,7 @@ The following steps provide a Getting Started tutorial. Detailed documentation, 
 <p>Solder the female header pins and the two RJ11 connectors in the Sparkfun Weather Shield.</p>
 
 <p align="center">
-  <img src="images/weather_shield_solder.png"/>
+  <img src="weather/images/weather_shield_solder.png"/>
 </p>
 
 <h4 id="3-waziup-weather-station-pcb">3) Waziup Weather Station PCB</h4>
@@ -242,7 +242,7 @@ The following steps provide a Getting Started tutorial. Detailed documentation, 
 <p>After ordering and receiving the PCB solder the female header pins, three DG300-5.0 Connectors and a Schottky Diode with the grey terminal placed up in the PCB.</p>
 
 <p align="center">
-  <img src="images/pcb_solder.png"/>
+  <img src="weather/images/pcb_solder.png"/>
 </p>
 
 <p>If is not possible to use the Waziup Weather Station PCB, can be used a breadboard and cables to make the connections between the components. as suggested in the Annex B of the Assembly guide.</p>
@@ -250,25 +250,25 @@ The following steps provide a Getting Started tutorial. Detailed documentation, 
 <h4 id="4-plug-weather-shield-and-feather">4) Plug Weather Shield and Feather</h4>
 
 <p align="center">
-  <img src="images/plug_shiled_feather.png"/>
+  <img src="weather/images/plug_shiled_feather.png"/>
 </p>
 
 <h4 id="5-screw-external-sensor">5) Screw External Sensor</h4>
 
 <p align="center">
-  <img src="images/screw_external_sensor.png"/>
+  <img src="weather/images/screw_external_sensor.png"/>
 </p>
 
 <h4 id="6-screw-solar-panel">6) Screw Solar Panel</h4>
 
 <p align="center">
-  <img src="images/screw_solar_panel.png"/>
+  <img src="weather/images/screw_solar_panel.png"/>
 </p>
 
 <h4 id="7-connect-the-battery">7) Connect the Battery</h4>
 
 <p align="center">
-  <img src="images/connect_battery.png"/>
+  <img src="weather/images/connect_battery.png"/>
 </p>
 
 <h4 id="8-connect-weather-meters">8) Connect Weather Meters</h4>
@@ -276,7 +276,7 @@ The following steps provide a Getting Started tutorial. Detailed documentation, 
 <p>Pay attention and connect the Rain and Wind RJ11 cables in the respective places as shown in the following figure.</p>
 
 <p align="center">
-  <img src="images/connect_weather_meters.png"/>
+  <img src="weather/images/connect_weather_meters.png"/>
 </p>
 
 <h2 id="upload-software">Upload Software</h2>
@@ -321,7 +321,7 @@ To open the Arduino Serial Monitor and visualize the LoRa Weather Station workfl
 <p>It is recommended to use a box to place the assembly Weather Station in the desired location. The following figures show, as an example, the Waziup Weather Station in a box that not needs to be the same. Pay attention to the material that the box is made. To place the Weather Station in locations under the rain, it is convenient to use a waterproof box.</p>
 
 <p align="center">
-  <img src="images/ws_in_box.png"/>
+  <img src="weather/images/ws_in_box.png"/>
 </p>
 
 <h4 id="17-external-sensor-outside-the-box">17) External Sensor outside the box</h4>
@@ -329,7 +329,7 @@ To open the Arduino Serial Monitor and visualize the LoRa Weather Station workfl
 <p>Make sure that the external sensor is slightly out of the box, as shown in the box of Figure, and preferably in a shadow location without sun.</p>
 
 <p align="center">
-  <img src="images/external_sensor_ouside_box.png"/>
+  <img src="weather/images/external_sensor_ouside_box.png"/>
 </p>
 
 <h4 id="18-assembly-weather-meters-sensors">18) Assembly Weather Meters sensors</h4>
@@ -341,7 +341,7 @@ To open the Arduino Serial Monitor and visualize the LoRa Weather Station workfl
 <p>Place the Solar Panel outside the box in a place where it is possible to guarantee the conditions of implementation. To realize and ensure a correct Solar Panel implementation it is recommended to consult the &ldquo;Solar Panel Deployment&rdquo; document that is available in folder “documents” in the Waziup Weather Station <a href="https://github.com/Waziup/WAZIUP-WeatherStation" target="_blank">Github</a>.</p>
 
 <p align="center">
-  <img src="images/solar_panel_outside_box.png"/>
+  <img src="weather/images/solar_panel_outside_box.png"/>
 </p>
 
 <p>The hole created for the external sensor can be used to route the Solar Panel cables as well as the RJ11 Rain and Wind sensor cables.</p>
@@ -363,7 +363,7 @@ To open the Arduino Serial Monitor and visualize the LoRa Weather Station workfl
         <a href="https://www.waziup.io/documentation/how-waziup-works/">
           <p class="text">Documentation</p>
         </a>
-        <a href="../../../about">
+        <a href="../../about">
           <p class="text">About us</p>
         </a>
       </div>
@@ -399,11 +399,11 @@ To open the Arduino Serial Monitor and visualize the LoRa Weather Station workfl
 <div class="footer-bottom lander-row--blue">
   <div class="container">
     <div class="part">
-      <a href="../../../about"><img class="waziup-logo" src="../../../img/005-waziup/Logo/logo-waziup-white.svg" alt=""></a>
+      <a href="../../about"><img class="waziup-logo" src="../../img/005-waziup/Logo/logo-waziup-white.svg" alt=""></a>
     </div>
 
     <div class="part">
-      <p class="text">Code licensed under<a type="application/rss+xml" href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2</a> © 2016 <a href='../../../about'>Waziup.io</a></p>
+      <p class="text">Code licensed under<a type="application/rss+xml" href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2</a> © 2016 <a href='../../about'>Waziup.io</a></p>
     </div>
   </div>
 </div>

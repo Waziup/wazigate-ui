@@ -9,11 +9,11 @@
   <link rel="icon" type="image/png" href="../../images/favicon.ico">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
-  <title>API Reference - WAZIUP Platform</title>
+  <title>API V1 Notifications - WAZIUP Platform</title>
   <meta name="generator" content="Hugo 0.40.1" />
 
-  <link rel="canonical" href="index.html">
-  <meta property="og:url" content="https://www.waziup.io/documentation/4-api/">
+  <link rel="canonical" href="notifications.2">
+  <meta property="og:url" content="https://www.waziup.io/documentation/4-api/notifications/">
   
   
                 <meta property="og:title" content="WAZIUP Platform">
@@ -72,9 +72,9 @@
       
         <a href="../../tutorials/index.html" id="top-menu-item-text" class="top-menu-item">Tutorials</a>
       
-        <a href="index.html" id="top-menu-item-text" class="top-menu-item"></a>
+        <a href="notifications.2" id="top-menu-item-text" class="top-menu-item"></a>
       
-        <a href="index.html" id="top-menu-item-text" class="top-menu-item"></a>
+        <a href="notifications.2" id="top-menu-item-text" class="top-menu-item"></a>
       
     </div>
 
@@ -170,7 +170,7 @@
               <p class="text">Sensor management</p>
             </a>
           
-            <a class="sub-menu-item " href="notifications.2">
+            <a class="sub-menu-item active" href="notifications.2">
               <p class="text">Notifications</p>
             </a>
           
@@ -237,43 +237,154 @@
 
     </div>
     <div class="content">
-      <h1 class="content-header">API Reference </h1>
+      <h1 class="content-header">API V1 Notifications</h1>
       <div class="markdowned">
         
 
-<p>The API documentation is available at <a href="https://api.waziup.io/docs">https://api.waziup.io/docs</a>.
-With this website, you can explore and interact with all the endpoints of the Waziup API.</p>
+<p>This tutorial will guide you through the Waziup API version 1, step by step.
+We will create and manage notifications.</p>
 
-<h1 id="preliminaries">Preliminaries</h1>
+<p>Let&rsquo;s imagine that we want to monitor the temperature in your fridge.
+If the temperature is too high, you should receive a message on your phone!
+First of all, let&rsquo;s create a sensor in <a href="sensor_management.2">this tutorial</a>.
+The sensor should have name &ldquo;MySensor&rdquo; with a measurement called &ldquo;TC1&rdquo;.
+We will monitor this temperature measurement and create a notification.
+This notification will send us message via SMS if the temperature goes above 10 Degree Celsius.</p>
 
-<p>The first step is to install the &ldquo;cURL&rdquo; command.
-Curl is a very neat command to interact with REST APIs, using the HTTP protocol.
-If not already installed on your system, it can be found here: <a href="https://curl.haxx.se/">https://curl.haxx.se/</a>
-For Windows, it can be downloaded <a href="https://curl.haxx.se/windows/">here</a>.
-Unzip the file somewhere. You can then open a &ldquo;Command&rdquo; window, and go in the &ldquo;bin&rdquo; folder than you extracted.
-The commands below can now be copy-pasted and executed in the command window.
-You can also install the <a href="https://stedolan.github.io/jq/download/">jq command</a>. It allows to pretty-print JSON informations.</p>
+<p>You should also create a user on the <a href="https://dashboard.waziup.io">dashboard</a>, and input your phone number with the international prefix.</p>
 
-<h1 id="tutorials">Tutorials</h1>
+<h1 id="create-a-notification">Create a notification</h1>
 
-<p>Once the preliminaries completed, head to the following tutorials:</p>
+<p>We will create a new notification for our fridge.
+The following command will create the notification. An SMS message will be sent to the user <code>cdupont</code> if the temperature inside the fridge is above 10 Degree Celsius.</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/notifications&quot; -H &quot;content-type: application/json&quot; -d @- &lt;&lt;EOF 
+{
+  &quot;description&quot;: &quot;Send text message&quot;,
+  &quot;condition&quot;: {
+    &quot;sensors&quot;: [&quot;MySensor&quot;],
+    &quot;measurements&quot;: [&quot;TC&quot;],
+    &quot;expression&quot;: &quot;TC&gt;10&quot;
+  },
+  &quot;notification&quot;: {
+    &quot;usernames&quot;: [&quot;cdupont&quot;],
+    &quot;channels&quot;: [&quot;sms&quot;],
+    &quot;message&quot;: &quot;Warning, temperature is too high. {id} value is {TC} C&quot;
+  },
+  &quot;expires&quot;: &quot;2025-10-13T14:51:22.12Z&quot;,
+  &quot;throttling&quot;: 10,
+  &quot;status&quot;: &quot;active&quot;
+}
+EOF
+</code></pre>
+
+<p>The various fields are:</p>
 
 <ul>
-<li><a href="access_control.2">Access control</a></li>
-<li><a href="sensor_management.2">Sensor management</a></li>
-<li><a href="notifications.2">Notifications</a></li>
-<li><a href="gateways.2">Gateways</a></li>
+<li><code>description</code> is the description of the notification,</li>
+<li><code>condition</code> describes the condition under which the notification will be triggered,</li>
+<li><code>notification</code> describes which message to send, to which users and on which channels,</li>
+<li><code>expires</code> is the date where this notification will not be sent anymore,</li>
+<li><code>throttling</code> is the minimum delay between two notification sendings, in seconds. For example, a value of 3600 guaranties that a maximum of one message per hour will be sent to the users,</li>
+<li><code>status</code> allows to activate or deactivate the notification. Possible values are <code>active</code> or <code>inactive</code>.</li>
 </ul>
 
-<h1 id="library">Library</h1>
+<p><code>condition</code> has the following sub-fields:</p>
 
-<p>If your application is written in Javascript, you can use the <a href="https://github.com/Waziup/waziup-js">Waziup library</a> instead of using directly the API.
-It&rsquo;s easier!
-All documentation is provided in the README files in the repository.</p>
+<ul>
+<li><code>sensors</code> is the list of sensors under scrutiny by this notification,</li>
+<li><code>measurements</code> are the measurements that will be used,</li>
+<li><code>expression</code> gives the condition under which the notification will be triggered. For example, the expression <code>TC&lt;40</code> will trigger the notification if the measurement <code>TC</code> has a value below 40 Degreee Celsius.</li>
+</ul>
 
-<h1 id="migration-from-previous-version">Migration from previous version</h1>
+<p><code>notification</code> has the following sub-fields:</p>
 
-<p>If you have an application using previous versions of the API, use the <a href="migration_guide_v1.1.2">migration guide</a>.</p>
+<ul>
+<li><code>usernames</code> is the list of users that will receive a message if the notification is triggered. In our example, the user <code>cdupont</code> will receive the notification messages.</li>
+<li><code>channels</code> is the list of channels to where sending the notification messages. Possible values are <code>twitter</code>, <code>sms</code> and <code>voice</code>.</li>
+<li><code>message</code> is the text that will be sent to the users on the selected channels.
+This message can contain variables: for instance <code>{id}</code> will be replaced by the sensor id, while <code>{&lt;measurement_id&gt;}</code> will be replaced by the value measured.</li>
+</ul>
+
+<p>Once you executed the command above, you will get a number as a reply: this is the notification id.
+Keep it aside for the rest of the tutorial.</p>
+
+<p>So, did you receive the SMS? You should receive the message <code>Warning, temperature is too high. MySensor value is 11 C</code>.
+The variables are replaced in the message sent: <code>{id}</code> becomes the sensor id (&ldquo;MySensor&rdquo;) and <code>{TC}</code> becomes the last value measured by the sensor.</p>
+
+<h1 id="see-your-notification">See your notification</h1>
+
+<p>You can see the notification that you have just created:</p>
+
+<pre><code>curl -X GET &quot;https://api.waziup.io/api/v1/notifications/&lt;notif_id&gt;&quot; -H  &quot;accept: application/json&quot;
+</code></pre>
+
+<p>Replace <notif_id> with the id returned by the previous command. You should see your notification:</p>
+
+<pre><code>{
+  &quot;id&quot;: &quot;5bcb9aca2b4545c9fbdfc851&quot;,
+  &quot;description&quot;: &quot;Send text message&quot;,
+  &quot;condition&quot;: {
+    &quot;sensors&quot;: [
+      &quot;MySensor&quot;
+    ],
+    &quot;measurements&quot;: [
+      &quot;TC&quot;
+    ],
+    &quot;expression&quot;: &quot;TC&lt;40&quot;
+  },
+  &quot;notification&quot;: {
+    &quot;usernames&quot;: [
+      &quot;cdupont&quot;
+    ],
+    &quot;channels&quot;: [
+      &quot;sms&quot;
+    ],
+    &quot;message&quot;: &quot;Warning, temperature is too high. {id} value is {TC} C&quot;
+  },
+  &quot;expires&quot;: &quot;2030-10-13T14:51:22.00Z&quot;,
+  &quot;throttling&quot;: 3600,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;times_sent&quot;: 1,
+  &quot;last_notification&quot;: &quot;2018-10-20T21:56:58.00Z&quot;
+}
+</code></pre>
+
+<p>The notification return is identical to want you created, with two additional fields:</p>
+
+<ul>
+<li><code>times_sent</code>: this shows that the notification message has been sent out once.</li>
+<li><code>last_notification</code>: the date at which the last notification message was sent.</li>
+</ul>
+
+<h1 id="trigger-the-notification">Trigger the notification</h1>
+
+<p>Notifications should be triggered when sensors are updated. Let&rsquo;s update our sensor:</p>
+
+<pre><code>curl -X POST &quot;https://api.waziup.io/api/v1/sensors/MySensor/measurements/TC/values&quot; -H  &quot;Content-Type: application/json&quot; -d '{&quot;value&quot;: &quot;25.6&quot;, &quot;timestamp&quot;: &quot;2016-06-08T18:20:27.873Z&quot;}'
+</code></pre>
+
+<p>Since we sent a value inferior to 40C, it should trigger the notification and send an SMS!
+For more information on how to create sensor and push datapoints, see this <a href="sensor_management.2">tutorial</a>.</p>
+
+<h1 id="pause-restart-the-notification">Pause/restart the notification</h1>
+
+<p>Once the notification created, you can pause it and restart it latter.
+This is done with the following command:</p>
+
+<pre><code>curl -X PUT &quot;https://api.waziup.io/api/v1/notifications/&lt;notif_id&gt;/status&quot; -H  &quot;Content-Type: text/plain&quot; -d &quot;inactive&quot;
+</code></pre>
+
+<p>Possible values for this command are <code>active</code> and <code>inactive</code>.</p>
+
+<h1 id="delete-the-notification">Delete the notification</h1>
+
+<p>Fianlly, we can delete the notification. Issue the command:</p>
+
+<pre><code>curl -X DELETE &quot;https://api.waziup.io/api/v1/notifications/&lt;notif_id&gt;&quot;
+</code></pre>
+
+<p>All set. Good luck with notifications!</p>
 
       </div>
     </div>
