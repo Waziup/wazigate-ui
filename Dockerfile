@@ -1,10 +1,8 @@
-FROM php:7.2-apache
+FROM ulsmith/alpine-apache-php7
 #MAINTAINER Moji eskandari@fbk.eu
 
-COPY . /var/www/html
+COPY . /app/public
 
-RUN apt-get update -y && \
-    apt-get install -y wget && \
-	chown -R www-data:www-data /var/www/html  && \
-	chmod -R g+w /var/www/html && \
-	usermod -u 1000 www-data
+RUN apk update && \
+    apk add wget
+
