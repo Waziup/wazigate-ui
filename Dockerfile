@@ -1,8 +1,8 @@
-FROM ulsmith/alpine-apache-php7
+FROM nimmis/alpine-apache-php7
 #MAINTAINER Moji eskandari@fbk.eu
 
-COPY . /app/public
+RUN apk update
+RUN apk add php7-session 
 
-RUN apk update && \
-    apk add wget
+COPY . /web/html
 
