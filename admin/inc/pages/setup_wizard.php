@@ -83,13 +83,14 @@ if( empty( $_GET['next']))
 				),
 				
 				array( 
-						$lang['Username'], 
+						$lang['Email'], 
 						editText( array( 
 									'id'		=> 'username',
-									'label'		=> $lang['Username'],
-									'pholder'	=> $lang['Username'] .' [A-Za-z0-9]',
+									'label'		=> $lang['Email'],
+									'pholder'	=> 'your_email@example.com',
+									'type'		=> 'email',
 									//'note'		=> $lang['Username'] .' [A-Za-z0-9]',
-									'value'		=>	@$cloudInfo['credentials']['username'],
+									//'value'		=>	@$cloudInfo['credentials']['username'],
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),
 						)
 					)
@@ -102,7 +103,7 @@ if( empty( $_GET['next']))
 									'label'		=> $lang['Password'],
 									'pholder'	=> $lang['Password'] .' [A-Za-z0-9]',
 									//'note'		=> $lang['Password'] .' [A-Za-z0-9]',
-									'value'		=>	empty( @$cloudInfo['credentials']['token']) ? '' : '*********',
+									//'value'		=>	empty( @$cloudInfo['credentials']['token']) ? '' : '*********',
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),
 
 						)
@@ -165,7 +166,7 @@ function getAjaxWiFiForm()
 				return false;
 			}
 			clearTimeout( autoR);
-			$("#wifiFormAjx").html( "<img src=\"./style/img/loading.gif\" /> Scanning for WiFi networks...").fadeIn();
+			$("#wifiFormAjx").append( "<img src=\"./style/img/loading.gif\" /> '. $lang['ScanningWiFi'] .'").fadeIn();
 			$.get( "?get=wifiForm", function( data){
 				$("#wifiFormAjx").html( data).fadeIn();
 				autoR = setTimeout( function(){loadStuff()}, 5000);

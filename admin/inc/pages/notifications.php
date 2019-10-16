@@ -36,6 +36,7 @@ $templateData = array(
 									'id'		=> 'mail_from',
 									'label'		=> $lang['MailAccount'],
 									'pholder'	=> $lang['MailAccount'],
+									'type'		=> 'email',
 									'note'		=> '', //$lang['GatewayIDWarning'],
 									'value'		=> $conf['alert_conf']['mail_from'],
 									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'alert_conf'),

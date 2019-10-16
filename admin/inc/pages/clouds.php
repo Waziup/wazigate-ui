@@ -47,11 +47,12 @@ $templateData = array(
 				),
 				
 				array( 
-						$lang['Username'], 
+						$lang['Email'], 
 						editText( array( 
 									'id'		=> 'username',
-									'label'		=> $lang['Username'],
-									'pholder'	=> $lang['Username'] .' [A-Za-z0-9]',
+									'label'		=> $lang['Email'],
+									'pholder'	=> 'your_email@example.com',
+									'type'		=> 'email',
 									//'note'		=> $lang['Username'] .' [A-Za-z0-9]',
 									'value'		=>	@$cloudInfo['credentials']['username'],
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),

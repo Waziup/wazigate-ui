@@ -110,6 +110,7 @@ require( './inc/template_admin.php');
 
 function getAjaxWiFiForm()
 {
+	global $lang;
 	return '<div id="wifiFormAjx"></div>
 		<script>
 		var autoR = 0;
@@ -120,7 +121,7 @@ function getAjaxWiFiForm()
 				return false;
 			}
 			clearTimeout( autoR);
-			$("#wifiFormAjx").html( "<img src=\"./style/img/loading.gif\" /> Scanning for WiFi networks...").fadeIn();
+			$("#wifiFormAjx").append( "<img src=\"./style/img/loading.gif\" /> '. $lang['ScanningWiFi'] .'").fadeIn();
 			$.get( "?get=wifiForm", function( data){
 				$("#wifiFormAjx").html( data).fadeIn();
 				autoR = setTimeout( function(){loadStuff()}, 5000);

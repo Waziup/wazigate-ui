@@ -48,7 +48,7 @@ $templateData = array(
 
 		/*-----------*/
 		
-		array(
+		/*array(
 			'title'		=>	'Remote.it',
 			'active'	=>	false,
 			'notes'		=>	'',
@@ -56,7 +56,7 @@ $templateData = array(
 				
 				array( 'Remote.it', remoteItStatus()),
 			),
-		),
+		),/**/
 		
 		/*-----------*/
 		
@@ -132,7 +132,7 @@ function storeLocationInfoButton()
 }
 
 /*------------*/
-
+/*
 function remoteItStatus()
 {
 	$notRegistered = printEnabled( false, 'Done', 'NotRegistered');
@@ -170,7 +170,7 @@ function remoteItStatus()
 		  $(function(){ loadRemoteStatus();});
 	 </script>';	
 }
-
+/**/
 /*------------*/
 
 ?>

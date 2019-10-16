@@ -11,6 +11,7 @@ return array(
 	'SignInMsg'		=>	'Please Sign In',
 	'Login'			=>	'Login',
 	'Username'		=>	'Username',
+	'Email'			=>	'Email Address',
 	'Password'		=>	'Password',
 	'LoginError'	=>	'Please enter a valid username and password!',
 
@@ -227,7 +228,7 @@ return array(
 	'NoDevice'		=>	'No Device Found',
 	'Available'		=>	'Available',
 	'Device'		=>	'Device',
-	''		=>	'',
+	'ScanningWiFi'	=>	'Scanning for WiFi networks...',
 	''		=>	'',
 	''		=>	'',
 	''		=>	'',
