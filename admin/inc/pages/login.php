@@ -45,7 +45,9 @@ if(!isset( $_POST['username'], $_POST['password'])){
 }
 else{ // isset($_POST['username']) && isset($_POST['password'])
 	
-	if(!empty($_POST['username']) && !empty($_POST['password'])){
+	if(!empty($_POST['username']) && !empty($_POST['password']))
+	{
+		$_POST['username'] = strtolower( $_POST['username']);
 
 		if(check_login($username, $password, $_POST['username'], md5($_POST['password']))){
 			$_SESSION['username'] = $_POST['username'];
