@@ -116,16 +116,25 @@ $menu = array(
 		'icon'	=> 'fa-question-circle',
 		'active'=> false,
 			'sub'	=> array(
-				'test' => array(
+				'offlineWebsite' => array(
 					'text'	=> $lang['WaziDocs'],
 					'url' 	=> '../www.waziup.io/documentation/',
 					'link'	=> true, #if the URL is external
 					'icon'	=> 'fa-question-circle', //fa-search, fa-bug
 					'active'=> false,
 				),
-				'update' => array(
+				
+				'apiDocs' => array(
 					'text'	=> $lang['APIDocs'],
 					'url' 	=> $_cfg['APIServer']['docs'],
+					'link'	=> true, #if the URL is external
+					'icon'	=> 'fa-question-circle',
+					'active'=> false,
+				),  
+				
+				'edgeDocs' => array(
+					'text'	=> $lang['EdgeAPIDocs'],
+					'url' 	=> $_cfg['EdgeServer']['docs'],
 					'link'	=> true, #if the URL is external
 					'icon'	=> 'fa-question-circle',
 					'active'=> false,

@@ -1,16 +1,16 @@
 <?php
 
-$edgeAddr = explode( ':', getenv('WAZIGATE_EDGE_ADDR'));
+$edgeAddr = explode( ':', @$_ENV['WAZIGATE_EDGE_ADDR']);
 empty( $edgeAddr[0]) and $edgeAddr[0] = 'localhost';
 empty( $edgeAddr[1]) and $edgeAddr[1] = '880';
 
-$hostAddr = explode( ':', getenv('WAZIGATE_HOST_ADDR'));
+$hostAddr = explode( ':', @$_ENV['WAZIGATE_HOST_ADDR']);
 empty( $hostAddr[0]) and $hostAddr[0] = 'localhost';
 empty( $hostAddr[1]) and $hostAddr[1] = '5544';
 
-$sysAddr = explode( ':', getenv('WAZIGATE_SYSTEM_ADDR'));
+$sysAddr = explode( ':', @$_ENV['WAZIGATE_SYSTEM_ADDR']);
 empty( $sysAddr[0]) and $sysAddr[0] = 'localhost';
-empty( $sysAddr[1]) and $sysAddr[1] = '880';
+empty( $sysAddr[1]) and $sysAddr[1] = '5000';
 
 /*------------------------------*/
 
@@ -29,7 +29,7 @@ $_cfg = array(
 	'APIServer'		=>	array(
 			'URL'	=>	'http://'. $sysAddr[0] .':'. $sysAddr[1] .'/api/v1/',		// API server URL to communicate with the system functions
 			'docs'	=>	'http://'. $_SERVER['SERVER_ADDR'] .':'. $sysAddr[1] .'/',	// URL to the API documentations
-			'username'	=>	'', // getenv('WAZIGATE_SYSTEM_USERNAME')
+			'username'	=>	'', // @$_ENV['WAZIGATE_SYSTEM_USERNAME']
 			'password'	=>	'',
 	),
 
@@ -37,6 +37,7 @@ $_cfg = array(
 			'URL'	=>	'http://'. $edgeAddr[0] .':'. $edgeAddr[1] .'/',
 			'username'	=>	'',
 			'password'	=>	'',
+			'docs'		=>	'http://'. $_SERVER['SERVER_ADDR'] .':'. $edgeAddr[1] .'/docs/', // URL to the API documentations
 	),
 	
 	'HostServer'	=>	array(

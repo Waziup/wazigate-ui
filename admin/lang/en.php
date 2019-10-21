@@ -70,9 +70,11 @@ return array(
 	'Notes_Test_Logs'			=>	'',
 	'Notes_Cloud_Waziup'		=>	'<ul>
 										<li>
-											The <tt>Username</tt> is your WAZIUP username. <tt>password</tt> is your WAZIUP password. Use <b>only letters and numbers</b> for <tt>username</tt> and <tt>password</tt>. To create an account on the WAZIUP platform, go to <a href="https://dashboard.waziup.io">https://dashboard.waziup.io</a>. 
-											
-										</li> 
+											The <tt>Email address</tt> is the one used as your WAZIUP username. <tt>password</tt> is your WAZIUP password. To create an account on the WAZIUP platform, go to <a href="https://dashboard.waziup.io">https://dashboard.waziup.io</a>. 
+										</li>
+										<li>
+											The <tt>Server</tt> is the address of your MQTT waziup server. If you don\'t know what it is, just leave it empty.
+										</li>
 									</ul>',
 	'Notes_SensorsList'			=>	'',
 	'Notes_AdvanceConf_Clouds'	=>	'',
@@ -193,6 +195,7 @@ return array(
 	'Loragna_3G'	=>	'Loragna 3G',
 	'Documentations'=>	'Documentations',
 	'APIDocs'		=>	'Gateway API Docs',
+	'EdgeAPIDocs'	=>	'Edge API Docs',
 	'WaziDocs'		=>	'Waziup Documentations',
 	'Server'		=>	'Server',
 	'Done'			=>	'Done',

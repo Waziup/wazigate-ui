@@ -101,7 +101,7 @@ $templateData = array(
 
 					/*-----------*/
 					
-					array(	$lang['WiFiDongle'], printEnabled( $ap['available'], 'Available', 'NoDevice')),
+					//array(	$lang['WiFiDongle'], printEnabled( $ap['available'], 'Available', 'NoDevice')),
 
 					/*-----------*/
 					
@@ -133,8 +133,8 @@ $templateData = array(
 
 					/*-----------*/
 					
-					array(	$lang['IPaddress'], $ap['ip']),
-					array(	$lang['Device'], $ap['device']),
+					//array(	$lang['IPaddress'], $ap['ip']),
+					//array(	$lang['Device'], $ap['device']),
 					
 					/*-----------*/
 
