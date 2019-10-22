@@ -16,41 +16,9 @@ $templateData = array(
 );
 
 
-if( empty( $_GET['next']))
+if( empty( $_GET['next']))// || $_GET['next'] == 'cloud')
 {
-	$wifi	= callAPI( 'system/wifi');
-	$templateData[ 'tabs' ][] = array(
-	
-				'title'		=>	'WiFi',
-				'active'	=>	true,
-				'notes'		=>	$lang['Notes_Wizard_WiFi'],
-				'content'	=>	array(
 
-					array(	$lang['Activation']	, 
-							editEnabled( array( 
-										'id'			=>	'enabled',
-										'value'			=>	$wifi['enabled'],
-										'params'		=>	array( 'cfg' => 'system/wifi'),
-										'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',
-								)
-							)
-						),
-
-					array(	'Waziup.io' , printEnabled( is_connected(), 'Accessible', 'NoInternet')),
-					
-					array(	$lang['ConnectedWiFiNetwork'], $wifi['ssid'] . ( $wifi['ssid'] == '' ? '' : " ( {$wifi['ip']} )")),
-					
-					//array( 'NetInterface' , getNetwokIFs()),
-					
-					array( $lang['WiFiNetwork'], getAjaxWiFiForm())
-
-				),
-			);
-
-	/*---------------------------*/
-
-}elseif( $_GET['next'] == 'cloud'){
-	
 	$clouds = CallEdge('clouds');
 	$cloudInfo	= @reset( $clouds);	
 	
@@ -90,7 +58,7 @@ if( empty( $_GET['next']))
 									'pholder'	=> 'your_email@example.com',
 									'type'		=> 'email',
 									//'note'		=> $lang['Username'] .' [A-Za-z0-9]',
-									//'value'		=>	@$cloudInfo['credentials']['username'],
+									'value'		=>	@$cloudInfo['credentials']['username'],
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),
 						)
 					)
@@ -103,7 +71,7 @@ if( empty( $_GET['next']))
 									'label'		=> $lang['Password'],
 									'pholder'	=> $lang['Password'] .' [A-Za-z0-9]',
 									//'note'		=> $lang['Password'] .' [A-Za-z0-9]',
-									//'value'		=>	empty( @$cloudInfo['credentials']['token']) ? '' : '*********',
+									'value'		=>	empty( @$cloudInfo['credentials']['token']) ? '' : '*********',
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),
 
 						)
@@ -115,7 +83,41 @@ if( empty( $_GET['next']))
 		);
 	
 	/*---------------------------*/
+
+}elseif( $_GET['next'] == 'wifi'){
 	
+	$wifi	= callAPI( 'system/wifi');
+	$templateData[ 'tabs' ][] = array(
+	
+				'title'		=>	'WiFi',
+				'active'	=>	true,
+				'notes'		=>	$lang['Notes_Wizard_WiFi'],
+				'content'	=>	array(
+
+					array(	$lang['Activation']	, 
+							editEnabled( array( 
+										'id'			=>	'enabled',
+										'value'			=>	$wifi['enabled'],
+										'params'		=>	array( 'cfg' => 'system/wifi'),
+										'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',
+								)
+							)
+						),
+
+					array(	'Waziup.io' , printEnabled( is_connected(), 'Accessible', 'NoInternet')),
+					
+					array(	$lang['ConnectedWiFiNetwork'], $wifi['ssid'] . ( $wifi['ssid'] == '' ? '' : " ( {$wifi['ip']} )")),
+					
+					//array( 'NetInterface' , getNetwokIFs()),
+					
+					array( $lang['WiFiNetwork'], getAjaxWiFiForm())
+
+				),
+			);
+
+	/*---------------------------*/
+	
+
 }elseif( $_GET['next'] == 'finish'){
 	
 	//Storing the done flag for wizard
@@ -173,17 +175,32 @@ function getAjaxWiFiForm()
 				$("#wifiForm").click(function(){ clearTimeout( autoR);});
 				$("#wifiSubmit").val("'. $lang['Connect'] .'");
 				
-				$("#wifiForm").append( $("<input />").attr({
+				
+				$("#wifiForm").append( $("<input/>").attr({
+							type:	"button",
+							id:		"wizardPrev",
+							class:	"btn btn-primary",
+							value:	"'. $lang['Previous'] .'"
+						})
+					);
+				
+				$("#wizardPrev").click( function(){
+					location.href += "&next=";
+				});
+				
+				$("#wifiForm").append( " ");
+				$("#wifiForm").append( $("<input/>").attr({
 						type:	"button",
-						id:		"wizardWiFiNext",
+						id:		"wizardFinish",
 						class:	"btn btn-primary",
-						value:	"'. $lang['Next'] .'"
+						value:	"'. $lang['Finish'] .'"
 					})
 				);
 
-				$("#wizardWiFiNext").click( function(){
-					location.href += "&next=cloud";
-				});
+				$("#wizardFinish").click( function(){
+					location.href += "&next=finish";
+				});				
+				
 
 			});
 		}
@@ -201,31 +218,19 @@ function getCloudWizardForm()
 			</div>
 			<script>
 				$(function(){ 
-
-					$("#CloudWizardForm").append( $("<input/>").attr({
-							type:	"button",
-							id:		"wizardPrev",
-							class:	"btn btn-primary",
-							value:	"'. $lang['Previous'] .'"
-						})
-					);
-
-					$("#wizardPrev").click( function(){
-						location.href += "&next=";
-					});
 					
-					$("#CloudWizardForm").append( " ");
-					$("#CloudWizardForm").append( $("<input/>").attr({
-							type:	"button",
-							id:		"wizardFinish",
-							class:	"btn btn-primary",
-							value:	"'. $lang['Finish'] .'"
-						})
-					);
+				$("#CloudWizardForm").append( $("<input />").attr({
+						type:	"button",
+						id:		"wizardNext",
+						class:	"btn btn-primary",
+						value:	"'. $lang['Next'] .'"
+					})
+				);
 
-					$("#wizardFinish").click( function(){
-						location.href += "&next=finish";
-					});
+				$("#wizardNext").click( function(){
+					location.href += "&next=wifi";
+				});
+
 				
 				});
 			 </script>';

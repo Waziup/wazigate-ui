@@ -10,10 +10,13 @@ define( 'IN_WAZIHUB', 1);
 require( './admin/config.inc.php');
 require( './admin/inc/functions.php');
 
-printr( getenv('WAZIGATE_SYSTEM_ADDR'));
-printr( getenv('WAZIGATE_EDGE_ADDR'));
+#printr( getenv( 'WAZIGATE_SYSTEM_PORT'));
+#printr( $_ENV['WAZIGATE_SYSTEM_PORT']);
 
-$addr = explode( ':', getenv('WAZIGATE_EDGE_ADDR'));
+printr( @$_ENV['WAZIGATE_SYSTEM_ADDR']);
+printr( @$_ENV['WAZIGATE_EDGE_ADDR']);
+
+$addr = explode( ':', @$_ENV['WAZIGATE_EDGE_ADDR']);
 printr( $addr);
 
 printr( waziDocsUpdateCheck());

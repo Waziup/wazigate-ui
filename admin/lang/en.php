@@ -221,8 +221,15 @@ return array(
 	'Finish'		=>	'Finish',
 	'Skip'			=>	'Skip',
 	'Connect'		=>	'Connect',
-	'Notes_Wizard_WiFi'		=>	'xxx',
-	'Notes_Wizard_Cloud'	=>	'Notes_Wizard_Cloud',
+	'Notes_Wizard_WiFi'		=>	'The gateway will reboot itself once the WiFi is set and if it canot connect, it will role back to the Access point.',
+	'Notes_Wizard_Cloud'	=>	'<ul>
+										<li>
+											The <tt>Email address</tt> is the one used as your WAZIUP username. <tt>password</tt> is your WAZIUP password. To create an account on the WAZIUP platform, go to <a href="https://dashboard.waziup.io">https://dashboard.waziup.io</a>. 
+										</li>
+										<li>
+											The <tt>Server</tt> is the address of your MQTT waziup server. If you don\'t know what it is, just leave it empty.
+										</li>
+									</ul>',
 	'SaveLocation'		=>	'Save Location',
 	'UpdateWaziupIO'	=>	'Update Offline Documentations',
 	'UpdateGateway'		=>	'Update The Gateway Framework',

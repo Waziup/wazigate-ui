@@ -63,7 +63,7 @@ if( !empty( $_GET['get']))
 	}//End of if( $_GET['get'] == 'logs');
 	
 	if( $_GET['get'] == 'location') print( getLocation());
-	if( $_GET['get'] == 'remote.it') print( json_encode( callAPI( 'remote.it')));
+	//if( $_GET['get'] == 'remote.it') print( json_encode( callAPI( 'remote.it')));
 	if( $_GET['get'] == 'hardware_status') print( json_encode( CallHost( 'hardware/status')));
 	
 	if( $_GET['get'] == 'dockerState')
@@ -87,6 +87,9 @@ if( !empty( $_GET['get']))
 		}
 
 	}//End of if( $_GET['get'] == 'dockerState');
+	
+	/*----------------------------*/
+	#Update APIs
 	
 	if( $_GET['get'] == 'update')
 	{
@@ -113,8 +116,10 @@ if( !empty( $_GET['get']))
 	{
 		$logs = @file_get_contents( getRootDir(). '../update_logs.txt');
 		print( "<pre>$logs</pre>");
-		//printr( 'Goooooooooz');
+		//printr( 'khaar');
 	}
+	
+	/*-----------------*/
 
 	//printr( $_REQUEST);
 	exit();
@@ -162,7 +167,7 @@ if( !empty( $_GET['edge']) && $_GET['edge'] == 'clouds')
 	
 	/*---------*/
 
-	if( $err)
+	if( empty( $err))
 	{
 		print( $lang['SavedSuccess']);
 
