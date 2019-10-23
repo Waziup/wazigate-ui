@@ -4,6 +4,7 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 
 $conf	=	callAPI( 'system/conf');
 $net	=	callAPI( 'system/net');
+$edge	=	CallEdge( 'device');
 
 /*------------*/
 
@@ -23,7 +24,7 @@ $templateData = array(
 			'content'	=>	array(
 
 				array( $lang['RadioFreq']	, getRadioFreq()),
-				array( $lang['GatewayID']	, $conf['gateway_conf']['gateway_ID']),
+				array( $lang['GatewayID']	, strtoupper( $edge['id'])),
 				array( $lang['IPaddress']	, $net['ip']),
 				array( $lang['MacAddress']	, empty( $net['dev']) ? '' : ($net['dev'] .' [ '. $net['mac'] .' ]')),
 				array( 'Waziup.io'			, printEnabled( is_connected(), 'Accessible', 'NoInternet')),
