@@ -293,34 +293,34 @@ function getNetwokIFs()
 
 /*--------------------*/
 
-function CallEdge( $name, $data = false, $method = 'GET')
+function CallEdge( $name, $data = false, $method = 'GET', $json = true, $getHTTPcode = false)
 {
 	global $_cfg;
 	//Calling wazigate-edge API
-	return restCall( $_cfg['EdgeServer'], $name, $data, $method);
+	return restCall( $_cfg['EdgeServer'], $name, $data, $method, $json, $getHTTPcode);
 }
 
 /*--------------------*/
 
-function CallAPI( $name, $data = false, $method = 'GET', $json = true)
+function CallAPI( $name, $data = false, $method = 'GET', $json = true, $getHTTPcode = false)
 {
 	global $_cfg;
 	//Calling wazigate-system API
-	return restCall( $_cfg['APIServer'], $name, $data, $method, $json);
+	return restCall( $_cfg['APIServer'], $name, $data, $method, $json, $getHTTPcode);
 }
 
 /*--------------------*/
 
-function CallHost( $name, $data = false, $method = 'GET', $json = true)
+function CallHost( $name, $data = false, $method = 'GET', $json = true, $getHTTPcode = false)
 {
 	global $_cfg;
 	//Calling wazigate-host API
-	return restCall( $_cfg['HostServer'], $name, $data, $method, $json);
+	return restCall( $_cfg['HostServer'], $name, $data, $method, $json, $getHTTPcode);
 }
 
 /*--------------------*/
 
-function restCall( $apiInfo, $name, $data = false, $method = 'GET', $json = true)
+function restCall( $apiInfo, $name, $data = false, $method = 'GET', $json = true, $getHTTPcode = false)
 {
     $curl = curl_init();
     
@@ -367,11 +367,18 @@ function restCall( $apiInfo, $name, $data = false, $method = 'GET', $json = true
     curl_setopt( $curl, CURLOPT_URL, $url);
     curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1);
 	
-    $result = curl_exec( $curl);
+    $result		= curl_exec( $curl);
+    if( $json)	$result = json_decode( $result, true);
+    
+    if( $getHTTPcode)
+    { 
+		if( !is_array( $result)) $result['res'] = $result;
+		$result['httpcode'] = curl_getinfo( $curl, CURLINFO_HTTP_CODE);
+	}
     
     curl_close( $curl);
 
-    return $json ? json_decode( $result, true) : $result;
+    return $result;
 }
 
 /*--------------------*/

@@ -5,6 +5,9 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 $conf	=	callAPI( 'system/conf');
 $net	=	callAPI( 'system/net');
 $edge	=	CallEdge( 'device');
+$clouds	=	CallEdge( 'clouds');
+$cloud	=	@array_values( $clouds)[0];
+$internet = is_connected();
 
 /*------------*/
 
@@ -23,11 +26,13 @@ $templateData = array(
 			'notes'		=>	$lang['Notes_Overview_Basic'],
 			'content'	=>	array(
 
-				array( $lang['RadioFreq']	, getRadioFreq()),
+				array( $lang['Internet']	, printEnabled( $internet, 'Accessible', 'NoInternet')),
+				array( $lang['gatewayReg']	, $internet ? printEnabled( $cloud['registered'], 'Registered', 'NotRegistered') : '---'),
+				array( ''	, ''),
 				array( $lang['GatewayID']	, strtoupper( $edge['id'])),
 				array( $lang['IPaddress']	, $net['ip']),
+				array( $lang['RadioFreq']	, getRadioFreq()),
 				array( $lang['MacAddress']	, empty( $net['dev']) ? '' : ($net['dev'] .' [ '. $net['mac'] .' ]')),
-				array( 'Waziup.io'			, printEnabled( is_connected(), 'Accessible', 'NoInternet')),
 			),
 		),
 		
@@ -173,5 +178,8 @@ function remoteItStatus()
 }
 /**/
 /*------------*/
+
+//printr( array_values( $clouds)[0]);
+//printr( $cloud);
 
 ?>

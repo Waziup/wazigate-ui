@@ -33,9 +33,9 @@ $templateData = array(
 						)
 					),
 
-				array(	'Waziup.io' , printEnabled( is_connected(), 'Accessible', 'NoInternet')),
+				array(	$lang['Internet'] , printEnabled( is_connected(), 'Accessible', 'NoInternet')),
 				
-				array(	$lang['ConnectedWiFiNetwork'], $wifi['ssid'] . ( $wifi['ssid'] == '' ? '' : " ( {$wifi['ip']} )")),
+				array(	$lang['ConnectedWiFiNetwork'], '<b>'. $wifi['ssid'] .'</b>'. ( $wifi['ssid'] == '' ? '' : " ( {$wifi['ip']} )")),
 				
 				//array( 'NetInterface' , getNetwokIFs()),
 				

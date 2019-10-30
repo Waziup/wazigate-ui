@@ -32,19 +32,6 @@ $templateData = array(
 							)
 						)
 					),
-
-				array( 
-						$lang['Server'], 
-						editText( array( 
-									'id'		=> 'rest',
-									'label'		=> $lang['Server'],
-									'pholder'	=> 'e.g. api.staging.waziup.io/api/v2',
-									//'note'		=> 'e.g. waziup_myfarm',
-									'value'		=>	@$cloudInfo['rest'],
-									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'rest'),
-						)
-					)
-				),
 				
 				array( 
 						$lang['Email'], 
@@ -54,7 +41,7 @@ $templateData = array(
 									'pholder'	=> 'your_email@example.com',
 									'type'		=> 'email',
 									//'note'		=> $lang['Username'] .' [A-Za-z0-9]',
-									'value'		=>	@$cloudInfo['credentials']['username'],
+									'value'		=>	@$cloudInfo['username'],
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),
 						)
 					)
@@ -67,9 +54,22 @@ $templateData = array(
 									'label'		=> $lang['Password'],
 									'pholder'	=> $lang['Password'] .' [A-Za-z0-9]',
 									//'note'		=> $lang['Password'] .' [A-Za-z0-9]',
-									'value'		=>	empty( @$cloudInfo['credentials']['token']) ? '' : '*********',
+									'value'		=>	empty( @$cloudInfo['token']) ? '' : '*********',
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),
 
+						)
+					)
+				),
+
+				array( 
+						$lang['Server'], 
+						editText( array( 
+									'id'		=> 'rest',
+									'label'		=> $lang['Server'],
+									'pholder'	=> 'e.g. api.staging.waziup.io/api/v2',
+									//'note'		=> 'e.g. waziup_myfarm',
+									'value'		=>	@$cloudInfo['rest'],
+									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'rest'),
 						)
 					)
 				),

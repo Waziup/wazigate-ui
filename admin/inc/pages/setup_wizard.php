@@ -15,9 +15,42 @@ $templateData = array(
 	'tabs'	=>	array()
 );
 
-
-if( empty( $_GET['next']))// || $_GET['next'] == 'cloud')
+if( empty( $_GET['next']))
 {
+
+	$templateData[ 'tabs' ][] = array(
+	
+				'title'		=>	'Registration',
+				'active'	=>	true,
+				'notes'		=>	'', //$lang['Notes_Wizard_WiFi'],
+				'content'	=>	array(
+
+					//array( 'NetInterface' , getNetwokIFs()),
+					
+					array( askQuestionForm())
+
+				),
+			);
+
+	/*---------------------------*/
+	
+}elseif( @$_GET['next'] == 'cloudReg'){
+	
+	$templateData[ 'tabs' ][] = array(
+	
+				'title'		=>	'Registration',
+				'active'	=>	true,
+				'notes'		=>	'', //$lang['Notes_Wizard_WiFi'],
+				'content'	=>	array(
+
+					array( cloudRegForm())
+
+				),
+			);
+
+	/*---------------------------*/
+	
+}elseif( @$_GET['next'] == 'cloud'){
 
 	$clouds = CallEdge('clouds');
 	$cloudInfo	= @reset( $clouds);	
@@ -28,14 +61,14 @@ if( empty( $_GET['next']))// || $_GET['next'] == 'cloud')
 			'notes'		=>	$lang['Notes_Wizard_Cloud'],
 			'content'	=>	array(
 
-				array( $lang['Activation']	, 
+				/*array( $lang['Activation']	, 
 						editEnabled( array( 
 									'id'		=>	'enabled',
 									'value'		=>	$cloudInfo['paused'] != 1,
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'paused'),
 							)
 						)
-					),
+					), /**/
 
 				array( 
 						$lang['Server'], 
@@ -58,7 +91,7 @@ if( empty( $_GET['next']))// || $_GET['next'] == 'cloud')
 									'pholder'	=> 'your_email@example.com',
 									'type'		=> 'email',
 									//'note'		=> $lang['Username'] .' [A-Za-z0-9]',
-									'value'		=>	@$cloudInfo['credentials']['username'],
+									'value'		=>	@$cloudInfo['username'],
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),
 						)
 					)
@@ -71,7 +104,7 @@ if( empty( $_GET['next']))// || $_GET['next'] == 'cloud')
 									'label'		=> $lang['Password'],
 									'pholder'	=> $lang['Password'] .' [A-Za-z0-9]',
 									//'note'		=> $lang['Password'] .' [A-Za-z0-9]',
-									'value'		=>	empty( @$cloudInfo['credentials']['token']) ? '' : '*********',
+									'value'		=>	empty( @$cloudInfo['token']) ? '' : '*********',
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),
 
 						)
@@ -84,7 +117,7 @@ if( empty( $_GET['next']))// || $_GET['next'] == 'cloud')
 	
 	/*---------------------------*/
 
-}elseif( $_GET['next'] == 'wifi'){
+}elseif( @$_GET['next'] == 'wifi'){
 	
 	$wifi	= callAPI( 'system/wifi');
 	$templateData[ 'tabs' ][] = array(
@@ -104,9 +137,9 @@ if( empty( $_GET['next']))// || $_GET['next'] == 'cloud')
 							)
 						),
 
-					array(	'Waziup.io' , printEnabled( is_connected(), 'Accessible', 'NoInternet')),
+					array(	$lang['Internet'] , printEnabled( is_connected(), 'Accessible', 'NoInternet')),
 					
-					array(	$lang['ConnectedWiFiNetwork'], $wifi['ssid'] . ( $wifi['ssid'] == '' ? '' : " ( {$wifi['ip']} )")),
+					array(	$lang['ConnectedWiFiNetwork'], '<b>'. $wifi['ssid'] .'</b>'. ( $wifi['ssid'] == '' ? '' : " ( {$wifi['ip']} )")),
 					
 					//array( 'NetInterface' , getNetwokIFs()),
 					
@@ -118,7 +151,7 @@ if( empty( $_GET['next']))// || $_GET['next'] == 'cloud')
 	/*---------------------------*/
 	
 
-}elseif( $_GET['next'] == 'finish'){
+}elseif( @$_GET['next'] == 'finish'){
 	
 	//Storing the done flag for wizard
 
@@ -158,7 +191,9 @@ function getAjaxWiFiForm()
 {
 	global $lang;
 
-	return '<div id="wifiFormAjx"></div>
+	return '<div id="wifiFormAjx">
+				<form id="wifiForm"></form>
+			</div>
 		<script>
 		var autoR = 0;
 		function loadStuff(){
@@ -175,36 +210,40 @@ function getAjaxWiFiForm()
 				$("#wifiForm").click(function(){ clearTimeout( autoR);});
 				$("#wifiSubmit").val("'. $lang['Connect'] .'");
 				
-				
-				$("#wifiForm").append( $("<input/>").attr({
-							type:	"button",
-							id:		"wizardPrev",
-							class:	"btn btn-primary",
-							value:	"'. $lang['Previous'] .'"
-						})
-					);
-				
-				$("#wizardPrev").click( function(){
-					location.href += "&next=";
-				});
-				
-				$("#wifiForm").append( " ");
-				$("#wifiForm").append( $("<input/>").attr({
-						type:	"button",
-						id:		"wizardFinish",
-						class:	"btn btn-primary",
-						value:	"'. $lang['Finish'] .'"
-					})
-				);
-
-				$("#wizardFinish").click( function(){
-					location.href += "&next=finish";
-				});				
-				
-
+				addButtons( "#wifiForm");
 			});
 		}
-		$(function(){ loadStuff();});
+		
+		function addButtons( formId)
+		{
+			$( formId).append( $("<input/>").attr({
+						type:	"button",
+						id:		"wizardPrev",
+						class:	"btn btn-primary",
+						style:	"margin-right:10px;",
+						value:	"'. $lang['Back'] .'"
+					})
+				);
+			
+			$("#wizardPrev").click( function(){
+				location.href += "&next=cloud";
+			});
+			
+			$( formId).append( $("<input/>").attr({
+					type:	"button",
+					id:		"wizardFinish",
+					class:	"btn btn-primary",
+					style:	"margin-right:10px;",
+					value:	"'. $lang['Finish'] .'"
+				})
+			);
+
+			$("#wizardFinish").click( function(){
+				location.href += "&next=finish";
+			});
+		}
+
+		$(function(){ addButtons( "#wifiForm"); loadStuff(); });
 	 </script>';
 }
 
@@ -214,24 +253,118 @@ function getCloudWizardForm()
 {
 	global $lang;
 	return '<div id="div_update_wifi" class="form-group">
-				<form id="CloudWizardForm"></form>
+				<form id="wizardForm"></form>
+			</div>
+			<script>
+				$(function(){ 
+
+					$("#wizardForm").append( $("<input />").attr({
+							type:	"button",
+							id:		"wizardBack",
+							class:	"btn btn-primary",
+							style:	"margin-right:10px; width:100px;",
+							value:	"'. $lang['Back'] .'"
+						})
+					);
+
+					$("#wizardBack").click( function(){
+						location.href += "&next=";
+					});
+
+					$("#wizardForm").append( $("<input />").attr({
+							type:	"button",
+							id:		"wizardNext",
+							class:	"btn btn-primary",
+							style:	"margin-right:10px; width:100px;",
+							value:	"'. $lang['Next'] .'"
+						})
+					);
+
+					$("#wizardNext").click( function(){
+						location.href += "&next=wifi";
+					});
+
+				});
+			 </script>';
+	
+}
+
+/*--------------------*/
+
+function askQuestionForm()
+{
+	global $lang;
+	return '<div id="div_form" class="form-group">
+				<form id="wizardForm" style="text-align:center;">
+					<p>
+						<h3>
+							Do you already have a <b>WAZIUP</b> account?
+						</h3>
+					</p>
+					<br />
+				</form>
 			</div>
 			<script>
 				$(function(){ 
 					
-				$("#CloudWizardForm").append( $("<input />").attr({
+				$("#wizardForm").append( $("<input />").attr({
 						type:	"button",
 						id:		"wizardNext",
 						class:	"btn btn-primary",
-						value:	"'. $lang['Next'] .'"
+						style:	"margin-right:10px; width:100px;",
+						value:	"'. $lang['Yes'] .'"
 					})
 				);
 
 				$("#wizardNext").click( function(){
-					location.href += "&next=wifi";
+					location.href += "&next=cloud";
 				});
 
+				$("#wizardForm").append( $("<input />").attr({
+						type:	"button",
+						id:		"wizardNext2",
+						class:	"btn btn-primary",
+						style:	"margin-right:10px; width:100px;",
+						value:	"'. $lang['No'] .'"
+					})
+				);
+
+				$("#wizardNext2").click( function(){
+					location.href += "&next=cloudReg";
+				});
 				
+				});
+			 </script>';
+	
+}
+
+/*--------------------*/
+
+function cloudRegForm()
+{
+	global $lang;
+	return '<div id="div_form" class="form-group">
+				<form id="wizardForm" style="text-align:center;">
+					<h3 style="text-align:justify;">
+						Please go to <a href="https://dashboard.waziup.io" target="_blank">https://dashboard.waziup.io</a> 
+						and use your email address to create an account.
+					</h3>
+				</form>
+			</div>
+			<script>
+				$(function(){ 
+					$("#wizardForm").append( $("<input />").attr({
+							type:	"button",
+							id:		"wizardBack",
+							class:	"btn btn-primary",
+							style:	"width:120px;",
+							value:	"'. $lang['Back'] .'"
+						})
+					);
+
+					$("#wizardBack").click( function(){
+						location.href += "&next=";
+					});
 				});
 			 </script>';
 	

@@ -140,14 +140,15 @@ if( !empty( $_REQUEST['status']))
 
 if( !empty( $_GET['edge']) && $_GET['edge'] == 'clouds')
 {
-	$clouds = CallEdge('clouds');
+	
+	$clouds = CallEdge( 'clouds');
 	$cloudInfo	= @reset( $clouds);
 
 	if( empty( $cloudInfo)) //If it does not exist, create it!
 	{
   		$default = array(
   			'rest'	=> 'api.waziup.io/api/v2',
-  			'paused'=> true,
+  			'paused'=> false,
   			'credentials' => array( 'username' => '', 'token' => '')
   		);
 
@@ -155,15 +156,30 @@ if( !empty( $_GET['edge']) && $_GET['edge'] == 'clouds')
 
 	}//End of if( empty( $cloudInfo));
 	
+	$API = "clouds/${cloudInfo['id']}/{$_REQUEST['conf_node']}";
+
 	switch( $_REQUEST['conf_node'])
 	{
-		case 'paused' 		: $jsonData = $_REQUEST['value'] != 1; break;
-		case 'credentials'	: $jsonData = array( $_REQUEST['name'] => $_REQUEST['value'] ); break;
-		default:	$jsonData = $_REQUEST['value'];
+		case 'paused' 		: 
+				$jsonData = $_REQUEST['value'] != 1; 
+				$err = CallEdge( $API, $jsonData, 'POST', true, true);
+				break;
+
+		case 'credentials'	: 
+				
+				CallEdge( "clouds/${cloudInfo['id']}/paused", true, 'POST');
+				
+				//$jsonData = array( $_REQUEST['name'] => $_REQUEST['value']);
+				//$err = CallEdge( $API, $jsonData, 'POST');
+				CallEdge( "clouds/${cloudInfo['id']}/{$_REQUEST['name']}", $_REQUEST['value'], 'POST');
+				
+				$err = CallEdge( "clouds/${cloudInfo['id']}/paused", false, 'POST', true, $_REQUEST['name'] == 'token');
+				break;
+
+		default:	
+				$jsonData = $_REQUEST['value'];
+				$err = CallEdge( $API, $jsonData, 'POST');
 	}
-	
-	$API = "clouds/${cloudInfo['id']}/{$_REQUEST['conf_node']}";
-	$err = CallEdge( $API, $jsonData, 'POST');
 	
 	/*---------*/
 
@@ -171,6 +187,19 @@ if( !empty( $_GET['edge']) && $_GET['edge'] == 'clouds')
 	{
 		print( $lang['SavedSuccess']);
 
+	}elseif( !empty( $err['httpcode'])){
+
+		//Edge response messages:
+		switch( $err['httpcode'])
+		{
+			case 200: print( 'Success. Username and password are valid.'); break;
+			case 202: print( 'Success. No internet connection to check the credentials.'); break;
+			case 401: print( 'Error. The server rejected the credentials.'); break;
+			case 404: print( 'Error. Maybe the gateway is not registered.'); break;
+			default:
+				print( 'Error code: '. $err['httpcode']); break;
+		}
+	
 	}else{
 
 		print( $lang['SaveError'] ." [ $err ]");
