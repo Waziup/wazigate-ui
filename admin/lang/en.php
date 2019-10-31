@@ -89,7 +89,7 @@ return array(
 										</li>
 									</ul>',
 	'Notes_Profile'		=>	'',
-	'Notes_Internet'	=>	'The gateway will reboot itself once the WiFi is set and if it canot connect, it will role back to the Access point.',
+	'Notes_Internet'	=>	'The gateway will reboot itself once the WiFi is set. If it cannot connect to the internet, it will roll back to the Access point.',
 	'Notes_AP'			=>	'',
 	'Notes_Cellular'	=> 	'You MUST reboot for changes to take effect.',
 	'Loragna_G'			=> 	'Loragna Option',
