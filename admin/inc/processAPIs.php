@@ -169,6 +169,8 @@ if( !empty( $_GET['edge']) && $_GET['edge'] == 'clouds')
 				
 				CallEdge( "clouds/${cloudInfo['id']}/paused", true, 'POST');
 				
+				sleep( 3); //Wait for the Edge to stop
+				
 				//$jsonData = array( $_REQUEST['name'] => $_REQUEST['value']);
 				//$err = CallEdge( $API, $jsonData, 'POST');
 				CallEdge( "clouds/${cloudInfo['id']}/{$_REQUEST['name']}", $_REQUEST['value'], 'POST');
@@ -210,6 +212,29 @@ if( !empty( $_GET['edge']) && $_GET['edge'] == 'clouds')
 
 }//End of if( !empty( $_GET['edge']) && $_GET['edge'] == 'clouds');
 
+/*-----------------*/
+
+if( !empty( $_GET['edge']) && $_GET['edge'] == 'gateway')
+{
+	if( $_REQUEST['name'] == 'name')
+	{
+		$err = CallEdge( "device/name", $_REQUEST['value'], 'POST');
+	}
+	
+	if( $err == 0)
+	{
+		print( $lang['SavedSuccess']);
+
+	}else{
+
+		is_array( $err) and $err = implode( '<br />', $err);
+		//print( $lang['SaveError'] ." [ $err ]");
+		print( $err);
+
+	}//End of if( $err == 0);
+		
+	exit();
+}
 
 /*-----------------*/
 

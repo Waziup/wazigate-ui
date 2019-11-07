@@ -72,6 +72,9 @@ return array(
 	'Notes_Test_Logs'			=>	'',
 	'Notes_Cloud_Waziup'		=>	'<ul>
 										<li>
+											The <tt>Gateway Name</tt> is a custom user defined name for yourself to be able to identify this particular gateway on your waziup cloud dashboard. 
+										</li>										
+										<li>
 											The <tt>Email address</tt> is the one used as your WAZIUP username. <tt>password</tt> is your WAZIUP password. To create an account on the WAZIUP platform, go to <a href="https://dashboard.waziup.io">https://dashboard.waziup.io</a>. 
 										</li>
 										<li>
@@ -89,7 +92,7 @@ return array(
 										</li>
 									</ul>',
 	'Notes_Profile'		=>	'',
-	'Notes_Internet'	=>	'The gateway will reboot itself once the WiFi is set. If it cannot connect to the internet, it will roll back to the Access point.',
+	'Notes_Internet'	=>	'The gateway will reboot itself once the WiFi is set and if it canot connect, it will role back to the Access point.',
 	'Notes_AP'			=>	'',
 	'Notes_Cellular'	=> 	'You MUST reboot for changes to take effect.',
 	'Loragna_G'			=> 	'Loragna Option',
@@ -226,6 +229,9 @@ return array(
 	'Notes_Wizard_WiFi'		=>	'The gateway will reboot itself once the WiFi is set and if it canot connect, it will role back to the Access point.',
 	'Notes_Wizard_Cloud'	=>	'<ul>
 										<li>
+											The <tt>Gateway Name</tt> is a custom user defined name for yourself to be able to identify this particular gateway on your waziup cloud dashboard. 
+										</li>
+										<li>
 											The <tt>Email address</tt> is the one used as your WAZIUP username. <tt>password</tt> is your WAZIUP password. To create an account on the WAZIUP platform, go to <a href="https://dashboard.waziup.io">https://dashboard.waziup.io</a>. 
 										</li>
 										<li>
@@ -245,8 +251,8 @@ return array(
 	'No'		=>	'No',
 	'Back'		=>	'Back',
 	'gatewayReg'=>	'Gateway Registration',
-	''		=>	'',
-	''		=>	'',
+	'EmailLogin'		=>	'Email Address / Login',
+	'GatewayName'		=>	'Gateway Name',
 	''		=>	'',
 	''		=>	'',
 	''		=>	'',

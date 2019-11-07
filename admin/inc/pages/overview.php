@@ -29,7 +29,11 @@ $templateData = array(
 				array( $lang['Internet']	, printEnabled( $internet, 'Accessible', 'NoInternet')),
 				array( $lang['gatewayReg']	, $internet ? printEnabled( $cloud['registered'], 'Registered', 'NotRegistered') : '---'),
 				array( ''	, ''),
+				
 				array( $lang['GatewayID']	, strtoupper( $edge['id'])),
+				array( $lang['GatewayName']	, $edge['name']),
+				array( ''	, ''),
+
 				array( $lang['IPaddress']	, $net['ip']),
 				array( $lang['RadioFreq']	, getRadioFreq()),
 				array( $lang['MacAddress']	, empty( $net['dev']) ? '' : ($net['dev'] .' [ '. $net['mac'] .' ]')),
@@ -180,6 +184,6 @@ function remoteItStatus()
 /*------------*/
 
 //printr( array_values( $clouds)[0]);
-//printr( $cloud);
+//printr( $edge);
 
 ?>

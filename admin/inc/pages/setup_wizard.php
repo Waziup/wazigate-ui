@@ -53,7 +53,8 @@ if( empty( $_GET['next']))
 }elseif( @$_GET['next'] == 'cloud'){
 
 	$clouds = CallEdge('clouds');
-	$cloudInfo	= @reset( $clouds);	
+	$cloudInfo	= @reset( $clouds);
+	$gwInfo	=	CallEdge( 'device');
 	
 	$templateData[ 'tabs' ][] = array(
 			'title'		=>	$lang['Cloud'],
@@ -69,27 +70,29 @@ if( empty( $_GET['next']))
 							)
 						)
 					), /**/
-
+					
 				array( 
-						$lang['Server'], 
+						$lang['GatewayName'], 
 						editText( array( 
-									'id'		=> 'rest',
-									'label'		=> $lang['Server'],
-									'pholder'	=> 'e.g. api.staging.waziup.io/api/v2',
-									//'note'		=> 'e.g. waziup_myfarm',
-									'value'		=>	@$cloudInfo['rest'],
-									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'rest'),
+									'id'		=> 'name',
+									'label'		=> $lang['GatewayName'],
+									'pholder'	=> 'My fish farm gateway',
+									//'type'		=> 'email',
+									//'note'		=> $lang['Username'] .' [A-Za-z0-9]',
+									'value'		=>	@$gwInfo['name'],
+									'params'	=>	array( 'edge' => 'gateway'),
 						)
 					)
-				),
+				),				
+
 				
 				array( 
-						$lang['Email'], 
+						$lang['EmailLogin'], 
 						editText( array( 
 									'id'		=> 'username',
 									'label'		=> $lang['Email'],
 									'pholder'	=> 'your_email@example.com',
-									'type'		=> 'email',
+									//'type'		=> 'email',
 									//'note'		=> $lang['Username'] .' [A-Za-z0-9]',
 									'value'		=>	@$cloudInfo['username'],
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'credentials'),
@@ -110,6 +113,19 @@ if( empty( $_GET['next']))
 						)
 					)
 				),
+				
+				array( 
+						$lang['Server'], 
+						editText( array( 
+									'id'		=> 'rest',
+									'label'		=> $lang['Server'],
+									'pholder'	=> 'e.g. api.staging.waziup.io/api/v2',
+									//'note'		=> 'e.g. waziup_myfarm',
+									'value'		=>	@$cloudInfo['rest'],
+									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'rest'),
+						)
+					)
+				),				
 				
 				array( '', getCloudWizardForm())
 			),
