@@ -8,6 +8,23 @@ if( !empty( $_GET['get']))
 {
 	//if( $_GET['get'] == 'ssid')	$err = CallAPI( 'system/wifi/ssid');
 	
+	if( $_GET['get'] == 'ajaxLoad')
+	{
+		$res = 'N/A';
+		if( $_GET['load'] == 'is_connected') $res = printEnabled( is_connected(), 'Accessible', 'NoInternet');
+		
+		if( $_GET['load'] == 'gatewayReg')
+		{ 
+			$clouds		= CallEdge('clouds');
+			$cloudInfo	= @reset( $clouds);
+			$res = is_connected() ? printEnabled( $cloudInfo['registered'], 'Registered', 'NotRegistered') : '---';
+		}
+		
+		
+		print( $res);
+		exit();
+	}
+	
 	if( $_GET['get'] == 'wifiForm') print( wifiForm( array( 'cfg' => 'system/wifi')));
 	if( $_GET['get'] == 'logs')
 	{

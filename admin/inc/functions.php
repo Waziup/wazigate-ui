@@ -441,4 +441,29 @@ function formatFileSize( $bytes, $precision = 2)
 
 /*--------------------*/
 
+function ajaxLoad( $params)
+{
+	global $lang;
+	
+	static $seq = 0;
+	$seq++;
+
+	$getQStr = http_build_query( $params);
+
+	return'<div id="ajaxLoad_'. $seq .'"></div>
+			<script>
+			$(function(){
+				$("#ajaxLoad_'. $seq .'").html( "<img src=\"./style/img/loading.gif\" /> '. $lang['Loading'] .'...").fadeIn();
+				$.get( "?get=ajaxLoad&'. $getQStr .'", function( data){
+					$("#ajaxLoad_'. $seq .'").html( data).fadeIn();
+				});
+			})
+	 </script>';
+	
+	
+}
+
+
+/*--------------------*/
+
 ?>

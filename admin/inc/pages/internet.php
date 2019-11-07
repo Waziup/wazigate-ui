@@ -33,7 +33,7 @@ $templateData = array(
 						)
 					),
 
-				array(	$lang['Internet'] , printEnabled( is_connected(), 'Accessible', 'NoInternet')),
+				array( $lang['Internet']	, ajaxLoad( array( 'load' => 'is_connected'))),
 				
 				array(	$lang['ConnectedWiFiNetwork'], '<b>'. $wifi['ssid'] .'</b>'. ( $wifi['ssid'] == '' ? '' : " ( {$wifi['ip']} )")),
 				

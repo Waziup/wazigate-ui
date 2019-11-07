@@ -5,9 +5,6 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 $conf	=	callAPI( 'system/conf');
 $net	=	callAPI( 'system/net');
 $edge	=	CallEdge( 'device');
-$clouds	=	CallEdge( 'clouds');
-$cloud	=	@array_values( $clouds)[0];
-$internet = is_connected();
 
 /*------------*/
 
@@ -26,8 +23,8 @@ $templateData = array(
 			'notes'		=>	$lang['Notes_Overview_Basic'],
 			'content'	=>	array(
 
-				array( $lang['Internet']	, printEnabled( $internet, 'Accessible', 'NoInternet')),
-				array( $lang['gatewayReg']	, $internet ? printEnabled( $cloud['registered'], 'Registered', 'NotRegistered') : '---'),
+				array( $lang['Internet']	, ajaxLoad( array( 'load' => 'is_connected'))),
+				array( $lang['gatewayReg']	, ajaxLoad( array( 'load' => 'gatewayReg'))),
 				array( ''	, ''),
 				
 				array( $lang['GatewayID']	, strtoupper( $edge['id'])),
