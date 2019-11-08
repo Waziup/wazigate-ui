@@ -179,15 +179,24 @@ if( !empty( $_GET['edge']) && $_GET['edge'] == 'clouds')
 	{
 		case 'paused' 		: 
 				$jsonData = $_REQUEST['value'] != 1; 
-				$err = CallEdge( $API, $jsonData, 'POST', true, true);
+				$err = CallEdge( $API, $jsonData, 'POST', true, $jsonData == false);
 				break;
 
 		case 'credentials'	: 
 				
 				CallEdge( "clouds/${cloudInfo['id']}/paused", true, 'POST');
 				
-				sleep( 3); //Wait for the Edge to stop
-				
+				 //Wait for the Edge to stop and keep checking
+				for( $t = 0; $t < 5; $t++)
+				{
+					sleep( 1);
+
+					$clouds		= CallEdge('clouds');
+					$cloudInfo	= @reset( $clouds);
+
+					if( !$cloudInfo['pausing_mqtt'] && !$cloudInfo['pausing']) break;
+				}
+
 				//$jsonData = array( $_REQUEST['name'] => $_REQUEST['value']);
 				//$err = CallEdge( $API, $jsonData, 'POST');
 				CallEdge( "clouds/${cloudInfo['id']}/{$_REQUEST['name']}", $_REQUEST['value'], 'POST');

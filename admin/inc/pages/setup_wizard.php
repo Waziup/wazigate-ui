@@ -223,9 +223,13 @@ function getAjaxWiFiForm()
 			$.get( "?get=wifiForm", function( data){
 				$("#wifiFormAjx").html( data).fadeIn();
 				autoR = setTimeout( function(){loadStuff()}, 5000);
-				$("#wifiForm").click(function(){ clearTimeout( autoR);});
-				$("#wifiSubmit").val("'. $lang['Connect'] .'");
-				
+				$("#wifiForm").click(function(){ 
+					clearTimeout( autoR);
+				});
+				$("#wifiSubmit").val("'. $lang['ConnectAndFinish'] .'");
+				$("#wifiSubmit").click( function(){ 
+					$.get( location.href + "&next=finish", function(dt){});
+				});
 				addButtons( "#wifiForm");
 			});
 		}

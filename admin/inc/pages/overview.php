@@ -182,5 +182,7 @@ function remoteItStatus()
 
 //printr( array_values( $clouds)[0]);
 //printr( $edge);
+//$clouds		= CallEdge('clouds');
+//$cloudInfo	= @reset( $clouds);
 
 ?>

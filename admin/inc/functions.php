@@ -7,7 +7,7 @@ function is_connected(){
 	$headers = get_headers( "https://www.waziup.io");
 	//$headers = @get_headers( "https://api.waziup.io/api/v2/ontologies/units");
 	//if( empty( $headers)) return false;
-
+	
 	return !empty( $headers);
 }
 
@@ -30,8 +30,8 @@ function set_profile( $new_username, $new_password)
 	);
 
 	$fp = fopen( '/var/www/html/conf/database.json', 'w');
-	fwrite($fp, json_encode( $jsonContent));
-	fclose($fp);
+	fwrite( $fp, json_encode( $jsonContent));
+	fclose( $fp);
 }
 
 /*-------------------*/

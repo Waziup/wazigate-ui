@@ -254,7 +254,7 @@ return array(
 	'EmailLogin'		=>	'Email Address / Login',
 	'GatewayName'		=>	'Gateway Name',
 	'Loading'			=>	'Loading',
-	''		=>	'',
+	'ConnectAndFinish'	=>	'Connect and Finish',
 	''		=>	'',
 	''		=>	'',
 	''		=>	'',
