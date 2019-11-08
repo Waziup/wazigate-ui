@@ -17,9 +17,9 @@ if( !empty( $_GET['get']))
 		{ 
 			$clouds		= CallEdge('clouds');
 			$cloudInfo	= @reset( $clouds);
-			$res = is_connected() ? printEnabled( $cloudInfo['registered'], 'Registered', 'NotRegistered') : '---';
+
+			$res = $cloudInfo && is_connected() ? printEnabled( $cloudInfo['registered'], 'Registered', 'NotRegistered') : '---';
 		}
-		
 		
 		print( $res);
 		exit();
