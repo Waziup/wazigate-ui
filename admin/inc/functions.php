@@ -16,7 +16,7 @@ function is_connected(){
 
 function read_database_json()
 {
-	$json_src = file_get_contents( '/var/www/html/conf/database.json');
+	$json_src = file_get_contents( getRootDir() .'../conf/database.json');
 	return json_decode( $json_src, true);
 }
 
@@ -29,7 +29,7 @@ function set_profile( $new_username, $new_password)
 		'password'	=>	$new_password,
 	);
 
-	$fp = fopen( '/var/www/html/conf/database.json', 'w');
+	$fp = fopen( getRootDir() .'../conf/database.json', 'w');
 	fwrite( $fp, json_encode( $jsonContent));
 	fclose( $fp);
 }

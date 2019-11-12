@@ -2,7 +2,7 @@
 defined( 'IN_WAZIHUB') or die( 'e902!');
 $message = ""; 
 
-$json_data = @read_database_json();
+$json_data = read_database_json();
 $conf = callAPI( 'system/conf');
 
 if( empty( $json_data))
@@ -15,7 +15,7 @@ $username = $json_data['username'];
 $password = "";
 
 // if default settings (i.e. username = admin and password = loragateway), encrypt password
-if(check_login($json_data['username'], $json_data['password'], "admin", "loragateway")){
+if( check_login($json_data['username'], $json_data['password'], "admin", "loragateway")){
 	$password = md5($json_data['password']);
 }
 else{ // password is already encrypted
@@ -90,6 +90,9 @@ else{ // isset($_POST['username']) && isset($_POST['password'])
                             <div class="form-group">
                                 <input class="form-control" placeholder="<?php print( $lang['Password']); ?>" name="password" type="password" maxlength="20" value="">
                             </div>
+
+							<h4>Default username: <b>admin</b><br />
+								Default password:&nbsp; <b>loragateway</b></h4>
                            
                             	<button  type="submit" class="btn btn-lg btn-success btn-block"><?php print( $lang['Login']);?></button>
                         </fieldset>

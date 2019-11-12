@@ -300,7 +300,7 @@
 		                <ul class="dropdown-menu dropdown-user">
 		                	<li><a id="profile" href="?page=profile"><i class="fa fa-user"></i> <?php print( $lang['Profile']); ?></a>
 		                    <li class="divider"></li>
-		                    <li><a id="logout" href="?logout=true"><i class="fa fa-sign-out fa-fw"></i> <?php print( $lang['Logout']); ?></a>
+		                    <li><a id="logoutXX" href="?logout=true"><i class="fa fa-sign-out fa-fw"></i> <?php print( $lang['Logout']); ?></a>
 		                    </li>
 		                </ul>
 		                <!-- /.dropdown-user -->

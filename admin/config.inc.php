@@ -57,7 +57,8 @@ if( @$_ENV['DEBUG_MODE'])
 {
 	//error_reporting( E_WARNING & E_ERROR);
 	error_reporting( E_ALL); 
-	ini_set('display_errors', 1);
+	ini_set( 'display_errors', 1);
+	print( "Salam Gholi");
 
 }else{
 	error_reporting( 0); 

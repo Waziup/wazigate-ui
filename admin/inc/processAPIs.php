@@ -126,7 +126,7 @@ if( !empty( $_GET['get']))
 	if( $_GET['get'] == 'updateWaziup.io')
 	{
 		session_write_close();
-		shell_exec( 'bash '. getRootDir(). '../update_docs.sh' );
+		shell_exec( 'sh '. getRootDir(). '../update_docs.sh' );
 	}
 
 	if( $_GET['get'] == 'updateLogsWaziup_io')

@@ -1,14 +1,20 @@
 <?php
 /*
 * @date: 27/03/2019 
-* @author: Moji eskandari@fbk.eu
-* @note: some functions are used from the previous code written by M. Diop and C. Pham
+* @author: Moji 
+* @note: test codes go here
 */
+
 
 define( 'IN_WAZIHUB', 1);
 
 require( './admin/config.inc.php');
 require( './admin/inc/functions.php');
+
+printr( 'sh '. getRootDir(). '../update_docs.sh');
+
+// print( shell_exec( 'sh '. getRootDir(). '../update_docs.sh' ));
+exit();
 
 #printr( getenv( 'WAZIGATE_SYSTEM_PORT'));
 #printr( $_ENV['WAZIGATE_SYSTEM_PORT']);
@@ -22,4 +28,3 @@ printr( $addr);
 printr( waziDocsUpdateCheck());
 
 ?>
-

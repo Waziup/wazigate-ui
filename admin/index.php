@@ -6,10 +6,10 @@
 */
 
 define( 'IN_WAZIHUB', 1);
+require( './config.inc.php');
 
 session_start();
 
-require( './config.inc.php');
 require( './inc/functions.php');
 
 /*---------------------------------*/
