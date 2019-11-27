@@ -114,7 +114,7 @@ if( empty( $_GET['next']))
 					)
 				),
 				
-				array( 
+				/*array( 
 						$lang['Server'], 
 						editText( array( 
 									'id'		=> 'rest',
@@ -125,7 +125,7 @@ if( empty( $_GET['next']))
 									'params'	=>	array( 'edge' => 'clouds', 'conf_node' => 'rest'),
 						)
 					)
-				),				
+				), /**/
 				
 				array( '', getCloudWizardForm())
 			),
@@ -143,7 +143,7 @@ if( empty( $_GET['next']))
 				'notes'		=>	$lang['Notes_Wizard_WiFi'],
 				'content'	=>	array(
 
-					array(	$lang['Activation']	, 
+					/*array(	$lang['Activation']	, 
 							editEnabled( array( 
 										'id'			=>	'enabled',
 										'value'			=>	$wifi['enabled'],
@@ -151,11 +151,11 @@ if( empty( $_GET['next']))
 										'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',
 								)
 							)
-						),
+						),/**/
 
-					array( $lang['Internet']	, ajaxLoad( array( 'load' => 'is_connected'))),
+					// array( $lang['Internet']	, ajaxLoad( array( 'load' => 'is_connected'))),
 					
-					array(	$lang['ConnectedWiFiNetwork'], '<b>'. $wifi['ssid'] .'</b>'. ( $wifi['ssid'] == '' ? '' : " ( {$wifi['ip']} )")),
+					array(	$lang['ConnectedWiFiNetwork'], $wifi['ap_mode'] ? $lang['APMode'] : ( '<b>'. $wifi['ssid'] .'</b>'. ( $wifi['ssid'] == '' ? '' : " ( {$wifi['ip']} )"))),
 					
 					//array( 'NetInterface' , getNetwokIFs()),
 					
@@ -176,7 +176,11 @@ if( empty( $_GET['next']))
 
 		if( $err == 0)
 		{
-			$err = $lang['SavedSuccess'];
+			$err = '<h3>Congratulations! <br />
+						You have successfully configured your WaziGate
+						</h3>
+						<p>							
+						</p>';
 
 		}else{
 
@@ -254,7 +258,7 @@ function getAjaxWiFiForm()
 					id:		"wizardFinish",
 					class:	"btn btn-primary",
 					style:	"margin-right:10px;",
-					value:	"'. $lang['Finish'] .'"
+					value:	"'. $lang['Skip'] .'"
 				})
 			);
 

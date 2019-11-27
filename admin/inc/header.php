@@ -1,6 +1,5 @@
 <?php
 	defined( 'IN_WAZIHUB') or die( 'e902!');
-
 ?><!DOCTYPE html>
 <html lang="<?php print( $lang['LANG']);?>">
 <head>
@@ -138,7 +137,6 @@
 			}
 		?>
 		.on-off-switch{direction: ltr;} /*Needs to be like this always*/
-
     </style>
 
 	<script>
@@ -184,6 +182,13 @@
 				});
 			});
 
+			<?php if( !@empty( $_SESSION['username'])) { ?>
+
+				$.get( "?get=ajaxLoad&load=gatewayName", function( data){
+					document.title = data +' - '+ document.title;
+				});
+
+			<?php } ?>
     	});
 
 	</script>

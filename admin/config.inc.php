@@ -6,7 +6,7 @@ empty( $edgeAddr[1]) and $edgeAddr[1] = '880';
 
 $hostAddr = explode( ':', @$_ENV['WAZIGATE_HOST_ADDR']);
 empty( $hostAddr[0]) and $hostAddr[0] = 'localhost';
-empty( $hostAddr[1]) and $hostAddr[1] = '5544';
+empty( $hostAddr[1]) and $hostAddr[1] = '5200';
 
 $sysAddr = explode( ':', @$_ENV['WAZIGATE_SYSTEM_ADDR']);
 empty( $sysAddr[0]) and $sysAddr[0] = 'localhost';

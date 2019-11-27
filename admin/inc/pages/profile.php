@@ -8,7 +8,7 @@ $templateData = array(
 
 	'icon'	=>	$pageIcon,
 	'title'	=>	$lang['Profile'],
-	'msgDiv'=>	'gooz',
+	'msgDiv'=>	'goox',
 	'tabs'	=>	array(
 		
 		/*-----------*/

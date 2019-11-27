@@ -35,7 +35,7 @@ $templateData = array(
 					)
 				),
 								
-				array( $lang['RadioFreq']	, editRadioFreq( true)),
+				array( $lang['LoRa']	, editRadioFreq( true)),
 			),
 		),
 		
@@ -69,7 +69,7 @@ $templateData = array(
 						)
 					),
 				
-				array( $lang['GPScoordinates']	, 	editGPScoordinates()),
+				// array( $lang['GPScoordinates']	, 	editGPScoordinates()),
 
 				array( $lang['RawFormat']	, 
 						editEnabled( array( 
@@ -138,6 +138,8 @@ $templateData = array(
 					
 					/*-----------*/
 
+					array( '', goToAPModeButton()),
+
 
 				),
 			),	
@@ -150,6 +152,35 @@ $templateData = array(
 /*------------*/
 
 require( './inc/template_admin.php');
+
+/*------------*/
+
+function goToAPModeButton()
+{
+	global $lang;
+	
+	return '<form id="saveForm_1">
+			<input type="submit" name="submit" id="submit" value="'. $lang['SwitchAP'] .'" class="btn btn-primary"/>
+			<br />
+			<br />
+			<b>
+				Warning: If you are using WiFi to access your gateway, 
+				after pushing this button, you will need to connect to the Wazigate Hotspot in order to control your gateway.
+			</b>
+			<div id="sinkAjx_1"></div>
+		</form>
+		<script>
+			$( "#saveForm_1").submit( function(){
+					$("#sinkAjx_1").html( "<br /><img src=\"./style/img/loading.gif\" /> Switching to the Hotspot mode...").fadeIn();
+					$.get( "?get=switchToAP", function( data){
+						$("#sinkAjx_1").html( data).fadeIn().delay(4800).fadeOut("slow");
+						setTimeout( function(){location.reload();}, 5*60*1000);
+
+					});
+					return false;
+			});
+		</script>';	
+}
 
 /*------------*/
 
@@ -262,5 +293,7 @@ function editGPScoordinates()
 }
 
 /*--------------------*/
+
+// printr( $ap);
 
 ?>

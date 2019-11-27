@@ -6,6 +6,13 @@
 
 define( 'IN_WAZIHUB', 1);
 
-header( 'Location: ./admin/');
+//header( 'Location: ./admin/');
 
-?>
+?><html>
+	<body>
+		[ <a href="?"> Login Page </a> ]
+		<script type="text/javascript">
+			window.location.href="./admin/";
+		</script>
+	</body>
+</html>

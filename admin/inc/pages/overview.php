@@ -11,7 +11,7 @@ $edge	=	CallEdge( 'device');
 $templateData = array(
 
 	'icon'	=>	$pageIcon,
-	'title'	=>	$lang['OverviewTitle'],
+	'title'	=>	$lang['OverviewTitle'] .' [ '. $edge['name'] .' ]',
 	'msgDiv'=>	'gw_config_msg',
 	'tabs'	=>	array(
 		
@@ -25,14 +25,15 @@ $templateData = array(
 
 				array( $lang['Internet']	, ajaxLoad( array( 'load' => 'is_connected'))),
 				array( $lang['gatewayReg']	, ajaxLoad( array( 'load' => 'gatewayReg'))),
-				array( ''	, ''),
+				'DELIMITER',
 				
-				array( $lang['GatewayID']	, strtoupper( $edge['id'])),
+				
+				array( $lang['GatewayID']	, $edge['id']),
 				array( $lang['GatewayName']	, $edge['name']),
-				array( ''	, ''),
+				'DELIMITER',
 
 				array( $lang['IPaddress']	, $net['ip']),
-				array( $lang['RadioFreq']	, getRadioFreq()),
+				array( $lang['LoRaBand']	, getRadioFreq()),
 				array( $lang['MacAddress']	, empty( $net['dev']) ? '' : ($net['dev'] .' [ '. $net['mac'] .' ]')),
 			),
 		),
@@ -47,7 +48,7 @@ $templateData = array(
 				
 				array( $lang['LoraMode']		, 	$conf['radio_conf']['mode']),
 				array( $lang['Encryption']		, 	printEnabled( $conf['gateway_conf']['aes'])),
-				array( $lang['GPScoordinates']	, 	getGPScoordinates()),
+				// array( $lang['GPScoordinates']	, 	getGPScoordinates()),
 				//array( $lang['CloudMQTT']		, 	printEnabled( cloud_status( $clouds, "python CloudMQTT.py"))),
 				//array( 'Low-level status ON'	, 	getLowLevelStatus()),
 			),
@@ -67,7 +68,7 @@ $templateData = array(
 		
 		/*-----------*/
 		
-		array(
+		/*array(
 			'title'		=>	$lang['Location'],
 			'active'	=>	false,
 			'notes'		=>	$lang['Notes_Overview_Location'],
@@ -76,8 +77,7 @@ $templateData = array(
 				array( storeLocationInfoButton()),
 				array( loadLocationInfo()),
 			),
-		),		
-		
+		),/**/
 		
 		/*-----------*/
 

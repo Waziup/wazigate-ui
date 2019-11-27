@@ -80,12 +80,12 @@ $menu = array(
 					'icon'	=> 'fa-file-code-o',//fa-file-text-o fa-file-code-o fa-file-text 
 					'active'=> $_GET['page'] == 'logs',
 				),
-				'test' => array(
+				/*'test' => array(
 					'text'	=> $lang['TestDebug'],
 					'url' 	=> 'test',
 					'icon'	=> 'fa-stethoscope', //fa-search, fa-bug
 					'active'=> $_GET['page'] == 'test',
-				),
+				),/**/
 				'update' => array(
 					'text'	=> $lang['Update'],
 					'url' 	=> 'update',
@@ -95,12 +95,12 @@ $menu = array(
 			),
 		),
 
-	'notifications' => array(
+	/*'notifications' => array(
 			'text'	=> $lang['Notifications'],
 			'url' 	=> 'notifications',
 			'icon'	=> 'fa-envelope',
 			'active'=> $_GET['page'] == 'notifications',
-		),
+		), /**/
 
 	'profile' => array(
 			'text'	=> $lang['Profile'],
@@ -111,13 +111,13 @@ $menu = array(
 		),
 
 	'docs' => array(
-		'text'	=> $lang['Documentations'],
+		'text'	=> $lang['Help'],
 		'url' 	=> '#docs',
 		'icon'	=> 'fa-question-circle',
 		'active'=> false,
 			'sub'	=> array(
 				'offlineWebsite' => array(
-					'text'	=> $lang['WaziDocs'],
+					'text'	=> $lang['UserManual'],
 					'url' 	=> '../www.waziup.io/documentation/',
 					'link'	=> true, #if the URL is external
 					'icon'	=> 'fa-question-circle', //fa-search, fa-bug
@@ -125,7 +125,7 @@ $menu = array(
 				),
 				
 				'apiDocs' => array(
-					'text'	=> $lang['APIDocs'],
+					'text'	=> $lang['SysAPIDocs'],
 					'url' 	=> $_cfg['APIServer']['docs'],
 					'link'	=> true, #if the URL is external
 					'icon'	=> 'fa-question-circle',

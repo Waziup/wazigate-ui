@@ -53,7 +53,7 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
                     						
                     						<div class='col-md-10 col-md-offset-0'>
                               					<div class='table-responsive'>
-													<table class='table table-striped table-bordered table-hover' style='border-collapse: separate;'>
+													<table class='table table-striped table-bordered table-hover' style='border-collapse: separate; border: none;'>
 								  						<thead>
 														</thead>
 														<tbody>
@@ -61,7 +61,13 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 				            			
 				            	foreach( $tab['content'] as $row)
 				            	{
-				            		print( isset( $row['id']) ? "<tr id='tr_{$row['id']}'>" : '<tr>');
+									if( $row == 'DELIMITER')
+									{
+										print( "<tr><td colspan='10' style='border: none;background-color:#FFF;height:40px;'></td></tr>");
+										continue;
+									}
+
+									print( isset( $row['id']) ? "<tr id='tr_{$row['id']}'>" : '<tr>');
 				            		unset( $row['id']);
 
 				            		foreach( $row as $item)

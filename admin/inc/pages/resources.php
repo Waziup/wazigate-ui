@@ -6,7 +6,7 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 $hwStatus = CallHost( 'hardware/status');
 
 /*------------*/
-
+/*
 $tabsData['clocks'] = array();
 foreach( $hwStatus['clocks'] as $k => $v)
 {
@@ -37,7 +37,7 @@ foreach( explode( "\n", $hwStatus['config']) as $v)
 {
 	$tabsData['config'][] = array( $v);
 }
-
+/**/
 
 /*------------*/
 
@@ -65,7 +65,7 @@ $templateData = array(
 		
 		/*-----------*/
 	
-		array(
+		/*array(
 			'title'		=>	'Memory',
 			'active'	=>	false,
 			'notes'		=>	'',
@@ -74,7 +74,7 @@ $templateData = array(
 		
 		/*-----------*/
 		
-		array(
+		/*array(
 			'title'		=>	'Clocks',
 			'active'	=>	false,
 			'notes'		=>	'',
@@ -83,7 +83,7 @@ $templateData = array(
 		
 		/*-----------*/
 
-		array(
+		/*array(
 			'title'		=>	'Voltages',
 			'active'	=>	false,
 			'notes'		=>	'',
@@ -92,7 +92,7 @@ $templateData = array(
 		
 		/*-----------*/
 		
-		array(
+		/*array(
 			'title'		=>	'Config',
 			'active'	=>	false,
 			'notes'		=>	'',

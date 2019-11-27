@@ -3,6 +3,7 @@
 defined( 'IN_WAZIHUB') or die( 'e902!');
 
 $conf	=	callAPI( 'system/conf');
+$gwInfo	=	CallEdge( 'device');
 
 $maxAddr = 255;
 
@@ -16,41 +17,43 @@ $templateData = array(
 	'tabs'	=>	array(
 		
 		/*-----------*/
-		
-		array(
-			'title'		=>	$lang['Radio'],
-			'active'	=>	true,
-			'notes'		=>	$lang['Notes_BasicConf_Radio'],
-			'content'	=>	array(
-				array( $lang['RadioFreq'], editRadioFreq()),
-			),
-		),
-		
-		/*-----------*/
-		
+
 		//Moved to the advanced config
-		/*array(
+		array(
 			'title'		=>	$lang['Gateway'],
-			'active'	=>	false,
+			'active'	=>	true,
 			'notes'		=>	$lang['Notes_BasicConf_Gateway'],
 			'content'	=>	array(
 				
+				array( $lang['GatewayID']	, @$gwInfo['id']),
+				
 				array( 
-						$lang['GatewayID']	, 
+						$lang['GatewayName'], 
 						editText( array( 
-									'id'		=> 'gateway_ID',
-									'label'		=> $lang['GatewayID'],
-									'pholder'	=> $lang['NewValue'],
-									'note'		=> $lang['GatewayIDWarning'],
-									'value'		=> $conf['gateway_conf']['gateway_ID'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'gateway_conf'),
-							)
+									'id'		=> 'name',
+									'label'		=> $lang['GatewayName'],
+									'pholder'	=> 'My fish farm gateway',
+									//'type'		=> 'email',
+									//'note'		=> $lang['Username'] .' [A-Za-z0-9]',
+									'value'		=>	@$gwInfo['name'],
+									'params'	=>	array( 'edge' => 'gateway'),
 						)
-					),
+					)
+				),
 				
 			),
 		),/**/
 
+		array(
+			'title'		=>	$lang['Radio'],
+			'active'	=>	false,
+			'notes'		=>	$lang['Notes_BasicConf_Radio'],
+			'content'	=>	array(
+				array( $lang['LoRaBand'], editRadioFreq()),
+			),
+		),
+		
+		/*-----------*/
 		/*-----------*/
 		/*-----------*/
 	),

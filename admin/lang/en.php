@@ -32,6 +32,7 @@ return array(
 	'BasicConfTitle'=>	'Basic Configurations',
 	'Gateway'		=>	'Gateway',
 	'RadioFreq'		=>	'Radio Frequency',
+	'LoRaBand'		=>	'LoRa Band',
 	'LoraMode'		=>	'LoRa Mode',
 	'Encryption'	=>	'LoRa Encryption (AES)',
 	'GPScoordinates'=>	'GPS coordinates',
@@ -63,8 +64,12 @@ return array(
 	'Notes_Overview_Advance'	=>	'',
 	'Notes_Overview_Maintenance'=>	'',
 	'Notes_BasicConf_Radio'		=>	'',
-	'Notes_BasicConf_Gateway'	=>	'',
-	'Notes_AdvanceConf_Radio'	=>	'Enable the "PA_BOOST" by default. <br />Notes_AdvanceConf_Radio',
+	'Notes_BasicConf_Gateway'	=>	'<ul>
+										<li>
+											The <tt>Gateway Name</tt> is a custom user defined name for yourself to be able to identify this particular gateway on your waziup cloud dashboard. 
+										</li>										
+									</ul>',
+	'Notes_AdvanceConf_Radio'	=>	'',
 	'Notes_AdvanceConf_Gateway'	=>	'',
 	'Notes_Notifs_Mail'			=>	'The email and SMS notifications are just for alerting when the gateway is booting and on radio reset',
 	'Notes_Notifs_SMS'			=>	'The email and SMS notifications are just for alerting when the gateway is booting and on radio reset',
@@ -92,11 +97,12 @@ return array(
 										</li>
 									</ul>',
 	'Notes_Profile'		=>	'',
-	'Notes_Internet'	=>	'The gateway will reboot itself once the WiFi is set. If it cannot connect to the internet, it will switch back to the Access point.',
+	'Notes_Internet'	=>	'<b>Warning: activating the Wifi will disable the hotspot access point.</b><br />
+	If the gateway cannot connect to the WiFi, it will switch back to the Access point.',
 	'Notes_AP'			=>	'',
 	'Notes_Cellular'	=> 	'You MUST reboot for changes to take effect.',
 	'Loragna_G'			=> 	'Loragna Option',
-	''		=> 		'',
+	'SwitchAP'		=> 		'Switch to Hotspot Mode',
 	''		=> 		'',
 	''		=> 		'',
 	''		=> 		'',
@@ -179,7 +185,6 @@ return array(
 	'RebootDialog'		=>	'<p>You are about to reboot the gateway.<b><i class="title"></i></b></p>
                     <p>Note that you have to wait a while and then refresh the page.</p>
                     <p>Do you want to proceed?</p>',
-
 	'LoginSuccess'		=>	'Login Successful.<br />Redirecting...',
 	'Home'				=>	'Home',
 
@@ -226,16 +231,14 @@ return array(
 	'Finish'		=>	'Finish',
 	'Skip'			=>	'Skip',
 	'Connect'		=>	'Connect',
-	'Notes_Wizard_WiFi'		=>	'The gateway will reboot itself once the WiFi is set and if it canot connect, it will role back to the Access point.',
+	'Notes_Wizard_WiFi'		=>	'<b>Warning: activating the Wifi will disable the hotspot access point.</b><br />
+	If the gateway cannot connect to the WiFi, it will switch back to the Access point.',
 	'Notes_Wizard_Cloud'	=>	'<ul>
 										<li>
 											The <tt>Gateway Name</tt> is a custom user defined name for yourself to be able to identify this particular gateway on your waziup cloud dashboard. 
 										</li>
 										<li>
 											The <tt>Email address</tt> is the one used as your WAZIUP username. <tt>password</tt> is your WAZIUP password. To create an account on the WAZIUP platform, go to <a href="https://dashboard.waziup.io">https://dashboard.waziup.io</a>. 
-										</li>
-										<li>
-											The <tt>Server</tt> is the address of your MQTT waziup server. If you don\'t know what it is, just leave it empty.
 										</li>
 									</ul>',
 	'SaveLocation'		=>	'Save Location',
@@ -247,14 +250,36 @@ return array(
 	'Available'		=>	'Available',
 	'Device'		=>	'Device',
 	'ScanningWiFi'	=>	'Scanning for WiFi networks...',
-	'Yes'		=>	'Yes',
-	'No'		=>	'No',
-	'Back'		=>	'Back',
-	'gatewayReg'=>	'Gateway Registration',
-	'EmailLogin'		=>	'Email Address / Login',
-	'GatewayName'		=>	'Gateway Name',
-	'Loading'			=>	'Loading',
+	'Yes'			=>	'Yes',
+	'No'			=>	'No',
+	'Back'			=>	'Back',
+	'gatewayReg'	=>	'Gateway Registration',
+	'EmailLogin'	=>	'Email Address / Login',
+	'GatewayName'	=>	'Gateway Name',
+	'Loading'		=>	'Loading',
 	'ConnectAndFinish'	=>	'Connect and Finish',
+	'LoRa'			=>	'LoRa',
+	'Skip'			=>	'Skip',
+	'Help'			=>	'Help',
+	'SysAPIDocs'	=>	'System API Docs',
+	'UserManual'	=>	'User Manuals',
+	'APMode'		=>	'Hotspot Mode',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
+	''		=>	'',
 	''		=>	'',
 	''		=>	'',
 	''		=>	'',

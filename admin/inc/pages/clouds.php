@@ -7,7 +7,7 @@ $conf	= callAPI( 'system/conf');
 $clouds = CallEdge('clouds');
 $cloudInfo	= @reset( $clouds);
 
-$gwInfo	=	CallEdge( 'device');
+// $gwInfo	=	CallEdge( 'device');
 
 /*------------*/
 
@@ -34,20 +34,6 @@ $templateData = array(
 							)
 						)
 					),
-
-				array( 
-						$lang['GatewayName'], 
-						editText( array( 
-									'id'		=> 'name',
-									'label'		=> $lang['GatewayName'],
-									'pholder'	=> 'My fish farm gateway',
-									//'type'		=> 'email',
-									//'note'		=> $lang['Username'] .' [A-Za-z0-9]',
-									'value'		=>	@$gwInfo['name'],
-									'params'	=>	array( 'edge' => 'gateway'),
-						)
-					)
-				),
 				
 				array( 
 						$lang['EmailLogin'], 

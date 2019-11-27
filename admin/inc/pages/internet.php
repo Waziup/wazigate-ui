@@ -33,9 +33,9 @@ $templateData = array(
 						)
 					),
 
-				array( $lang['Internet']	, ajaxLoad( array( 'load' => 'is_connected'))),
+				// array( $lang['Internet']	, ajaxLoad( array( 'load' => 'is_connected'))),
 				
-				array(	$lang['ConnectedWiFiNetwork'], '<b>'. $wifi['ssid'] .'</b>'. ( $wifi['ssid'] == '' ? '' : " ( {$wifi['ip']} )")),
+				array(	$lang['ConnectedWiFiNetwork'], $wifi['ap_mode'] ? $lang['APMode'] : ( '<b>'. $wifi['ssid'] .'</b>'. ( $wifi['ssid'] == '' ? '' : " ( {$wifi['ip']} )"))),
 				
 				//array( 'NetInterface' , getNetwokIFs()),
 				

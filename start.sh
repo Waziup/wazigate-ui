@@ -10,16 +10,17 @@ fi
 # Force immediate synchronisation of the time and start the time-synchronization service.
 # In order to be able to use ntpd in the container, it must be run with the SYS_TIME capability.
 # In addition you may want to add the SYS_NICE capability, in order for ntpd to be able to modify its priority.
-ntpd -s
+#ntpd -s
+ntpd
 
 # Apache server name change
-if [ ! -z "$APACHE_SERVER_NAME" ]
-	then
-		sed -i "s/#ServerName www.example.com:80/ServerName $APACHE_SERVER_NAME/" /etc/apache2/httpd.conf
-		echo "Changed server name to '$APACHE_SERVER_NAME'..."
-	else
-		echo "NOTICE: Change 'ServerName' globally and hide server message by setting environment variable >> 'APACHE_SERVER_NAME=your.server.name' in docker command or docker-compose file"
-fi
+#if [ ! -z "$APACHE_SERVER_NAME" ]
+	#then
+		#sed -i "s/#ServerName www.example.com:80/ServerName $APACHE_SERVER_NAME/" /etc/apache2/httpd.conf
+		#echo "Changed server name to '$APACHE_SERVER_NAME'..."
+	#else
+		#echo "NOTICE: Change 'ServerName' globally and hide server message by setting environment variable >> 'APACHE_SERVER_NAME=your.server.name' in docker command or docker-compose file"
+#fi
 
 # PHP Config
 if [ ! -z "$PHP_SHORT_OPEN_TAG" ]; then sed -i "s/\;\?\\s\?short_open_tag = .*/short_open_tag = $PHP_SHORT_OPEN_TAG/" /etc/php7/php.ini && echo "Set PHP short_open_tag = $PHP_SHORT_OPEN_TAG..."; fi

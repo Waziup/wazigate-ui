@@ -4,11 +4,14 @@
 
 function is_connected(){
 
-	$headers = get_headers( "https://www.waziup.io");
+	// $headers = get_headers( "https://www.waziup.io");
 	//$headers = @get_headers( "https://api.waziup.io/api/v2/ontologies/units");
 	//if( empty( $headers)) return false;
+
 	
-	return !empty( $headers);
+	$res = CallHost( 'internet');
+	
+	return $res == "1";
 }
 
 
@@ -462,7 +465,6 @@ function ajaxLoad( $params)
 	
 	
 }
-
 
 /*--------------------*/
 

@@ -20,10 +20,28 @@ if( !empty( $_GET['get']))
 
 			$res = $cloudInfo && is_connected() ? printEnabled( $cloudInfo['registered'], 'Registered', 'NotRegistered') : '---';
 		}
+
+		if( $_GET['load'] == 'gatewayName')
+		{
+			$edge=	CallEdge( 'device');
+			$res = $edge['name'];
+		}
 		
 		print( $res);
 		exit();
 	}
+
+	/*------------------*/
+
+	if( $_GET['get'] == 'switchToAP')
+	{
+		$err = CallAPI( 'system/wifi/mode/ap', NULL, 'POST');
+		print( $err);
+		exit();
+	}
+	
+	
+	/*------------------*/
 	
 	if( $_GET['get'] == 'wifiForm') print( wifiForm( array( 'cfg' => 'system/wifi')));
 	if( $_GET['get'] == 'logs')
