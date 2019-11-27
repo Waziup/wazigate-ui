@@ -165,11 +165,17 @@ function printRecMenu( $menu)
 		$item['active'] and $pageIcon = $item['icon'];
 		if( isset( $item['show']) && !$item['show']) continue;
 		
-		if( empty( $item['link'])) $item['url'] = '?page='. $item['url'];
-		$target = @$item['link'] ? 'target="_blank"' : '';
+		if( empty( $item['link'])) 
+		{
+			$item['url'] = '?page='. $item['url'];
+		}else{
+
+			$item['url'] = '?page=frame&src='. urlencode( $item['url']);
+		}
+		//$target = @$item['link'] ? 'target="wframe"' : '';
 		
 		$active = $item['active'] ? 'active' : '';
-		print( "\n<li><a href='{$item['url']}' $target class='$active'><i class='fa {$item['icon']}'></i> {$item['text']}</a>");
+		print( "\n<li><a href='{$item['url']}' class='$active'><i class='fa {$item['icon']}'></i> {$item['text']}</a>");
 		
 		if( isset( $item['sub']) && is_array( $item['sub']))
 		{ 
@@ -208,9 +214,11 @@ function printRecMenu( $menu)
 <?php
 
 /*---------------------------------*/
-//For security reasons:
+	
+	//For security reasons:
 
-isset( $listOfPages[ $_GET['page']]) or $_GET['page'] = '';
+	$listOfPages[ 'frame'] = 1;
+	isset( $listOfPages[ $_GET['page']]) or $_GET['page'] = '';
 
 /*---------------------------------*/
 ?>
