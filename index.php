@@ -7,12 +7,7 @@
 define( 'IN_WAZIHUB', 1);
 
 //header( 'Location: ./admin/');
+require( './admin/inc/functions.php');
+jsRedirect( './admin/', 'Login');
 
-?><html>
-	<body>
-		[ <a href="?"> Login Page </a> ]
-		<script type="text/javascript">
-			window.location.href="./admin/";
-		</script>
-	</body>
-</html>
+?>

@@ -468,4 +468,77 @@ function ajaxLoad( $params)
 
 /*--------------------*/
 
+function jsRedirect( $url, $msg = 'Home')
+{
+	print( '<!DOCTYPE html><html>
+	<head>
+			<style>
+			.container {
+				width: 100%;
+				max-width: 100% ;
+				text-align: center;
+			}
+			.wrapper {
+				width: 100%;
+				padding: 10px 30px;
+				background: #EEE;
+				border: 3px solid #A3A3A3; 
+				border-radius: 25px;
+			}
+	
+			.center {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-moz-transform: translateX(-50%) translateY(-50%);
+				-webkit-transform: translateX(-50%) translateY(-50%);
+				transform: translateX(-50%) translateY(-50%);
+			}
+			p { color: #005;}
+			h2 { color: #005;}
+			
+			.col-md-6 {
+				float: left;
+				padding-bottom: 100px;
+			}        
+			.css-loader {
+				border: 16px solid #f3f3f3; 
+				border-top: 16px solid #335; 
+				border-radius: 50%;
+				width: 50px;
+				height: 50px;
+				animation: spin 1s linear infinite;
+				margin-left:35%;
+			}
+	
+			@keyframes spin {
+				0% { transform: rotate(0deg); }
+				100% { transform: rotate(360deg); }
+			}
+			#msg{
+				clear:both;
+			}
+		</style>
+	
+	</head>
+	<body>
+		<div class="center">
+			<div class="wrapper">
+				<div class="container">
+					<h3>Redirecting <a href="'. $url .'">'. $msg .'</a> ...</h3>
+					<div class="container clear clear-fix">
+						<div class="css-loader"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			window.location.href="'. $url .'";
+		</script>
+	</body>
+	</html>');
+}
+
+/*--------------------*/
+
 ?>

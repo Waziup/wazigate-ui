@@ -46,7 +46,7 @@ $templateData = array(
 
 		/*-----------*/
 
-		array(
+		/*array(
 			'title'		=>	$lang['Cellular'],
 			'active'	=>	false,
 			'notes'		=>	$lang['Notes_Cellular'],
@@ -83,7 +83,7 @@ $templateData = array(
 									#'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',
 							)
 						)
-					),/**/
+					),/**//*
 
 				),
 			),

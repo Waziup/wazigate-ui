@@ -29,10 +29,10 @@ $templateData = array(
 
 				array( $lang['GatewayID']	, $edge['id']),
 				array( $lang['GatewayName']	, $edge['name']),
+				array( $lang['LoRaBand']	, getRadioFreq()),
 				'DELIMITER',
 
 				array( $lang['IPaddress']	, $net['ip']),
-				array( $lang['LoRaBand']	, getRadioFreq()),
 				array( $lang['MacAddress']	, empty( $net['dev']) ? '' : ($net['dev'] .' [ '. $net['mac'] .' ]')),
 				'DELIMITER',
 

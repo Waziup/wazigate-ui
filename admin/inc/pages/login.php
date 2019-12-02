@@ -32,6 +32,7 @@ if((isset($_SESSION['username'])) && (isset($_SESSION['password']))){
 		if( $conf['setup_conf']['wizard'])// if the setup wizard has been done
 		{
 			header('Location: ./');
+
 		}else{
 			header('Location: ./?page=setup_wizard');
 		}
@@ -55,9 +56,14 @@ else{ // isset($_POST['username']) && isset($_POST['password'])
  
 			if( $conf['setup_conf']['wizard'])// if the setup wizard has been done
 			{
-				$message = $lang['LoginSuccess'] .'[ <a href="?">'. $lang['Home'] .'</a> ] <script type="text/javascript">window.location.href="?";</script>';
+				// $message = $lang['LoginSuccess'] .'[ <a href="?">'. $lang['Home'] .'</a> ] <script type="text/javascript">window.location.href="?";</script>';
+				jsRedirect( '?');
+				exit();
+
 			}else{
-				$message = $lang['LoginSuccess'] .'[ <a href="?page=setup_wizard">'. $lang['Home'] .'</a> ] <script type="text/javascript">window.location.href="?page=setup_wizard";</script>';
+				// $message = $lang['LoginSuccess'] .'[ <a href="?page=setup_wizard">'. $lang['Home'] .'</a> ] <script type="text/javascript">window.location.href="?page=setup_wizard";</script>';
+				jsRedirect( '?page=setup_wizard');
+				exit();
 			}			
 		}
 		else{
@@ -66,8 +72,6 @@ else{ // isset($_POST['username']) && isset($_POST['password'])
 			//header('Location: ./');
 			$message = $lang['LoginError'];
 			//exit();
- 
-			//!\ Cette redirection est nécessaire /!\
 		}
   	}
 }

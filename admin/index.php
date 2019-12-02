@@ -32,14 +32,7 @@ if( !empty( $_GET['logout']))
 	unset( $_SESSION);
 
 	// header('Location: ./'); //To fix the issue if remote redirection
-	print( '<html>
-				<body>
-					[ <a href="?"> Home </a> ]
-					<script type="text/javascript">
-						window.location.href="?";
-					</script>
-				</body>
-			</html>');
+	jsRedirect( '?');
 
 	exit();
 }
