@@ -12,6 +12,8 @@ session_start();
 
 require( './inc/functions.php');
 
+// printr( $_SERVER);
+
 /*---------------------------------*/
 //Language stuff
 

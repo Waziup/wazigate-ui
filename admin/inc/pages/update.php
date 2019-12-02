@@ -16,6 +16,7 @@ $templateData = array(
 			'active'	=>	true,
 			'notes'		=>	'',
 			'content'	=>	array(
+					array( $lang['CurrentVersion'] .' : <b>'. getenv( 'WAZIUP_VERSION') .'</b>'),	
 					array( updateButton()),
 					array( getUpdateLogs( 'updateLogs')),
 			),

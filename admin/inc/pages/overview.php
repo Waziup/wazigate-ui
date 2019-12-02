@@ -26,8 +26,7 @@ $templateData = array(
 				array( $lang['Internet']	, ajaxLoad( array( 'load' => 'is_connected'))),
 				array( $lang['gatewayReg']	, ajaxLoad( array( 'load' => 'gatewayReg'))),
 				'DELIMITER',
-				
-				
+
 				array( $lang['GatewayID']	, $edge['id']),
 				array( $lang['GatewayName']	, $edge['name']),
 				'DELIMITER',
@@ -35,6 +34,10 @@ $templateData = array(
 				array( $lang['IPaddress']	, $net['ip']),
 				array( $lang['LoRaBand']	, getRadioFreq()),
 				array( $lang['MacAddress']	, empty( $net['dev']) ? '' : ($net['dev'] .' [ '. $net['mac'] .' ]')),
+				'DELIMITER',
+
+				array( $lang['FramewareVersion'] , getenv( 'WAZIUP_VERSION')),
+
 			),
 		),
 		
