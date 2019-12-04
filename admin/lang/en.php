@@ -104,7 +104,7 @@ return array(
 	'Loragna_G'			=> 	'Loragna Option',
 	'SwitchAP'			=> 		'Switch to Hotspot Mode',
 	'CurrentVersion'	=> 		'Current Version',
-	'FirmwareVersion'	=> 		'Firmware Version',
+	'FramewareVersion'	=> 		'Frameware Version',
 	''		=> 		'',
 	''		=> 		'',
 	''		=> 		'',

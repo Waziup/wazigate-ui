@@ -36,7 +36,7 @@ $templateData = array(
 				array( $lang['MacAddress']	, empty( $net['dev']) ? '' : ($net['dev'] .' [ '. $net['mac'] .' ]')),
 				'DELIMITER',
 
-				array( $lang['FirmwareVersion'] , getenv( 'WAZIUP_VERSION')),
+				array( $lang['FramewareVersion'] , getenv( 'WAZIUP_VERSION')),
 
 			),
 		),
