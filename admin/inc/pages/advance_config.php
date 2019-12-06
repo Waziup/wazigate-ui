@@ -94,7 +94,7 @@ $templateData = array(
 		/*-----------*/		
 		
 		array(
-			'title'		=>	'Accesss Point',
+			'title'		=>	'Access Point',
 			'active'	=>	false,
 			'notes'		=>	$lang['Notes_AP'],
 			'content'	=>	array(
