@@ -53,6 +53,59 @@
     <![endif]-->
     
     <style type="text/css">
+		.info, .success, .warning, .error {
+			margin: 10px 0px;
+			padding:12px;
+			border-radius:.5em;
+		}
+
+/*		.info:before, .success:before, .warning:before, .error:before {
+			font-family:FontAwesome;
+			font-style:normal;
+			font-weight:400;
+			speak:none;
+			display:inline-block;
+			text-decoration:inherit;
+			width:1em;
+			margin-right:.2em;
+			text-align:center;
+			font-variant:normal;
+			text-transform:none;
+			line-height:1em;
+			margin-left:.2em;
+			-webkit-font-smoothing:antialiased;
+			-moz-osx-font-smoothing:grayscale
+		}
+		.info:before {
+			content:"f05a";
+		}
+		.success:before {
+			content:'f00c';
+		}
+		.warning:before {
+			content:'f071';
+		}
+		.error:before {
+			content:'f057';
+		} /**/
+		.info {
+			color: #00529B;
+			background-color: #BDE5F8;
+		}
+		.success {
+			color: #4F8A10;
+			background-color: #DFF2BF;
+		}
+		.warning {
+			color: #9F6000;
+			background-color: #FEEFB3;
+		}
+		.error {
+			color: #D8000C;
+			background-color: #FFD2D2;
+		}
+
+		/*-----*/
     	
     	.sidebar ul li a.active{
 			color: #FFF;
