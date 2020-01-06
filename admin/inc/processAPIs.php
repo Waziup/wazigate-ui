@@ -6,7 +6,7 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 
 if( !empty( $_GET['get']))
 {
-	//if( $_GET['get'] == 'ssid')	$err = CallAPI( 'system/wifi/ssid');
+	//if( $_GET['get'] == 'ssid')	$err = CallAPI( 'net/wifi/ssid');
 	
 	if( $_GET['get'] == 'ajaxLoad')
 	{
@@ -35,7 +35,7 @@ if( !empty( $_GET['get']))
 
 	if( $_GET['get'] == 'switchToAP')
 	{
-		$err = CallAPI( 'system/wifi/mode/ap', NULL, 'POST');
+		$err = CallAPI( 'net/wifi/mode/ap', NULL, 'POST');
 		print( $err);
 		exit();
 	}
@@ -43,30 +43,16 @@ if( !empty( $_GET['get']))
 	
 	/*------------------*/
 	
-	if( $_GET['get'] == 'wifiForm') print( wifiForm( array( 'cfg' => 'system/wifi')));
+	if( $_GET['get'] == 'wifiForm') print( wifiForm( array( 'cfg' => 'net/wifi')));
 	if( $_GET['get'] == 'logs')
 	{
 		if( @$_GET['n'] == 50)
 		{
-			if( empty( $_GET['cId']))
-			{
-				print( callAPI( 'system/logs50'));
-
-			}else{
-
-				print( CallHost( 'docker/'. $_GET['cId'] .'/logs/50', false, 'GET', false));
-			}
+			print( callAPI( 'docker/'. $_GET['cId'] .'/logs/50', false, 'GET', false));
 			
 		}elseif( @$_GET['n'] == 500){
 			
-			if( empty( $_GET['cId']))
-			{
-				print( callAPI( 'system/logs500'));
-
-			}else{
-
-				print( CallHost( 'docker/'. $_GET['cId'] .'/logs/500', false, 'GET', false));
-			}
+			print( callAPI( 'docker/'. $_GET['cId'] .'/logs/500', false, 'GET', false));
 		
 		}else{
 		
@@ -83,15 +69,8 @@ if( !empty( $_GET['get']))
 			header('Pragma: public');
 			#header('Content-Length: ' . $size);			
 
-			if( empty( $_GET['cId']))
-			{
-				print( callAPI( 'system/logs'));
+			print( callAPI( 'docker/'. $_GET['cId'] .'/logs', false, 'GET', false));
 
-			}else{
-
-				print( CallHost( 'docker/'. $_GET['cId'] .'/logs', false, 'GET', false));
-			}
-			
 			exit();
 		}
 
@@ -99,12 +78,12 @@ if( !empty( $_GET['get']))
 	
 	if( $_GET['get'] == 'location') print( getLocation());
 	//if( $_GET['get'] == 'remote.it') print( json_encode( callAPI( 'remote.it')));
-	if( $_GET['get'] == 'hardware_status') print( json_encode( CallHost( 'hardware/status')));
+	if( $_GET['get'] == 'hardware_status') print( json_encode( callAPI( 'usage')));
 	
 	if( $_GET['get'] == 'dockerState')
 	{
 		$api = 'docker/'. $_REQUEST['id'] .'/';
-		if( $_REQUEST['cName'] == 'wazigate-ui')//We should not stop this, restarting instead!
+		if( in_array( $_REQUEST['cName'], array( 'wazigate-ui', 'wazigate-system'))) //We should not stop this, restarting instead!
 		{
 			$api .= 'restart';
 		
@@ -112,7 +91,7 @@ if( !empty( $_GET['get']))
 			
 			$api .= $_REQUEST['value'] ? 'start' : 'stop';
 		}
-		$res = CallHost( $api, null, 'POST');
+		$res = CallAPI( $api, null, 'POST');
 		
 		if( empty( $res))
 		{
@@ -129,15 +108,18 @@ if( !empty( $_GET['get']))
 	if( $_GET['get'] == 'update')
 	{
 		set_time_limit(0);
-		$res = CallHost( 'docker/update', null, 'POST');
+		$res = CallAPI( 'update', null, 'POST');
 		print( $res);
 	}
 	
 	if( $_GET['get'] == 'updateLogs')
 	{
-		$updateLogs = CallHost( 'docker/update/status');
-		$res = empty( $updateLogs) ? "" : "{$lang['LastUpdate']}: <b>{$updateLogs['time']}</b><hr /><pre>{$updateLogs['logs']}</pre>";
-		print( $res);
+		$updateLogs = CallAPI( 'update/status');
+		// $res = empty( $updateLogs) ? "" : "{$lang['LastUpdate']}: <b>{$updateLogs['time']}</b><hr /><pre>{$updateLogs['logs']}</pre>";
+		// print( $res);
+
+		print( "<pre>$updateLogs</pre>");
+		// printr( $updateLogs);
 	}
 
 
@@ -156,15 +138,15 @@ if( !empty( $_GET['get']))
 	
 	/*-----------------*/
 
-	//printr( $_REQUEST);
+	// printr( $_REQUEST);
 	exit();
 }/**/
 
 /*-----------------*/
 
-if( !empty( $_REQUEST['status']))
+if( !empty( $_REQUEST['status'])) // Shutdown and Reboot
 {
-	$err = CallAPI( 'system/'. $_REQUEST['status'], NULL, 'PUT');
+	$err = CallAPI( ''. $_REQUEST['status'], NULL, 'PUT');
 	print( $err);
 	//print( 'Done.');
 	exit();
@@ -313,7 +295,7 @@ if( !empty( $_GET['cfg']))
 
 	if( isset( $_POST['band']))
 	{
-		$_GET['cfg'] = 'system/conf';
+		$_GET['cfg'] = 'conf';
 		$_REQUEST['json']['radio_conf'] = array( 'band' => $_POST['band'], 'freq' => $_POST['freq']);
 
 	}//End of if( isset( $_POST['band']));
@@ -322,7 +304,7 @@ if( !empty( $_GET['cfg']))
 
 	if( isset( $_POST['ref_latitude']))
 	{
-		$_GET['cfg'] = 'system/conf';
+		$_GET['cfg'] = 'conf';
 		$_REQUEST['json']['gateway_conf'] = array( 'ref_latitude' => $_POST['ref_latitude'], 'ref_longitude' => $_POST['ref_longitude']);
 
 	}//End of if( isset( $_POST['ref_latitude']));	
@@ -346,6 +328,9 @@ if( !empty( $_GET['cfg']))
 	
 	//Calling the thing :P
 	$err = CallAPI( $_GET['cfg'], $_REQUEST, 'POST');
+	
+	//printr( $_GET['cfg']);printr( $_REQUEST);
+	
 	
 	/*---------*/
 
@@ -421,7 +406,7 @@ function wifiForm( $params)
 	
 	$getQStr = http_build_query( $params);
 	
-	$resA = CallAPI( 'system/wifi/scan');
+	$resA = CallAPI( 'net/wifi/scan');
 	$res = array();
 	foreach( @$resA as $data)
 	{
@@ -438,7 +423,8 @@ function wifiForm( $params)
 	{
 		$txt = $data['signal'] .' '. $data['name'] .' ('. $data['security'] .')';
 		
-		$wpa = $data['security'] == 'WPA';
+		// $wpa = $data['security'] == 'WPA';
+		$wpa = true; // To avoid some bugs (temporary solution)
 		
 		$out .= '<li><i class="fa fa-fw wifibar" id="wifibar'. ( intval( $data['signal'] / 21) ) .'" ></i> ';
 		$out .= ' <i class="fa fa-fw '. ( $wpa ? 'fa-lock': 'fa-unlock' ) .'"></i> ';

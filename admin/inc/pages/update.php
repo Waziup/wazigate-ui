@@ -51,6 +51,12 @@ require( './inc/template_admin.php');
 function updateButton()
 {
 	global $lang;
+
+	$sysAddr = explode( ':', getenv( 'WAZIGATE_SYSTEM_ADDR'));
+	empty( $sysAddr[0]) and $sysAddr[0] = $_SERVER['HTTP_HOST'];
+	empty( $sysAddr[1]) and $sysAddr[1] = '5000';
+
+	$sysUpdateURL = 'http://'. $sysAddr[0] .':'. $sysAddr[1] .'/update';
 	
 	return '<form id="saveForm_1">
 			<input type="hidden" name="ref_latitude" id="latitude" value="0" />
@@ -61,16 +67,17 @@ function updateButton()
 		<script>
 			$( "#saveForm_1").submit( function(){
 					$("#sinkAjx_1").html( "<br /><img src=\"./style/img/loading.gif\" /> '. $lang['UpdatingMsg'] .'").fadeIn();
-					$.get( "?get=update", function( data){
+					$.get( "'. $sysUpdateURL .'", function( data){
 						$("#sinkAjx_1").html( data).fadeIn().delay(5000).fadeOut("slow");
 						setTimeout( function(){location.reload();}, 15*60*1000);
-
 					});
+					$("#sinkAjx_1").delay(10000).fadeOut("slow");
 					return false;
 			});
 		</script>';	
 }
 #$.get( "?status=reboot", function(d){alert(d)});
+
 /*------------*/
 
 function getUpdateLogs( $param)
@@ -95,7 +102,7 @@ function getUpdateLogs( $param)
 	 </script>';
 }
 
-/*--------------------*/
+/*------------*/
 
 function updateButtonWaziupIo()
 {

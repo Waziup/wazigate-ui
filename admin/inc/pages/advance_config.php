@@ -2,8 +2,8 @@
 // unplanned execution path
 defined( 'IN_WAZIHUB') or die( 'e902!');
 
-$conf	= callAPI( 'system/conf');
-$ap		= callAPI( 'system/wifi/ap');
+$conf	= callAPI( 'conf');
+$ap		= callAPI( 'net/wifi/ap');
 
 /*------------*/
 
@@ -30,7 +30,7 @@ $templateData = array(
 									'type'		=> 'select',
 									'source'	=> array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6, 7=>7, 8=>8, 9=>9, 10=>10),
 									'value'		=> $conf['radio_conf']['mode'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'radio_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'radio_conf'),
 						)
 					)
 				),
@@ -41,7 +41,7 @@ $templateData = array(
 		
 		/*-----------*/
 		
-		array(
+/*		array(
 			'title'		=>	$lang['Gateway'],
 			'active'	=>	false,
 			'notes'		=>	$lang['Notes_AdvanceConf_Gateway'],
@@ -55,16 +55,16 @@ $templateData = array(
 									'pholder'	=> $lang['NewValue'],
 									'note'		=> $lang['GatewayIDWarning'],
 									'value'		=> $conf['gateway_conf']['gateway_ID'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'gateway_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'gateway_conf'),
 							)
 						)
-				),/**/
+				),
 				
 				array( $lang['Encryption']	, 
 						editEnabled( array( 
 									'id'		=> 'aes',
 									'value'		=> $conf['gateway_conf']['aes'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'gateway_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'gateway_conf'),
 							)
 						)
 					),
@@ -75,7 +75,7 @@ $templateData = array(
 						editEnabled( array( 
 									'id'		=> 'raw',
 									'value'		=> $conf['gateway_conf']['raw'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'gateway_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'gateway_conf'),
 							)
 						)
 					),
@@ -84,12 +84,14 @@ $templateData = array(
 						editEnabled( array( 
 									'id'		=> 'wappkey',
 									'value'		=> $conf['gateway_conf']['wappkey'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'gateway_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'gateway_conf'),
 							)
 						)
 					),
 			),
 		),
+
+		/**/
 
 		/*-----------*/		
 		
@@ -112,7 +114,7 @@ $templateData = array(
 									'pholder'	=> $ap['SSID'],
 									'note'		=> $lang['APSSIDNote'],
 									'value'		=> $ap['SSID'],
-									'params'	=>	array( 'cfg' => 'system/wifi/ap'),
+									'params'	=>	array( 'cfg' => 'net/wifi/ap'),
 							)
 						)
 					),
@@ -126,7 +128,7 @@ $templateData = array(
 									'pholder'	=> $ap['password'],
 									//'note'		=> $lang['APSSIDNote'],
 									'value'		=> $ap['password'],
-									'params'	=>	array( 'cfg' => 'system/wifi/ap'),
+									'params'	=>	array( 'cfg' => 'net/wifi/ap'),
 							)
 						)
 					),

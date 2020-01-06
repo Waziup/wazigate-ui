@@ -4,7 +4,7 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 
 /*------------*/
 
-$conf	= callAPI( 'system/conf');
+$conf	= callAPI( 'conf');
 
 /*------------*/
 
@@ -135,7 +135,7 @@ if( empty( $_GET['next']))
 
 }elseif( @$_GET['next'] == 'wifi'){
 	
-	$wifi	= callAPI( 'system/wifi');
+	$wifi	= callAPI( 'net/wifi');
 	$templateData[ 'tabs' ][] = array(
 	
 				'title'		=>	'WiFi',
@@ -147,7 +147,7 @@ if( empty( $_GET['next']))
 							editEnabled( array( 
 										'id'			=>	'enabled',
 										'value'			=>	$wifi['enabled'],
-										'params'		=>	array( 'cfg' => 'system/wifi'),
+										'params'		=>	array( 'cfg' => 'net/wifi'),
 										'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',
 								)
 							)
@@ -171,8 +171,8 @@ if( empty( $_GET['next']))
 	
 	//Storing the done flag for wizard
 
-		$_REQUEST['json']['setup_conf']['wizard'] = true;
-		$err = CallAPI( 'system/conf', $_REQUEST, 'POST');
+		$_REQUEST['json']['setup_wizard'] = true;
+		$err = CallAPI( 'conf', $_REQUEST['json'], 'POST');
 
 		if( $err == 0)
 		{
@@ -184,6 +184,7 @@ if( empty( $_GET['next']))
 
 		}else{
 
+			// printr( $err);
 			is_array( $err) and $err = implode( '<br />', $err);
 
 		}//End of if( $err == 0);

@@ -4,8 +4,8 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 
 /*------------*/
 
-$wifi	= callAPI( 'system/wifi');
-$conf	= callAPI( 'system/conf');
+$wifi	= callAPI( 'net/wifi');
+$conf	= callAPI( 'conf');
 
 $templateData = array(
 
@@ -27,7 +27,7 @@ $templateData = array(
 						editEnabled( array( 
 									'id'			=>	'enabled',
 									'value'			=>	$wifi['enabled'],
-									'params'		=>	array( 'cfg' => 'system/wifi'),
+									'params'		=>	array( 'cfg' => 'net/wifi'),
 									'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',
 							)
 						)
@@ -56,7 +56,7 @@ $templateData = array(
 						editEnabled( array( 
 									'id'			=>	'3G_boot',
 									'value'			=>	$conf['cell_conf']['3G_boot'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'cell_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'cell_conf'),
 									#'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',
 							)
 						)
@@ -66,7 +66,7 @@ $templateData = array(
 						editEnabled( array( 
 									'id'			=>	'loragna_boot',
 									'value'			=>	$conf['cell_conf']['loragna_boot'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'cell_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'cell_conf'),
 									#'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',
 							)
 						)
@@ -77,7 +77,7 @@ $templateData = array(
 									'id'		=>	'loragna_g',
 									'value'		=>	$conf['cell_conf']['loragna_g'],
 									'source'	=>	array( false => '2G', true => '3G'),
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'cell_conf', 'custom' => 1),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'cell_conf', 'custom' => 1),
 									'enText'	=>	'3G',
 									'disText'	=>	'2G',
 									#'callbackJS'	=>	'setTimeout( function(){location.reload();}, 2000);',

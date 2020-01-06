@@ -153,10 +153,14 @@ foreach( $cssIcons as $icon)
 
 /*---------------------------------*/
 
+
 $listOfPages = array();
 function printRecMenu( $menu)
 {
 	global $listOfPages, $pageIcon;
+
+	// Check if the ui is running on HDMI screen (using kiosk mode)
+	$HDMI = $_SERVER['HTTP_HOST'] == 'localhost';
 
 	foreach( $menu as $key => $item)
 	{
@@ -164,13 +168,17 @@ function printRecMenu( $menu)
 		
 		$item['active'] and $pageIcon = $item['icon'];
 		if( isset( $item['show']) && !$item['show']) continue;
-		
-		if( empty( $item['link'])) 
+
+		if( empty( $item['link']))
 		{
 			$item['url'] = '?page='. $item['url'];
 		}else{
-
-			$item['url'] = '?page=frame&src='. urlencode( $item['url']);
+			if( $HDMI)
+			{
+				$item['url'] = '?page=frame&src='. urlencode( $item['url']);
+			}else{
+				$item['url'] = $item['url'];
+			}
 		}
 		//$target = @$item['link'] ? 'target="wframe"' : '';
 		

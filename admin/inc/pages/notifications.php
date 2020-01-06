@@ -2,7 +2,7 @@
 // unplanned execution path
 defined( 'IN_WAZIHUB') or die( 'e902!');
 
-$conf	= callAPI( 'system/conf');
+$conf	= callAPI( 'conf');
 
 /*------------*/
 
@@ -25,7 +25,7 @@ $templateData = array(
 									'id'		=>	'use_mail',
 									'value'		=>	$conf['alert_conf']['use_mail'],
 									'type'		=>	'email',
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'alert_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'alert_conf'),
 							)
 						)
 					),
@@ -39,7 +39,7 @@ $templateData = array(
 									'type'		=> 'email',
 									'note'		=> '', //$lang['GatewayIDWarning'],
 									'value'		=> $conf['alert_conf']['mail_from'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'alert_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'alert_conf'),
 						)
 					)
 				),
@@ -52,7 +52,7 @@ $templateData = array(
 									'pholder'	=> $lang['MailPassword'],
 									'note'		=> '', //$lang['GatewayIDWarning'],
 									'value'		=> empty( $conf['alert_conf']['mail_passwd']) ? '' : '*********',
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'alert_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'alert_conf'),
 						)
 					)
 				),
@@ -65,7 +65,7 @@ $templateData = array(
 									'pholder'	=> 'smtp.gmail.com for example',
 									'note'		=> '', //$lang['GatewayIDWarning'],
 									'value'		=> $conf['alert_conf']['mail_server'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'alert_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'alert_conf'),
 						)
 					)
 				),
@@ -79,7 +79,7 @@ $templateData = array(
 									'note'		=> $lang['MailRecieversNote'],
 									'value'		=> str_replace( ',', "\n", $conf['alert_conf']['contact_mail']),
 									'type'		=> 'textarea',
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'alert_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'alert_conf'),
 						)
 					)
 				),
@@ -99,7 +99,7 @@ $templateData = array(
 						editEnabled( array( 
 									'id'		=> 'use_sms',
 									'value'		=> $conf['alert_conf']['use_sms'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'alert_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'alert_conf'),
 							)
 						)
 					),				
@@ -112,7 +112,7 @@ $templateData = array(
 									'pholder'	=> '0000',
 									'note'		=> $lang['PinCode_Note'],
 									'value'		=> $conf['alert_conf']['pin'],
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'alert_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'alert_conf'),
 						)
 					)
 				),
@@ -127,7 +127,7 @@ $templateData = array(
 									'value'		=> @implode( "\n", $conf['alert_conf']['contact_sms']),
 									//'value'		=> str_replace( ',', "\n", $alert_conf['contact_sms']),
 									'type'		=> 'textarea',
-									'params'	=>	array( 'cfg' => 'system/conf', 'conf_node' => 'alert_conf'),
+									'params'	=>	array( 'cfg' => 'conf', 'conf_node' => 'alert_conf'),
 						)
 					)
 				),

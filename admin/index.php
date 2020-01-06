@@ -12,7 +12,7 @@ session_start();
 
 require( './inc/functions.php');
 
-// printr( $_SERVER);
+// printr( $_SERVER); die();
 
 /*---------------------------------*/
 //Language stuff

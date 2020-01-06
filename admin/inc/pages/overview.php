@@ -2,8 +2,8 @@
 // unplanned execution path
 defined( 'IN_WAZIHUB') or die( 'e902!');
 
-$conf	=	callAPI( 'system/conf');
-$net	=	callAPI( 'system/net');
+$conf	=	callAPI( 'conf');
+$net	=	callAPI( 'net');
 $edge	=	CallEdge( 'device');
 
 /*------------*/
@@ -32,7 +32,7 @@ $templateData = array(
 				array( $lang['LoRaBand']	, getRadioFreq()),
 				'DELIMITER',
 
-				array( $lang['IPaddress']	, $net['ip']),
+				array( $lang['IPaddress']	, str_replace( "\n", '<br />', $net['ip'])),
 				array( $lang['MacAddress']	, empty( $net['dev']) ? '' : ($net['dev'] .' [ '. $net['mac'] .' ]')),
 				'DELIMITER',
 

@@ -3,7 +3,7 @@ defined( 'IN_WAZIHUB') or die( 'e902!');
 $message = ""; 
 
 $json_data = read_database_json();
-$conf = callAPI( 'system/conf');
+$conf = callAPI( 'conf');
 
 if( empty( $json_data))
 {
@@ -15,21 +15,21 @@ $username = $json_data['username'];
 $password = "";
 
 // if default settings (i.e. username = admin and password = loragateway), encrypt password
-if( check_login( $json_data['username'], $json_data['password'], "admin", "loragateway")){
-	$password = md5( $json_data['password']);
+if( check_login($json_data['username'], $json_data['password'], "admin", "loragateway")){
+	$password = md5($json_data['password']);
 }
 else{ // password is already encrypted
 	$password = $json_data['password'];
 }
 
 // create a connexion attempt session
-if( !isset( $_SESSION['attempt'])) $_SESSION['attempt'] = 0;
+if(!isset($_SESSION['attempt'])) $_SESSION['attempt'] = 0;
 
 // check if the user is already logged in
-if(( isset( $_SESSION['username'])) && ( isset( $_SESSION['password']))){
+if((isset($_SESSION['username'])) && (isset($_SESSION['password']))){
 	//$message = 'User is already logged in';
 	if(check_login($username, $password, $_SESSION['username'], $_SESSION['password'])){
-		if( $conf['setup_conf']['wizard'])// if the setup wizard has been done
+		if( $conf['setup_wizard'])// if the setup wizard has been done
 		{
 			header('Location: ./');
 
@@ -42,7 +42,7 @@ if(( isset( $_SESSION['username'])) && ( isset( $_SESSION['password']))){
 
 // check that both the username, password have been submitted
 if(!isset( $_POST['username'], $_POST['password'])){
-    $message = '';
+    $message = $lang['LoginError'];
 }
 else{ // isset($_POST['username']) && isset($_POST['password'])
 	
@@ -54,7 +54,7 @@ else{ // isset($_POST['username']) && isset($_POST['password'])
 			$_SESSION['username'] = $_POST['username'];
 			$_SESSION['password'] = md5($_POST['password']);
  
-			if( $conf['setup_conf']['wizard'])// if the setup wizard has been done
+			if( $conf['setup_wizard'])// if the setup wizard has been done
 			{
 				// $message = $lang['LoginSuccess'] .'[ <a href="?">'. $lang['Home'] .'</a> ] <script type="text/javascript">window.location.href="?";</script>';
 				jsRedirect( '?');
@@ -97,19 +97,14 @@ else{ // isset($_POST['username']) && isset($_POST['password'])
 
 							<h4>Default username: <b>admin</b><br />
 								Default password:&nbsp; <b>loragateway</b></h4>
-
-							<?php if( !empty( $message)) { ?>
-								<div id="login_form_msg" class="error">
-									<i class="fa fa-times-circle"></i>
-									<?php print( $message);?>
-								</div>
-							<?php } ?>
-
-					
-							<button  type="submit" class="btn btn-lg btn-success btn-block"><?php print( $lang['Login']);?></button>
+                           
+                            	<button  type="submit" class="btn btn-lg btn-success btn-block"><?php print( $lang['Login']);?></button>
                         </fieldset>
                     </form>
                 </div>
+            </div>
+            <div id="login_form_msg">
+            	<?php print( $message);?>
             </div>
         </div>
     </div>
@@ -119,24 +114,3 @@ else{ // isset($_POST['username']) && isset($_POST['password'])
 
 <!-- Bootstrap Core JavaScript -->
 <script src="./style/js/bootstrap.min.js"></script>
-
-<!-- 
-<div class="info">
-	<i class="fa fa-info-circle"></i>
-	INFO text.
-</div>
- 
-<div class="success">
-	<i class="fa fa-check"></i>
-	SUCCESS text.
-</div>
-  
-<div class="warning">
-	<i class="fa fa-warning"></i>
-	WARNING text.
-</div>
-
-<div class="error">
-	<i class="fa fa-times-circle"></i>
-	ERROR text.
-</div> -->

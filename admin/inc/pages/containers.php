@@ -3,7 +3,7 @@
 defined( 'IN_WAZIHUB') or die( 'e902!');
 
 //$conf	=	callAPI( 'system/conf');
-$status = CallHost( 'docker/status');
+$status = callAPI( 'docker');
 
 //printr( $status);
 

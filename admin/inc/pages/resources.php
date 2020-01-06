@@ -2,8 +2,8 @@
 // unplanned execution path
 defined( 'IN_WAZIHUB') or die( 'e902!');
 
-//$conf	=	callAPI( 'system/conf');
-$hwStatus = CallHost( 'hardware/status');
+//$conf	=	callAPI( 'conf');
+$hwStatus = callAPI( 'usage');
 
 /*------------*/
 /*
@@ -179,9 +179,11 @@ function resUsage()
 
 		    $.get( "?get=hardware_status", function( data){
 				res = JSON.parse( data);
-				
+
+				mem_usage = parseInt(( res.mem_usage.used / res.mem_usage.total) * 100);
+
 				cpuData.push( [ now, res.cpu_usage]);
-				ramData.push( [ now, res.mem_usage.percent]);
+				ramData.push( [ now, mem_usage]);
 				tmpData.push( [ now, res.temp]);
 				
 				now += updateInterval;

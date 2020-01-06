@@ -27,8 +27,8 @@ $_cfg = array(
 	),
 	
 	'APIServer'		=>	array(
-			'URL'	=>	'http://'. $sysAddr[0] .':'. $sysAddr[1] .'/api/v1/',		// API server URL to communicate with the system functions
-			'docs'	=>	'http://'. $_SERVER['HTTP_HOST'] .':'. $sysAddr[1] .'/',	// URL to the API documentations
+			'URL'	=>	'http://'. $sysAddr[0] .':'. $sysAddr[1] .'/',				// API server URL to communicate with the system functions
+			'docs'	=>	'http://'. $_SERVER['HTTP_HOST'] .':'. $sysAddr[1] .'/docs/',	// URL to the API documentations
 			'username'	=>	'', // getenv( 'WAZIGATE_SYSTEM_USERNAME')
 			'password'	=>	'',
 	),
@@ -47,7 +47,7 @@ $_cfg = array(
 	),
 	
 	'wazidocs'	=> array(
-		'git'	=> 'https://github.com/Waziup/waziup.io/commits',
+		'git'	=> 'https://github.com/Waziup/waziup.io/commits',  //Deprecated!
 	),
 );
 

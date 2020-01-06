@@ -9,7 +9,7 @@ function is_connected(){
 	//if( empty( $headers)) return false;
 
 	
-	$res = CallHost( 'internet');
+	$res = callAPI( 'internet');
 	
 	return $res == "1";
 }
@@ -325,12 +325,12 @@ function CallHost( $name, $data = false, $method = 'GET', $json = true, $getHTTP
 
 function restCall( $apiInfo, $name, $data = false, $method = 'GET', $json = true, $getHTTPcode = false)
 {
-    $curl = curl_init();
-    
+	$curl = curl_init();
+	
     $url = $apiInfo['URL'] . $name;
     $data_json = $json ? json_encode( $data) : @http_build_query( $data);
     
-    //printr( $url);printr( $data_json);
+	// printr( $url);printr( $data_json);
 
     switch( $method)
     {

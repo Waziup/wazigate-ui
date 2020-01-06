@@ -2,30 +2,20 @@
 // unplanned execution path
 defined( 'IN_WAZIHUB') or die( 'e902!');
 
-$conf	= callAPI( 'system/conf');
-$status = CallHost( 'docker/status');
+$conf	= callAPI( 'conf');
+$status = callAPI( 'docker');
 
 //printr( $status);
 
 /*------------*/
 
-$tabs = array(
-			array(
-				'title'		=>	'LoRa',
-				'active'	=>	true,
-				'notes'		=>	$lang['Notes_Test_Logs'],
-				'content'	=>	array(
-					array( logsForm( 'lora')),
-				),
-			)
-	);
-
+$firstTabActive = true;
 foreach( $status as $k => $container)
 {
 	$cName = ltrim( $container['Names'][0], '/');
 	$tabs[] = array(
 			'title'		=>	$cName,
-			'active'	=>	false, // Active only the first tab
+			'active'	=>	$firstTabActive, // Active only the first tab
 			'notes'		=>	'',
 			'content'	=>	array(
 				array( $lang['State']  .': '. $container['State']),
@@ -33,7 +23,7 @@ foreach( $status as $k => $container)
 				array( logsForm( $cName, $container['Id'])),
 			)
 		);
-	
+	$firstTabActive = false;
 }
 
 /*------------*/
