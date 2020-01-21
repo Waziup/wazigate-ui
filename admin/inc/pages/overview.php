@@ -29,7 +29,7 @@ $templateData = array(
 
 				array( $lang['GatewayID']	, $edge['id']),
 				array( $lang['GatewayName']	, $edge['name']),
-				array( $lang['LoRaBand']	, getRadioFreq()),
+				// array( $lang['LoRaBand']	, getRadioFreq()),
 				'DELIMITER',
 
 				array( $lang['IPaddress']	, str_replace( "\n", '<br />', $net['ip'])),
@@ -42,7 +42,7 @@ $templateData = array(
 		),
 		
 		/*-----------*/
-		
+		/*
 		array(
 			'title'		=>	$lang['Advance'],
 			'active'	=>	false,

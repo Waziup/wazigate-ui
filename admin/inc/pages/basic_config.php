@@ -44,7 +44,7 @@ $templateData = array(
 			),
 		),/**/
 
-		array(
+		/*array(
 			'title'		=>	$lang['Radio'],
 			'active'	=>	false,
 			'notes'		=>	$lang['Notes_BasicConf_Radio'],

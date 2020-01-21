@@ -16,7 +16,7 @@ $templateData = array(
 		
 		/*-----------*/
 		
-		array(
+		/*array(
 			'title'		=>	$lang['Radio'],
 			'active'	=>	true,
 			'notes'		=>	$lang['Notes_AdvanceConf_Radio'],
@@ -97,7 +97,7 @@ $templateData = array(
 		
 		array(
 			'title'		=>	'Access Point',
-			'active'	=>	false,
+			'active'	=>	true,
 			'notes'		=>	$lang['Notes_AP'],
 			'content'	=>	array(
 
@@ -112,7 +112,7 @@ $templateData = array(
 									'id'		=> 'SSID',
 									'label'		=> $lang['SSID'],
 									'pholder'	=> $ap['SSID'],
-									'note'		=> $lang['APSSIDNote'],
+									// 'note'		=> $lang['APSSIDNote'],
 									'value'		=> $ap['SSID'],
 									'params'	=>	array( 'cfg' => 'net/wifi/ap'),
 							)
